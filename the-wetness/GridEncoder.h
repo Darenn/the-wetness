@@ -14,7 +14,7 @@ public:
 	GridEncoder();
 	~GridEncoder();
 
-	const size_t NUMBER_BITS_PER_NODE = 6;
+	static const size_t NUMBER_BITS_PER_NODE = 6;
 
 	std::vector<bool> encode(const Grid& grid) const;
 };

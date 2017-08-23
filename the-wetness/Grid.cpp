@@ -6,7 +6,8 @@ Grid::Grid(int width, int height)
 	_height = height;
 	// Create the nodes
 	size_t nNodes = width * height;
-	_nodes = std::vector<Node>(nNodes);
+	_nodes = std::vector<Node>();
+	_nodes.reserve(nNodes);
 	for (size_t i = 0; i < nNodes; i++)
 	{
 		_nodes.push_back(Node());
@@ -87,6 +88,16 @@ Node & Grid::getNode(const size_t i, const size_t j)
 const std::vector<Node>& Grid::getNodes() const
 {
 	return _nodes;
+}
+
+size_t Grid::width() const
+{
+	return _width;
+}
+
+size_t Grid::height() const
+{
+	return _height;
 }
 
 std::ostream & operator<<(std::ostream& output, const Grid& grid)

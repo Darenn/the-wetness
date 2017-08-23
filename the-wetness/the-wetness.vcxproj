@@ -139,13 +139,19 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ConformityEvaluator.cpp" />
+    <ClCompile Include="FitnessEvaluator.cpp" />
     <ClCompile Include="Grid.cpp" />
+    <ClCompile Include="GridDecoder.cpp" />
     <ClCompile Include="GridEncoder.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="the-wetness.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ConformityEvaluator.h" />
+    <ClInclude Include="FitnessEvaluator.h" />
     <ClInclude Include="Grid.h" />
+    <ClInclude Include="GridDecoder.h" />
     <ClInclude Include="GridEncoder.h" />
     <ClInclude Include="Node.h" />
   </ItemGroup>
