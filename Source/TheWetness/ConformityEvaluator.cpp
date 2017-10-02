@@ -1,4 +1,4 @@
-#include "TheWetness/ConformityEvaluator.h"
+#include "TheWetness/ConformityEvaluator.hpp"
 
 
 ConformityEvaluator::ConformityEvaluator()

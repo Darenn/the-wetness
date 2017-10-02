@@ -1,7 +1,7 @@
 #pragma once
 
 #include <vector>
-#include "Grid.h"
+#include "Grid.hpp"
 
 /// <summary>
 /// Class to encode a grid into a binary string (here a vector<bool>). 

@@ -1,4 +1,4 @@
-#include "TheWetness/Node.h"
+#include "TheWetness/Node.hpp"
 
 
 Node::Node()

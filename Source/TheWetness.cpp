@@ -1,9 +1,9 @@
-#include "TheWetness/Grid.h"
+#include "TheWetness/Grid.hpp"
 #include <iostream>
-#include "TheWetness/GridEncoder.h"
+#include "TheWetness/GridEncoder.hpp"
 #include <iterator>
-#include "TheWetness/GA_Algorithms.h"
-#include "TheWetness/GridDecoder.h"
+#include "TheWetness/GA_Algorithms.hpp"
+#include "TheWetness/GridDecoder.hpp"
 
 using namespace std;
 

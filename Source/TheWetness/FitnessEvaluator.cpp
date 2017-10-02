@@ -1,4 +1,4 @@
-#include "TheWetness/FitnessEvaluator.h"
+#include "TheWetness/FitnessEvaluator.hpp"
 
 
 FitnessEvaluator::FitnessEvaluator()

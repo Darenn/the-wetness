@@ -2,7 +2,7 @@
 
 #include <vector>
 #include <iostream>
-#include "Node.h"
+#include "Node.hpp"
 
 class Grid
 {
