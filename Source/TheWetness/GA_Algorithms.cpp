@@ -1,6 +1,7 @@
-#include "GA_Algorithms.h"
+#include "TheWetness/GA_Algorithms.h"
 #include <random>
 #include <stdexcept>
+#include <algorithm>
 
 void GA_Algorithms::mutate(Chromosome& chromosome, float mutationProbability) const
 {

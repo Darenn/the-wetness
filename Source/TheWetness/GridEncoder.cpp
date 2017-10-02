@@ -1,4 +1,4 @@
-#include "GridEncoder.h"
+#include "TheWetness/GridEncoder.h"
 #include <cassert>
 
 std::vector<bool> fromChar(char value)
