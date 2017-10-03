@@ -19,12 +19,10 @@ public:
 
 	friend std::ostream & operator<<(std::ostream& output, const Node& node);
 
-private:
-
 	// They can be null
-	Node* _upNeighbor = nullptr;
-	Node* _rightNeighbor = nullptr;
-	Node* _downNeighbor = nullptr;
-	Node* _leftNeighbor = nullptr;
+	Node* upNeighbor = nullptr;
+	Node* rightNeighbor = nullptr;
+	Node* downNeighbor = nullptr;
+	Node* leftNeighbor = nullptr;
 };
 

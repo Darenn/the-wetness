@@ -29,7 +29,9 @@ Grid PuzzleGenerator::generateNextPuzzle()
 			}
 
 			ga_algo.mutate(child);
+
 			std::cout << _gridDecoder.decode(child) << std::endl;
+			auto grid = _gridDecoder.decode(child);
 		}
 
 		population.insert(population.end(), offspring.begin(), offspring.end());
