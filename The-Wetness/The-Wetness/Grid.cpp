@@ -1,4 +1,4 @@
-#include "TheWetness/Grid.hpp"
+#include "Grid.hpp"
 
 Grid::Grid(int width, int height)
 {

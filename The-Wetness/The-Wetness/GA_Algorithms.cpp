@@ -1,4 +1,4 @@
-#include "TheWetness/GA_Algorithms.hpp"
+#include "GA_Algorithms.hpp"
 #include <random>
 #include <stdexcept>
 #include <algorithm>

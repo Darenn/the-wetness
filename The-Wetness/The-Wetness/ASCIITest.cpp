@@ -1,4 +1,4 @@
-
+/*0
 #include <Windows.h>
 
 #define SCREEN_WIDTH 200
@@ -30,4 +30,4 @@ int main()
 
 	system("pause");
 	return 0;
-}
+}*/

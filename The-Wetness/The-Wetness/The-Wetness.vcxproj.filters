@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Fichiers sources">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Fichiers de ressources">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\ASCIIEngine">
+      <UniqueIdentifier>{096abbd7-7ccb-4c12-9c28-ddda46c70f92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\TheWetness">
+      <UniqueIdentifier>{a683fc7e-d310-4528-894a-62c1abf8b324}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Visual">
+      <UniqueIdentifier>{66e07028-48d9-4cb0-a549-2bc95dc0f411}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\ASCIIEngine">
+      <UniqueIdentifier>{a9d33186-71b2-4f00-b102-84390fa9f861}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\TheWetness">
+      <UniqueIdentifier>{047a908f-9166-4a7b-b308-b4ea75a3f960}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Visual">
+      <UniqueIdentifier>{deddf67b-8222-4afd-84f8-9851882e67e3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="FrameBuffer.hpp">
+      <Filter>Fichiers d%27en-tête\ASCIIEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="ConformityEvaluator.hpp">
+      <Filter>Fichiers d%27en-tête\TheWetness</Filter>
+    </ClInclude>
+    <ClInclude Include="FitnessEvaluator.hpp">
+      <Filter>Fichiers d%27en-tête\TheWetness</Filter>
+    </ClInclude>
+    <ClInclude Include="GA_Algorithms.hpp">
+      <Filter>Fichiers d%27en-tête\TheWetness</Filter>
+    </ClInclude>
+    <ClInclude Include="Grid.hpp">
+      <Filter>Fichiers d%27en-tête\TheWetness</Filter>
+    </ClInclude>
+    <ClInclude Include="GridDecoder.hpp">
+      <Filter>Fichiers d%27en-tête\TheWetness</Filter>
+    </ClInclude>
+    <ClInclude Include="GridEncoder.hpp">
+      <Filter>Fichiers d%27en-tête\TheWetness</Filter>
+    </ClInclude>
+    <ClInclude Include="Node.hpp">
+      <Filter>Fichiers d%27en-tête\TheWetness</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Fichiers d%27en-tête\Visual</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Fichiers d%27en-tête\Visual</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="TheWetness.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameBuffer.cpp">
+      <Filter>Fichiers sources\ASCIIEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="ASCIITest.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="ConformityEvaluator.cpp">
+      <Filter>Fichiers sources\TheWetness</Filter>
+    </ClCompile>
+    <ClCompile Include="FitnessEvaluator.cpp">
+      <Filter>Fichiers sources\TheWetness</Filter>
+    </ClCompile>
+    <ClCompile Include="GA_Algorithms.cpp">
+      <Filter>Fichiers sources\TheWetness</Filter>
+    </ClCompile>
+    <ClCompile Include="Grid.cpp">
+      <Filter>Fichiers sources\TheWetness</Filter>
+    </ClCompile>
+    <ClCompile Include="GridDecoder.cpp">
+      <Filter>Fichiers sources\TheWetness</Filter>
+    </ClCompile>
+    <ClCompile Include="GridEncoder.cpp">
+      <Filter>Fichiers sources\TheWetness</Filter>
+    </ClCompile>
+    <ClCompile Include="Node.cpp">
+      <Filter>Fichiers sources\TheWetness</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Fichiers sources\Visual</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

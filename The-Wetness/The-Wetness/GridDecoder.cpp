@@ -1,5 +1,5 @@
-#include "TheWetness/GridDecoder.hpp"
-#include "TheWetness/GridEncoder.hpp"
+#include "GridDecoder.hpp"
+#include "GridEncoder.hpp"
 
 
 char fromVector(std::vector<bool> vec) {

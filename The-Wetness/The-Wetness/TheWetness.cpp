@@ -1,9 +1,10 @@
-#include "TheWetness/Grid.hpp"
+#include "Grid.hpp"
 #include <iostream>
-#include "TheWetness/GridEncoder.hpp"
+#include "GridEncoder.hpp"
 #include <iterator>
-#include "TheWetness/GA_Algorithms.hpp"
-#include "TheWetness/GridDecoder.hpp"
+#include "GA_Algorithms.hpp"
+#include "GridDecoder.hpp"
+
 
 using namespace std;
 
@@ -87,6 +88,3 @@ int main()
 
     return 0;
 }
-
-
-
