@@ -139,6 +139,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ASCIITest.hpp" />
     <ClInclude Include="ConformityEvaluator.hpp" />
     <ClInclude Include="FitnessEvaluator.hpp" />
     <ClInclude Include="FrameBuffer.hpp" />
@@ -161,6 +162,7 @@
     <ClCompile Include="GridDecoder.cpp" />
     <ClCompile Include="GridEncoder.cpp" />
     <ClCompile Include="Node.cpp" />
+    <ClCompile Include="PuzzleGenerator.cpp" />
     <ClCompile Include="TheWetness.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>

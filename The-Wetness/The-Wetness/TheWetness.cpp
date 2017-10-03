@@ -1,6 +1,6 @@
 #include "PuzzleGenerator.hpp"
 #include <vector>
-
+#include "ASCIITest.hpp"
 
 using namespace std;
 
@@ -16,5 +16,6 @@ int main()
 {
 	PuzzleGenerator pg;
 	pg.generateNextPuzzle();
+	TestAscii();
     return 0;
 }

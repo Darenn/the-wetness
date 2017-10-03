@@ -63,6 +63,9 @@
     <ClInclude Include="PuzzleGenerator.hpp">
       <Filter>Fichiers d%27en-tête\TheWetness</Filter>
     </ClInclude>
+    <ClInclude Include="ASCIITest.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TheWetness.cpp">
