@@ -30,7 +30,7 @@ std::vector<bool> GridEncoder::encode(const Grid & grid) const
 	encodedGrid.reserve(sizeof(char) * 8 + nodes.size() * NUMBER_BITS_PER_NODE);
 
 	// Encode the number of rows
-	auto numberRows = fromChar(static_cast<char>(grid.height()));
+	auto numberRows = fromChar(static_cast<char>(grid.getHeight()));
 	encodedGrid.insert(std::end(encodedGrid), std::begin(numberRows), std::end(numberRows));
 
 	for (size_t i = 0; i < nodes.size(); i++)

@@ -5,9 +5,11 @@
 
 void GA_Algorithms::mutate(Chromosome& chromosome, float mutationProbability) const
 {
-	for (bool allele : chromosome)
-		if (std::rand() / static_cast<float>(RAND_MAX) < mutationProbability)
-			allele = !allele;
+	for (size_t i = sizeof(char) * 8; i < chromosome.size(); i++)
+	{
+		chromosome[i] = !chromosome[i];
+	}
+		//if (std::rand() / static_cast<float>(RAND_MAX) < mutationProbability)
 }
 
 GA_Algorithms::Chromosome GA_Algorithms::cross(const Chromosome& parentA, const Chromosome& parentB) const

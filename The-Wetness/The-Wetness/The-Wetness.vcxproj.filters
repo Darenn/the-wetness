@@ -66,6 +66,9 @@
     <ClInclude Include="targetver.h">
       <Filter>Fichiers d%27en-tête\Visual</Filter>
     </ClInclude>
+    <ClInclude Include="PuzzleGenerator.hpp">
+      <Filter>Fichiers d%27en-tête\TheWetness</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TheWetness.cpp">
@@ -100,6 +103,9 @@
     </ClCompile>
     <ClCompile Include="stdafx.cpp">
       <Filter>Fichiers sources\Visual</Filter>
+    </ClCompile>
+    <ClCompile Include="PuzzleGenerator.cpp">
+      <Filter>Fichiers sources\TheWetness</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

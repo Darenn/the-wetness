@@ -90,14 +90,37 @@ const std::vector<Node>& Grid::getNodes() const
 	return _nodes;
 }
 
-size_t Grid::width() const
+size_t Grid::getWidth() const
 {
 	return _width;
 }
 
-size_t Grid::height() const
+size_t Grid::getHeight() const
 {
 	return _height;
+}
+
+int Grid::getNumData(Node::Data data) const
+{
+	int numMustPass = 0;
+	for (auto node : _nodes)
+		if (node.data == data)
+			numMustPass++;
+	return numMustPass;
+}
+
+const Node & Grid::getExit() const
+{
+	for (auto& node : _nodes)
+		if (node.data == Node::Data::EXIT)
+			return node;
+}
+
+const Node & Grid::getStart() const
+{
+	for (auto node : _nodes)
+		if (node.data == Node::Data::START)
+			return node;
 }
 
 std::ostream & operator<<(std::ostream& output, const Grid& grid)
