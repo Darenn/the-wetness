@@ -60,6 +60,9 @@
     <ClInclude Include="Shape.hpp">
       <Filter>Fichiers d%27en-tête\ASCIIEngine</Filter>
     </ClInclude>
+    <ClInclude Include="PuzzleGenerator.hpp">
+      <Filter>Fichiers d%27en-tête\TheWetness</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TheWetness.cpp">
@@ -94,6 +97,9 @@
     </ClCompile>
     <ClCompile Include="FrameBuffer.cpp">
       <Filter>Fichiers sources\ASCIIEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="PuzzleGenerator.cpp">
+      <Filter>Fichiers sources\TheWetness</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

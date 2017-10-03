@@ -96,7 +96,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -149,6 +149,7 @@
     <ClInclude Include="Node.hpp" />
     <ClInclude Include="Shape.hpp" />
     <ClInclude Include="Window.hpp" />
+    <ClInclude Include="PuzzleGenerator.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ASCIITest.cpp" />

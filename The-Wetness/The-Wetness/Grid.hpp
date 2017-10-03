@@ -14,8 +14,12 @@ public:
 	Node& getNode(const size_t i, const size_t j);
 	const std::vector<Node>& getNodes() const;
 
-	size_t width() const;
-	size_t height() const;
+	size_t getWidth() const;
+	size_t getHeight() const;
+
+	int getNumData(Node::Data data) const;
+	const Node& getExit() const;
+	const Node& getStart() const;
 
 	friend std::ostream &operator<<(std::ostream &output, const Grid &D);
 
