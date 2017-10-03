@@ -19,17 +19,11 @@
     <Filter Include="Fichiers d%27en-tête\TheWetness">
       <UniqueIdentifier>{a683fc7e-d310-4528-894a-62c1abf8b324}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Fichiers d%27en-tête\Visual">
-      <UniqueIdentifier>{66e07028-48d9-4cb0-a549-2bc95dc0f411}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Fichiers sources\ASCIIEngine">
       <UniqueIdentifier>{a9d33186-71b2-4f00-b102-84390fa9f861}</UniqueIdentifier>
     </Filter>
     <Filter Include="Fichiers sources\TheWetness">
       <UniqueIdentifier>{047a908f-9166-4a7b-b308-b4ea75a3f960}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Fichiers sources\Visual">
-      <UniqueIdentifier>{deddf67b-8222-4afd-84f8-9851882e67e3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -60,11 +54,11 @@
     <ClInclude Include="Node.hpp">
       <Filter>Fichiers d%27en-tête\TheWetness</Filter>
     </ClInclude>
-    <ClInclude Include="stdafx.h">
-      <Filter>Fichiers d%27en-tête\Visual</Filter>
+    <ClInclude Include="Window.hpp">
+      <Filter>Fichiers d%27en-tête\ASCIIEngine</Filter>
     </ClInclude>
-    <ClInclude Include="targetver.h">
-      <Filter>Fichiers d%27en-tête\Visual</Filter>
+    <ClInclude Include="Shape.hpp">
+      <Filter>Fichiers d%27en-tête\ASCIIEngine</Filter>
     </ClInclude>
     <ClInclude Include="PuzzleGenerator.hpp">
       <Filter>Fichiers d%27en-tête\TheWetness</Filter>
@@ -73,9 +67,6 @@
   <ItemGroup>
     <ClCompile Include="TheWetness.cpp">
       <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="FrameBuffer.cpp">
-      <Filter>Fichiers sources\ASCIIEngine</Filter>
     </ClCompile>
     <ClCompile Include="ASCIITest.cpp">
       <Filter>Fichiers sources</Filter>
@@ -101,8 +92,11 @@
     <ClCompile Include="Node.cpp">
       <Filter>Fichiers sources\TheWetness</Filter>
     </ClCompile>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>Fichiers sources\Visual</Filter>
+    <ClCompile Include="Window.cpp">
+      <Filter>Fichiers sources\ASCIIEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameBuffer.cpp">
+      <Filter>Fichiers sources\ASCIIEngine</Filter>
     </ClCompile>
     <ClCompile Include="PuzzleGenerator.cpp">
       <Filter>Fichiers sources\TheWetness</Filter>
