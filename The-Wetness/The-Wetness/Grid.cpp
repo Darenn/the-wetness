@@ -61,13 +61,13 @@ Grid::Grid(int width, int height)
 	for (size_t i = 0; i < nNodes; i++)
 	{
 		if (_nodes.at(i).downNeighbor != nullptr)
-			_nodes.at(i).isLinkedToDownNeighbor = true;
+			_nodes.at(i).setLinkedToDownNeighbor(true);
 		if (_nodes.at(i).upNeighbor != nullptr)
-			_nodes.at(i).isLinkedToUpNeighbor = true;
+			_nodes.at(i).setLinkedToUpNeighbor(true);
 		if (_nodes.at(i).leftNeighbor != nullptr)
-			_nodes.at(i).isLinkedToLeftNeighbor = true;
+			_nodes.at(i).setLinkedToLeftNeighbor(true);
 		if (_nodes.at(i).rightNeighbor != nullptr)
-			_nodes.at(i).isLinkedToRightNeighbor = true;
+			_nodes.at(i).setLinkedToRightNeighbor(true);
 	}
 }
 
@@ -90,6 +90,11 @@ const std::vector<Node>& Grid::getNodes() const
 	return _nodes;
 }
 
+std::vector<Node>& Grid::getNodes()
+{
+	return _nodes;
+}
+
 size_t Grid::getWidth() const
 {
 	return _width;
@@ -103,7 +108,7 @@ size_t Grid::getHeight() const
 int Grid::getNumData(Node::Data data) const
 {
 	int numMustPass = 0;
-	for (auto node : _nodes)
+	for (const Node& node : _nodes)
 		if (node.data == data)
 			numMustPass++;
 	return numMustPass;
@@ -131,7 +136,7 @@ std::ostream & operator<<(std::ostream& output, const Grid& grid)
 		{
 			Node node = grid.getNode(i, j);
 			output << node;
-			if (node.isLinkedToRightNeighbor && node.rightNeighbor->isLinkedToLeftNeighbor)
+			if (node.isLinkedToRightNeighbor() && node.rightNeighbor != nullptr && node.rightNeighbor->isLinkedToLeftNeighbor())
 				output << "==";
 			else
 				output << "  ";
@@ -140,7 +145,7 @@ std::ostream & operator<<(std::ostream& output, const Grid& grid)
 		for (size_t j = 0; j < grid._height; j++)
 		{
 			Node node = grid.getNode(i, j);
-			if (node.isLinkedToDownNeighbor && node.downNeighbor->isLinkedToUpNeighbor)
+			if (node.isLinkedToDownNeighbor() && node.downNeighbor != nullptr && node.downNeighbor->isLinkedToUpNeighbor())
 				output << "|  ";
 			else
 				output << "   ";

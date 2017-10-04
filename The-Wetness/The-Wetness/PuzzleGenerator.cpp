@@ -2,16 +2,14 @@
 
 Grid PuzzleGenerator::generateNextPuzzle()
 {
-	const unsigned GENERATION_SIZE = 20;
-
 	GA_Algorithms ga_algo;
 
 	auto population = initializePopulation(GENERATION_SIZE);
 	evaluatePopulation(population);
 
-	for (auto i = 0; i < 10; ++i)
+	for (auto i = 0; i < NUM_ITER; ++i)
 	{
-		auto offspring = GA_Algorithms::Population{};
+		GA_Algorithms::Population offspring{};
 		for (auto j = 0; j < population.size(); j++)
 		{
 			auto parentA = ga_algo.select(population);
@@ -29,12 +27,11 @@ Grid PuzzleGenerator::generateNextPuzzle()
 			}
 
 			ga_algo.mutate(child);
-
-			std::cout << _gridDecoder.decode(child) << std::endl;
-			auto grid = _gridDecoder.decode(child);
+			offspring.push_back(std::pair<GA_Algorithms::Chromosome, int>(child, 0));
 		}
 
 		population.insert(population.end(), offspring.begin(), offspring.end());
+
 		evaluatePopulation(population);
 
 		// Only keep the GENERATION_SIZE bests
@@ -44,13 +41,14 @@ Grid PuzzleGenerator::generateNextPuzzle()
 
 	auto best = population[0];
 	std::cout << best.second << std::endl;
+	std::cout << _gridDecoder.decode(best.first) << std::endl;
 
 	return _gridDecoder.decode(best.first);
 }
 
 GA_Algorithms::Population PuzzleGenerator::initializePopulation(int numChromosomes)
 {
-	auto grids = std::vector<Grid>(numChromosomes, Grid(5, 5));
+	auto grids = std::vector<Grid>(numChromosomes, Grid(GRID_WIDTH, GRID_HEIGHT));
 	GA_Algorithms::Population population;
 	population.reserve(numChromosomes);
 

@@ -13,6 +13,7 @@ public:
 	const Node& getNode(const size_t i, const size_t j) const;
 	Node& getNode(const size_t i, const size_t j);
 	const std::vector<Node>& getNodes() const;
+	std::vector<Node>& getNodes();
 
 	size_t getWidth() const;
 	size_t getHeight() const;

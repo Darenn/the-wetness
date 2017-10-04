@@ -5,17 +5,21 @@
 class Node
 {
 public:
-	friend class Grid;
 	Node();
 	~Node();
 
-	bool isLinkedToUpNeighbor = false;
-	bool isLinkedToRightNeighbor = false;
-	bool isLinkedToDownNeighbor = false;
-	bool isLinkedToLeftNeighbor = false;
-
 	enum Data {NOTHING = '#', START = 'S', EXIT = 'E', MUST_PASS = 'X'};
 	Data data = NOTHING;
+
+	void setLinkedToUpNeighbor(bool isLinked);
+	void setLinkedToRightNeighbor(bool isLinked);
+	void setLinkedToLeftNeighbor(bool isLinked);
+	void setLinkedToDownNeighbor(bool isLinked);
+
+	bool isLinkedToUpNeighbor();
+	bool isLinkedToRightNeighbor();
+	bool isLinkedToLeftNeighbor();
+	bool isLinkedToDownNeighbor();
 
 	friend std::ostream & operator<<(std::ostream& output, const Node& node);
 
@@ -24,5 +28,11 @@ public:
 	Node* rightNeighbor = nullptr;
 	Node* downNeighbor = nullptr;
 	Node* leftNeighbor = nullptr;
+
+private:
+	bool m_isLinkedToUpNeighbor = false;
+	bool m_isLinkedToRightNeighbor = false;
+	bool m_isLinkedToDownNeighbor = false;
+	bool m_isLinkedToLeftNeighbor = false;
 };
 

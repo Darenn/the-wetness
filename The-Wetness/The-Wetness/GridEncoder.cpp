@@ -63,10 +63,10 @@ std::vector<bool> GridEncoder::encode(const Grid & grid) const
 		encodedGrid.push_back(content.second);
 
 		// Encode the links with neighbours
-		encodedGrid.push_back(node.isLinkedToUpNeighbor);
-		encodedGrid.push_back(node.isLinkedToRightNeighbor);
-		encodedGrid.push_back(node.isLinkedToDownNeighbor);
-		encodedGrid.push_back(node.isLinkedToLeftNeighbor);
+		encodedGrid.push_back(node.isLinkedToUpNeighbor());
+		encodedGrid.push_back(node.isLinkedToRightNeighbor());
+		encodedGrid.push_back(node.isLinkedToDownNeighbor());
+		encodedGrid.push_back(node.isLinkedToLeftNeighbor());
 	}
 	int a = sizeof(char) * 8 + nodes.size() * NUMBER_BITS_PER_NODE;
 	assert(encodedGrid.size() == sizeof(char) * 8 + nodes.size() * NUMBER_BITS_PER_NODE);
