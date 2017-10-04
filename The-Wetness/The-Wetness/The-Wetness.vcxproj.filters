@@ -57,9 +57,6 @@
     <ClInclude Include="Window.hpp">
       <Filter>Fichiers d%27en-tête\ASCIIEngine</Filter>
     </ClInclude>
-    <ClInclude Include="Shape.hpp">
-      <Filter>Fichiers d%27en-tête\ASCIIEngine</Filter>
-    </ClInclude>
     <ClInclude Include="PuzzleGenerator.hpp">
       <Filter>Fichiers d%27en-tête\TheWetness</Filter>
     </ClInclude>

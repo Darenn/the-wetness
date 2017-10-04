@@ -1,12 +1,13 @@
 /// \file       Window.hpp
 /// \date       03/10/2017
-/// \package    ASCIIENgine
+/// \package    Engine
 /// \author     Vincent STEHLY--CALISTO
 
 #ifndef _WINDOW_HPP
 #define _WINDOW_HPP
 
-#include "FrameBuffer.hpp"
+#include <cassert>
+#include <Windows.h>
 
 /// \class  Window
 /// \brief  Manages frames 
@@ -21,8 +22,14 @@ public:
 	void Close				(void);
 
 	void Clear				(void);
-	void Draw				(void);
+	void Draw				(CHAR value, WORD attribute,  USHORT x, USHORT y);
+	void Draw				(CHAR_INFO * pBuffer,		  USHORT w, USHORT h, USHORT x, USHORT y);
 	void Display			(void);
+
+	/// \brief	Tells if the window is open or not
+	/// \return True or false
+	inline bool IsOpen(void) const
+	{ return m_isOpen; }
 
 	/// \brief	Returns the width of the window
 	/// \note	Moves the function into a .inl file
@@ -42,8 +49,7 @@ private:
 
 private:
 
-	FrameBuffer		m_buffers[2];      ///< Double buffering
-	FrameBuffer *	m_pCurrentBuffer;  ///< Stores the adresse 
+	CHAR_INFO		m_pFrameBuffer[200][200];
 
 	HWND			m_pConsole;		   ///< A pointer on the console
 	HANDLE			m_pSTDOutput;	   ///< A pointer on the STD output
@@ -52,6 +58,7 @@ private:
 	COORD			m_dwBufferCoord;
 	SMALL_RECT		m_recRegion;	
 
+	bool			m_isOpen;
 	unsigned short  m_width;
 	unsigned short  m_height;
 };
