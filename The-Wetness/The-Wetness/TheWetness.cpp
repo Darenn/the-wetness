@@ -2,7 +2,6 @@
 #include "GridDecoder.hpp"
 #include "GridEncoder.hpp"
 #include <vector>
-#include "ASCIITest.hpp"
 #include "Engine.hpp"
 
 using namespace std;
