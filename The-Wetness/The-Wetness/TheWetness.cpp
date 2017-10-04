@@ -3,6 +3,7 @@
 #include "GridEncoder.hpp"
 #include <vector>
 #include "ASCIITest.hpp"
+#include "Engine.hpp"
 
 using namespace std;
 
@@ -12,13 +13,17 @@ void display_vector(const vector<bool> &v)
 		ostream_iterator<bool>(std::cout, " "));
 }
 
-
-
-int main()
+/// \brief Entry point
+int main(int argc, char ** argv)
 {
+	///////
+
+	Engine gameEngine;
+	gameEngine.Start();
+	
+	/////
 	PuzzleGenerator pg;
 	pg.generateNextPuzzle();
-	TestAscii();
 
 	/*GridEncoder ge;
 	GridDecoder gd;
