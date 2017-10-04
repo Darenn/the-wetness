@@ -1,6 +1,6 @@
 /// \file       Window.hpp
 /// \date       03/10/2017
-/// \package    ASCIIENgine
+/// \package    Engine
 /// \author     Vincent STEHLY--CALISTO
 
 #ifndef _WINDOW_HPP
