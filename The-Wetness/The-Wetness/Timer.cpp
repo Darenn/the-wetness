@@ -27,7 +27,7 @@ void Timer::Start(void)
 /// \brief	Returns the elapsed time
 /// \param  restart (false by default), reset the elapsed time if true
 /// \return The elapsed time
-float Timer::GetElaspedTime(bool restart = false)
+float Timer::GetElaspedTime(bool restart)
 {
 	LARGE_INTEGER timeNow;
 	QueryPerformanceCounter(&timeNow);
