@@ -148,7 +148,6 @@
     <ClInclude Include="GridDecoder.hpp" />
     <ClInclude Include="GridEncoder.hpp" />
     <ClInclude Include="Node.hpp" />
-    <ClInclude Include="Shape.hpp" />
     <ClInclude Include="Window.hpp" />
     <ClInclude Include="PuzzleGenerator.hpp" />
   </ItemGroup>
