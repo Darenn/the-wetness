@@ -12,6 +12,10 @@
 class PuzzleGenerator {
 public:
 	Grid generateNextPuzzle();
+	const unsigned GENERATION_SIZE = 20;
+	const unsigned NUM_ITER = 10;
+	const unsigned GRID_WIDTH = 10;
+	const unsigned GRID_HEIGHT = 10;
 
 private:
 	GA_Algorithms::Population initializePopulation(int numChromosomes);

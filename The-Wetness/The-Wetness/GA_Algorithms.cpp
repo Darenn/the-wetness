@@ -5,11 +5,12 @@
 
 void GA_Algorithms::mutate(Chromosome& chromosome, float mutationProbability) const
 {
+	// don't mutate the number of rows
 	for (size_t i = sizeof(char) * 8; i < chromosome.size(); i++)
 	{
-		chromosome[i] = !chromosome[i];
+		if (std::rand() / static_cast<float>(RAND_MAX) < mutationProbability)
+			chromosome[i] = !chromosome[i];
 	}
-		//if (std::rand() / static_cast<float>(RAND_MAX) < mutationProbability)
 }
 
 GA_Algorithms::Chromosome GA_Algorithms::cross(const Chromosome& parentA, const Chromosome& parentB) const
@@ -32,6 +33,6 @@ const GA_Algorithms::Chromosome& GA_Algorithms::select(const std::vector<std::pa
 	#define COMPARISON [](std::pair<std::vector<bool>, int> a, std::pair<std::vector<bool>, int> b) { return  a.second < b.second; }
 	auto bestFitness = *std::max_element(population.begin(), population.end(), COMPARISON);
 	std::min_element(population.begin(), population.end(), COMPARISON);
-	auto parentIndex = std::rand() / static_cast<float>(RAND_MAX) * population.size();
+	auto parentIndex = std::rand() / static_cast<float>(RAND_MAX) * population.size() - 1;
 	return population[parentIndex].first;
 }

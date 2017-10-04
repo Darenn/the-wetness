@@ -35,23 +35,24 @@ Grid GridDecoder::decode(const std::vector<bool> encodedGrid) const
 	Grid decodedGrid(numberRows, numberColumns);
 
 	// Modify each node accordingly to the encoded grid
-	auto nodes = decodedGrid.getNodes();
+	std::vector<Node>& nodes = decodedGrid.getNodes();
 	for (size_t i = 0; i < nodes.size(); i++)
 	{
-		auto node = nodes[i];
+		Node& node = nodes[i];
 
 		// decode the content
 		std::pair<bool, bool> content(encodedGrid[sizeof(char)*8 + i*6], encodedGrid[sizeof(char)*8 + i*6 + 1]);
-		if (content.first == false)
+		//std::cout << content.second << std::endl;
+		if (content.first == 0)
 		{
-			if (content.second == false)
+			if (content.second == 0)
 				node.data = Node::Data::START;
 			else
 				node.data = Node::Data::EXIT;
 		}
 		else
 		{
-			if (content.second == false)
+			if (content.second == 0)
 				node.data = Node::Data::MUST_PASS;
 			else
 				node.data = Node::Data::NOTHING;
@@ -59,10 +60,10 @@ Grid GridDecoder::decode(const std::vector<bool> encodedGrid) const
 
 		// decode the links with neighbours
 		int ind = 8 + i * 6 + 2;
-		node.isLinkedToUpNeighbor = encodedGrid[sizeof(char)*8 + i*6 + 2];
-		node.isLinkedToRightNeighbor = encodedGrid[sizeof(char)*8 + i*6 + 3];
-		node.isLinkedToDownNeighbor = encodedGrid[sizeof(char)*8 + i*6 + 4];
-		node.isLinkedToLeftNeighbor = encodedGrid[sizeof(char)*8 + i*6 + 5];
+		node.setLinkedToUpNeighbor(encodedGrid[sizeof(char)*8 + i*6 + 2]);
+		node.setLinkedToRightNeighbor(encodedGrid[sizeof(char)*8 + i*6 + 3]);
+		node.setLinkedToDownNeighbor(encodedGrid[sizeof(char)*8 + i*6 + 4]);
+		node.setLinkedToLeftNeighbor(encodedGrid[sizeof(char)*8 + i*6 + 5]);
 	}
 	return decodedGrid;
 }
