@@ -19,8 +19,10 @@ public:
 	size_t getHeight() const;
 
 	int getNumData(Node::Data data) const;
-	const Node& getExit() const;
-	const Node& getStart() const;
+	Node* getExit();
+	Node* getStart();
+
+	std::vector<std::vector<Node*>> getPaths(Node* start, Node* end);
 
 	friend std::ostream &operator<<(std::ostream &output, const Grid &D);
 

@@ -1,4 +1,7 @@
 #include "Grid.hpp"
+#include <cassert>
+
+using namespace std;
 
 Grid::Grid(int width, int height)
 {
@@ -54,7 +57,6 @@ Grid::Grid(int width, int height)
 			_nodes[i].rightNeighbor = &_nodes[i + 1];
 			_nodes[i].upNeighbor = &_nodes[i - width];
 			_nodes[i].downNeighbor = &_nodes[i + width];
-		}
 	}
 
 	// Link them
@@ -68,6 +70,7 @@ Grid::Grid(int width, int height)
 			_nodes.at(i).setLinkedToLeftNeighbor(true);
 		if (_nodes.at(i).rightNeighbor != nullptr)
 			_nodes.at(i).setLinkedToRightNeighbor(true);
+	}
 	}
 }
 
@@ -114,18 +117,66 @@ int Grid::getNumData(Node::Data data) const
 	return numMustPass;
 }
 
-const Node & Grid::getExit() const
+Node * Grid::getExit()
 {
-	for (auto& node : _nodes)
+	for (Node& node : _nodes)
 		if (node.data == Node::Data::EXIT)
-			return node;
+			return &node;
+	return nullptr;
 }
 
-const Node & Grid::getStart() const
+Node * Grid::getStart()
 {
-	for (auto node : _nodes)
+	for (Node& node : _nodes)
 		if (node.data == Node::Data::START)
-			return node;
+			return &node;
+	return nullptr;
+}
+
+std::vector<std::vector<Node*>> Grid::getPaths(Node* start, Node* end)
+{
+	std::vector<std::vector<Node*>> paths;
+	vector<vector<Node*>> toCheck;
+	vector<vector<Node*>> nextToCheck;
+	vector<Node*> firstPath;
+
+	firstPath.push_back(start);
+	toCheck.push_back(firstPath);
+
+	while (toCheck.size() > 0)
+	{
+		for (vector<Node*> path : toCheck)
+		{
+			Node* lastNode = path.back();
+
+			// If the last node is the end, add it to paths and continue with the next path
+			if (lastNode == end)
+			{
+				paths.push_back(path);
+				continue;
+			}
+
+			// Get the neighbors, remove the nodes already visited and create new paths
+			vector<Node*> neighbors = lastNode->getLinkedNeighbors();
+			for (std::vector<Node*>::iterator it = neighbors.begin(); it != neighbors.end(); it++)
+			{
+				if (std::find(path.begin(), path.end(), *it) == path.end())
+				{
+					// Add new path to check next with the new neighbor
+					vector<Node*> newPath(path);
+					newPath.push_back(*it);
+					nextToCheck.push_back(newPath);
+				}
+			}
+		}
+
+		// Clear toCheck and add to it the new paths to check
+		toCheck.clear();
+		toCheck.insert(toCheck.begin(), nextToCheck.begin(), nextToCheck.end());
+		nextToCheck.clear();
+	}
+	
+	return paths;
 }
 
 std::ostream & operator<<(std::ostream& output, const Grid& grid)

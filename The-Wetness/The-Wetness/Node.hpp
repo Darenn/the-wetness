@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <vector>
 
 class Node
 {
@@ -21,7 +22,13 @@ public:
 	bool isLinkedToLeftNeighbor();
 	bool isLinkedToDownNeighbor();
 
+	std::vector<Node*> getLinkedNeighbors();
+
 	friend std::ostream & operator<<(std::ostream& output, const Node& node);
+
+	Node& getUpNeighbor() {
+		
+	}
 
 	// They can be null
 	Node* upNeighbor = nullptr;

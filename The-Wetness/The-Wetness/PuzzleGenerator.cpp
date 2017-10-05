@@ -1,8 +1,12 @@
 #include "PuzzleGenerator.hpp"
+#include <ctime>
+
+using namespace std;
 
 Grid PuzzleGenerator::generateNextPuzzle()
 {
 	GA_Algorithms ga_algo;
+	srand(std::time(nullptr));
 
 	auto population = initializePopulation(GENERATION_SIZE);
 	evaluatePopulation(population);
@@ -40,21 +44,34 @@ Grid PuzzleGenerator::generateNextPuzzle()
 	}
 
 	auto best = population[0];
-	std::cout << best.second << std::endl;
-	std::cout << _gridDecoder.decode(best.first) << std::endl;
+	for (size_t i = 0; i < population.size(); i++)
+	{
+		std::cout << population[i].second << std::endl;
+		std::cout << _gridDecoder.decode(population[i].first) << std::endl;
+	}
 
 	return _gridDecoder.decode(best.first);
 }
 
 GA_Algorithms::Population PuzzleGenerator::initializePopulation(int numChromosomes)
 {
-	auto grids = std::vector<Grid>(numChromosomes, Grid(GRID_WIDTH, GRID_HEIGHT));
+	// LE BUG IL EST PAR LA OUECH
+	// Grid bonne en sortie de constructeur mais tous les pointeurs vers les voisins sont perdus juste après.
+	//auto grids = std::vector<Grid>(numChromosomes, Grid(4, 4));
+	std::vector<Grid*> grids;	
+	//std::cout <<  &g->getNode(0, 0) << std::endl;
+	for (size_t i = 0; i < numChromosomes; i++)
+	{
+		Grid* g = new Grid(4, 4);
+		grids.push_back(g);
+	}
+	//std::cout << &grids[0]->getNode(0, 0) << std::endl;
 	GA_Algorithms::Population population;
 	population.reserve(numChromosomes);
 
 	for (auto i = 0; i < numChromosomes; ++i)
 	{
-		population.push_back(std::pair<GA_Algorithms::Chromosome, int>(_gridEncoder.encode(grids[i]), 0));
+		population.push_back(std::pair<GA_Algorithms::Chromosome, int>(_gridEncoder.encode(*grids[i]), 0));
 	}
 
 	return population;
@@ -64,6 +81,9 @@ void PuzzleGenerator::evaluatePopulation(GA_Algorithms::Population & population)
 {
 	for (auto& pair : population)
 	{
-		pair.second = _fitnessEvaluator.evaluate(_gridDecoder.decode(pair.first));
+		Grid decodedGrid = _gridDecoder.decode(pair.first);
+		m_conformityEvaluator.fixGrid(decodedGrid);
+		pair.first = _gridEncoder.encode(decodedGrid);
+		pair.second = _fitnessEvaluator.evaluate(decodedGrid);
 	}
 }

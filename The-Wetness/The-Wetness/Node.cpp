@@ -58,6 +58,20 @@ bool Node::isLinkedToDownNeighbor()
 	return m_isLinkedToDownNeighbor;
 }
 
+std::vector<Node*> Node::getLinkedNeighbors() 
+{
+	std::vector<Node*> neighbors;
+	if (upNeighbor != nullptr && m_isLinkedToUpNeighbor)
+		neighbors.push_back(upNeighbor);
+	if (rightNeighbor != nullptr && m_isLinkedToRightNeighbor)
+		neighbors.push_back(rightNeighbor);
+	if (leftNeighbor != nullptr && m_isLinkedToLeftNeighbor)
+		neighbors.push_back(leftNeighbor);
+	if (downNeighbor != nullptr && m_isLinkedToDownNeighbor)
+		neighbors.push_back(downNeighbor);
+	return neighbors;
+}
+
 std::ostream & operator<<(std::ostream& output, const Node& node)
 {
 	output << static_cast<char>(node.data);

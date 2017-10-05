@@ -18,20 +18,23 @@ int main(int argc, char ** argv)
 	///////
 
 	Engine gameEngine;
-	gameEngine.Start();
+	//gameEngine.Start();
 	
 	/////
 	PuzzleGenerator pg;
+
 	pg.generateNextPuzzle();
 
-	/*GridEncoder ge;
+	GridEncoder ge;
 	GridDecoder gd;
-	Grid g(2, 2);
+	/*Grid g(2, 2);
 	g.getNode(0, 0).setLinkedToDownNeighbor(false);
 	g.getNode(0, 0).setLinkedToRightNeighbor(false);
-	g.getNode(1, 1).data = Node::Data::MUST_PASS;
-	std::cout << g << std::endl;
-	display_vector(ge.encode(g));
-	std::cout << gd.decode(ge.encode(g)) << std::endl;*/
+	g.getNode(1, 1).data = Node::Data::START;
+	g.getNode(1, 0).data = Node::Data::EXIT;
+	std::cout << g.getPaths(&g.getNode(1, 1), &g.getNode(1, 0)).size() << std::endl;
+	std::cout << g << std::endl;*/
+	//display_vector(ge.encode(g));
+	//std::cout << gd.decode(ge.encode(g)) << std::endl;
     return 0;
 }
