@@ -147,7 +147,6 @@
     <ClInclude Include="Grid.hpp" />
     <ClInclude Include="GridDecoder.hpp" />
     <ClInclude Include="GridEncoder.hpp" />
-    <ClInclude Include="Node.hpp" />
     <ClInclude Include="Timer.hpp" />
     <ClInclude Include="Window.hpp" />
     <ClInclude Include="PuzzleGenerator.hpp" />
@@ -160,7 +159,6 @@
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="GridDecoder.cpp" />
     <ClCompile Include="GridEncoder.cpp" />
-    <ClCompile Include="Node.cpp" />
     <ClCompile Include="PuzzleGenerator.cpp" />
     <ClCompile Include="TheWetness.cpp" />
     <ClCompile Include="Timer.cpp" />

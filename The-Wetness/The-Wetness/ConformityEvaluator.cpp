@@ -14,47 +14,64 @@ ConformityEvaluator::~ConformityEvaluator()
 
 bool ConformityEvaluator::evaluate(Grid& grid) const
 {
-	// Check that there are only one entry and one exit
+	/*// Check that there are only one entry and one exit
 	if (grid.getNumData(Node::Data::EXIT) != 1) return false;
 	if (grid.getNumData(Node::Data::START) != 1) return false;
 
 	// Check that there is a possible path
-
+	*/
 	return true;
 }
 
+// TODO fix the links
 void ConformityEvaluator::fixGrid(Grid & grid) const
 {
 	// Take entries and exits and make them into nothing if there are too much
-	int numExits = grid.getNumData(Node::Data::EXIT);
-	int numEntries = grid.getNumData(Node::Data::START);
+	int numExits = grid.getDataCount(Grid::Data::EXIT);
+	int numEntries = grid.getDataCount(Grid::Data::START);
 	if (numExits > 1) {
-		std::vector<Node*> exits;
-		for (Node& node : grid.getNodes())
-			if (node.data == Node::Data::EXIT)
+		std::vector<Grid::Coordinates> exits;
+		for (int x = 0; x < grid.getWidth(); ++x)
+		{
+			for (int y = 0; y < grid.getHeight(); ++y)
 			{
-				exits.push_back(&node);
-				node.data = Node::Data::NOTHING;
+				Grid::Coordinates node{ x, y };
+				if (grid.getData(node) == Grid::Data::EXIT)
+				{
+					exits.push_back(node);
+					grid.setData(node, Grid::Data::NOTHING);
+				}
 			}
-		exits.at(rand() % exits.size())->data = Node::Data::EXIT;
+		}
+		Grid::Coordinates chosenExit = exits.at(rand() % exits.size());
+		grid.setData(chosenExit, Grid::Data::EXIT);
 	}
 	if (numEntries > 1) {
-		std::vector<Node*> entries;
-		for (Node& node : grid.getNodes())
-			if (node.data == Node::Data::START)
+		std::vector<Grid::Coordinates> entries;
+		for (int x = 0; x < grid.getWidth(); ++x)
+		{
+			for (int y = 0; y < grid.getHeight(); ++y)
 			{
-				entries.push_back(&node);
-				node.data = Node::Data::NOTHING;
+				Grid::Coordinates node{ x, y };
+				if (grid.getData(node) == Grid::Data::START)
+				{
+					entries.push_back(node);
+					grid.setData(node, Grid::Data::NOTHING);
+				}
 			}
-		entries.at(rand() % entries.size())->data = Node::Data::START;
+		}
+		Grid::Coordinates chosenEntry= entries.at(rand() % entries.size());
+		grid.setData(chosenEntry, Grid::Data::START);
 	}
 	
 	/// If they are'nt any entry or exit, create ones
 	if (numExits == 0) {
-		grid.getNodes().at(rand() % grid.getNodes().size()).data = Node::Data::EXIT;
+		size_t randomIndex = rand() % grid.getNodeCount();
+		grid.setData(randomIndex, Grid::Data::EXIT);
 	}
 	if (numEntries == 0) {
-		grid.getNodes().at(rand() % grid.getNodes().size()).data = Node::Data::START;
+		size_t randomIndex = rand() % grid.getNodeCount();
+		grid.setData(randomIndex, Grid::Data::START);
 	}
 }
 

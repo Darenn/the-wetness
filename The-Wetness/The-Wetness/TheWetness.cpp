@@ -25,9 +25,9 @@ int main(int argc, char ** argv)
 
 	pg.generateNextPuzzle();
 
-	GridEncoder ge;
+	/*GridEncoder ge;
 	GridDecoder gd;
-	/*Grid g(2, 2);
+	Grid g(2, 2);
 	g.getNode(0, 0).setLinkedToDownNeighbor(false);
 	g.getNode(0, 0).setLinkedToRightNeighbor(false);
 	g.getNode(1, 1).data = Node::Data::START;

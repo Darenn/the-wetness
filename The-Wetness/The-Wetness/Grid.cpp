@@ -1,101 +1,128 @@
 #include "Grid.hpp"
 #include <cassert>
+#include "Node.hpp"
 
 using namespace std;
 
-Grid::Grid(int width, int height)
+
+Grid::Grid(int width, int height) : _width(width), _height(height)
 {
-	_width = width;
-	_height = height;
 	// Create the nodes
-	size_t nNodes = width * height;
-	_nodes = std::vector<Node>();
-	_nodes.reserve(nNodes);
-	for (size_t i = 0; i < nNodes; i++)
-	{
-		_nodes.push_back(Node());
-	}
-
-	// Assign neighbors
-	for (size_t i = 0; i < nNodes; i++)
-	{
-		// First column
-		if (i % width == 0) {
-			_nodes[i].rightNeighbor = &_nodes[i + 1];
-			if (i > 0)
-				_nodes[i].upNeighbor = &_nodes[i - width];
-			if (i < nNodes - width)
-				_nodes[i].downNeighbor = &_nodes[i + width];
-		}
-		// Last column
-		else if (i % width == width - 1) {
-			_nodes[i].leftNeighbor = &_nodes[i - 1];
-			if (i > width - 1)
-				_nodes[i].upNeighbor = &_nodes[i - width];
-			if (i < nNodes - 1)
-				_nodes[i].downNeighbor = &_nodes[i + width];
-		}
-		// First row
-		else if (i / width == 0) {
-			_nodes[i].downNeighbor = &_nodes[i + width];
-			if (i > 0)
-				_nodes[i].leftNeighbor = &_nodes[i - 1];
-			if (i < width - 1)
-				_nodes[i].rightNeighbor = &_nodes[i + 1];
-		}
-		// Last row
-		else if (i / width == height - 1) {
-			_nodes[i].upNeighbor = &_nodes[i - width];
-			if (i > nNodes - width)
-				_nodes[i].leftNeighbor = &_nodes[i - 1];
-			if (i < nNodes - 1)
-				_nodes[i].rightNeighbor = &_nodes[i + 1];
-		}
-		// Al other nodes
-		else {			
-			_nodes[i].leftNeighbor = &_nodes[i - 1];
-			_nodes[i].rightNeighbor = &_nodes[i + 1];
-			_nodes[i].upNeighbor = &_nodes[i - width];
-			_nodes[i].downNeighbor = &_nodes[i + width];
-	}
-
-	// Link them
-	for (size_t i = 0; i < nNodes; i++)
-	{
-		if (_nodes.at(i).downNeighbor != nullptr)
-			_nodes.at(i).setLinkedToDownNeighbor(true);
-		if (_nodes.at(i).upNeighbor != nullptr)
-			_nodes.at(i).setLinkedToUpNeighbor(true);
-		if (_nodes.at(i).leftNeighbor != nullptr)
-			_nodes.at(i).setLinkedToLeftNeighbor(true);
-		if (_nodes.at(i).rightNeighbor != nullptr)
-			_nodes.at(i).setLinkedToRightNeighbor(true);
-	}
-	}
+	size_t nodeCount = width * height;
+	m_nodesData = vector<Data>(nodeCount, Grid::Data::NOTHING);
+	m_nodesLinks = vector<bool>(NEIGHBORS_COUNT * nodeCount, false);
 }
 
 Grid::~Grid()
 {
 }
 
-const Node & Grid::getNode(const size_t i, const size_t j) const
+Grid::Data Grid::getData(Coordinates coord) const
 {
-	return _nodes.at(i * _width + j);
+	return m_nodesData.at(coordToGridIndex(coord));
 }
 
-Node & Grid::getNode(const size_t i, const size_t j)
+Grid::Data Grid::getData(int number) const
 {
-	return _nodes.at(i * _width + j);
+	return m_nodesData[number];
 }
 
-const std::vector<Node>& Grid::getNodes() const
+void Grid::setData(Coordinates coord, Data d)
 {
-	return _nodes;
+	m_nodesData[coordToGridIndex(coord)] = d;
 }
 
-std::vector<Node>& Grid::getNodes()
+void Grid::setData(int number, Data d)
 {
-	return _nodes;
+	m_nodesData[number] = d;
+}
+
+bool Grid::isLinkedWithNeighbor(Coordinates coord, Direction neighborDirection) const
+{
+	return m_nodesLinks[getLinkIndex(coord, neighborDirection)];
+}
+
+bool Grid::isLinkedWithNeighbor(size_t gridIndex, Direction neighborDirection) const
+{
+	return isLinkedWithNeighbor(gridIndexToCoord(gridIndex), neighborDirection);
+}
+
+void Grid::setLinkWithNeighbor(int gridIndex, Direction neighborDirection, bool linked)
+{
+	setLinkWithNeighbor(gridIndexToCoord(gridIndex), neighborDirection, linked);
+}
+
+void Grid::setLinkWithNeighbor(Coordinates coord, Direction neighborDirection, bool linked)
+{
+	assert(hasNeighbor(coord, neighborDirection));
+	m_nodesLinks[getLinkIndex(coord, neighborDirection)] = linked;
+	Coordinates Neighbor = getNeighbor(coord, neighborDirection);
+	size_t linkIndex = getLinkIndex(Neighbor, getInverseDirection(neighborDirection));
+	m_nodesLinks[linkIndex] = linked;
+}
+
+std::vector<Grid::Coordinates> Grid::getLinkedNeighbors(Coordinates coord) const
+{
+	std::vector<Coordinates> neighbors;
+	if (isLinkedWithNeighbor(coord, Direction::NORTH)) neighbors.push_back(getNeighbor(coord, Direction::NORTH));
+	if (isLinkedWithNeighbor(coord, Direction::EAST)) neighbors.push_back(getNeighbor(coord, Direction::EAST));
+	if (isLinkedWithNeighbor(coord, Direction::SOUTH)) neighbors.push_back(getNeighbor(coord, Direction::SOUTH));
+	if (isLinkedWithNeighbor(coord, Direction::WEST)) neighbors.push_back(getNeighbor(coord, Direction::WEST));
+	return neighbors;
+}
+
+size_t Grid::getNodeCount() const
+{
+	return _width * _height;
+}
+
+unsigned Grid::getDataCount(Data d) const
+{
+	unsigned int dataCount = 0;
+	for (int i = 0; i < m_nodesData.size(); ++i)
+	{
+		if (m_nodesData[i] == d)
+			dataCount++;
+	}
+	return dataCount;
+}
+
+Grid::Coordinates Grid::getNeighbor(Coordinates coord, Direction neighborDirection)
+{
+	switch (neighborDirection)
+	{
+	case Direction::NORTH:
+		return Coordinates{coord.x, coord.y - 1};
+	case Direction::EAST:
+		return Coordinates{coord.x + 1, coord.y};
+	case Direction::SOUTH:
+		return Coordinates{coord.x, coord.y + 1};
+	case Direction::WEST:
+		return Coordinates{coord.x - 1, coord.y};
+	}
+}
+
+bool Grid::hasNeighbor(int gridIndex, Direction neighborDirection) const
+{
+	return hasNeighbor(gridIndexToCoord(gridIndex), neighborDirection);
+}
+
+
+bool Grid::hasNeighbor(Coordinates coord, Direction neighborDirection) const
+{
+	switch (neighborDirection)
+	{
+	case Direction::NORTH:
+		return coord.y > 0;
+	case Direction::EAST:
+		return coord.x + 1 < _width;
+	case Direction::SOUTH:
+		return coord.y + 1 < _height;
+	case Direction::WEST:
+		return coord.x > 0;
+	default:
+		throw std::out_of_range("No direction.");
+	}
 }
 
 size_t Grid::getWidth() const
@@ -108,46 +135,87 @@ size_t Grid::getHeight() const
 	return _height;
 }
 
-int Grid::getNumData(Node::Data data) const
+size_t Grid::coordToGridIndex(Grid::Coordinates coord) const
 {
-	int numMustPass = 0;
-	for (const Node& node : _nodes)
-		if (node.data == data)
-			numMustPass++;
-	return numMustPass;
+	return (coord.x * _width + coord.y);
 }
 
-Node * Grid::getExit()
+Grid::Coordinates Grid::gridIndexToCoord(size_t gridIndex) const
 {
-	for (Node& node : _nodes)
-		if (node.data == Node::Data::EXIT)
-			return &node;
-	return nullptr;
+	return Coordinates{gridIndex % _width, gridIndex / _width};
 }
 
-Node * Grid::getStart()
+size_t Grid::getLinkIndex(Coordinates coord, Direction neighborDirection) const
 {
-	for (Node& node : _nodes)
-		if (node.data == Node::Data::START)
-			return &node;
-	return nullptr;
+	size_t linkIndex = coordToGridIndex(coord);
+	switch (neighborDirection)
+	{
+	case Direction::NORTH:
+		break;
+	case Direction::EAST:
+		linkIndex += 1;
+		break;
+	case Direction::SOUTH:
+		linkIndex += 2;
+		break;
+	case Direction::WEST:
+		linkIndex += 3;
+	}
+	return linkIndex;
 }
 
-std::vector<std::vector<Node*>> Grid::getPaths(Node* start, Node* end)
+size_t Grid::getLinkIndex(size_t gridIndex, Direction neighborDirection) const
 {
-	std::vector<std::vector<Node*>> paths;
-	vector<vector<Node*>> toCheck;
-	vector<vector<Node*>> nextToCheck;
-	vector<Node*> firstPath;
+	size_t linkIndex = gridIndex;
+	switch (neighborDirection)
+	{
+	case Direction::NORTH:
+		break;
+	case Direction::EAST:
+		linkIndex += 1;
+		break;
+	case Direction::SOUTH:
+		linkIndex += 2;
+		break;
+	case Direction::WEST:
+		linkIndex += 3;
+	}
+	return linkIndex;
+}
+
+Grid::Direction Grid::getInverseDirection(Direction d)
+{
+	switch (d)
+	{
+	case Direction::NORTH:
+		return Direction::SOUTH;
+	case Direction::EAST:
+		return Direction::WEST;
+	case Direction::SOUTH:
+		return Direction::NORTH;
+	case Direction::WEST:
+		return Direction::EAST;
+	default:
+		throw std::out_of_range("No direction corresponds.");
+	}
+}
+
+
+std::vector<std::vector<Grid::Coordinates>> Grid::getPaths(Coordinates start, Coordinates end) const
+{
+	std::vector<std::vector<Coordinates>> paths;
+	vector<vector<Coordinates>> toCheck;
+	vector<vector<Coordinates>> nextToCheck;
+	vector<Coordinates> firstPath;
 
 	firstPath.push_back(start);
 	toCheck.push_back(firstPath);
 
 	while (toCheck.size() > 0)
 	{
-		for (vector<Node*> path : toCheck)
+		for (vector<Coordinates> path : toCheck)
 		{
-			Node* lastNode = path.back();
+			Coordinates lastNode = path.back();
 
 			// If the last node is the end, add it to paths and continue with the next path
 			if (lastNode == end)
@@ -157,13 +225,13 @@ std::vector<std::vector<Node*>> Grid::getPaths(Node* start, Node* end)
 			}
 
 			// Get the neighbors, remove the nodes already visited and create new paths
-			vector<Node*> neighbors = lastNode->getLinkedNeighbors();
-			for (std::vector<Node*>::iterator it = neighbors.begin(); it != neighbors.end(); it++)
+			vector<Coordinates> neighbors = getLinkedNeighbors(lastNode);
+			for (std::vector<Coordinates>::iterator it = neighbors.begin(); it != neighbors.end(); ++it)
 			{
 				if (std::find(path.begin(), path.end(), *it) == path.end())
 				{
 					// Add new path to check next with the new neighbor
-					vector<Node*> newPath(path);
+					vector<Coordinates> newPath(path);
 					newPath.push_back(*it);
 					nextToCheck.push_back(newPath);
 				}
@@ -185,9 +253,9 @@ std::ostream & operator<<(std::ostream& output, const Grid& grid)
 	{
 		for (size_t j = 0; j < grid._height; j++)
 		{
-			Node node = grid.getNode(i, j);
-			output << node;
-			if (node.isLinkedToRightNeighbor() && node.rightNeighbor != nullptr && node.rightNeighbor->isLinkedToLeftNeighbor())
+			Grid::Coordinates node{ i, j };
+			output << static_cast<char>(grid.getData(node));
+			if (grid.isLinkedWithNeighbor(node, Grid::Direction::EAST))
 				output << "==";
 			else
 				output << "  ";
@@ -195,8 +263,8 @@ std::ostream & operator<<(std::ostream& output, const Grid& grid)
 		output << std::endl;
 		for (size_t j = 0; j < grid._height; j++)
 		{
-			Node node = grid.getNode(i, j);
-			if (node.isLinkedToDownNeighbor() && node.downNeighbor != nullptr && node.downNeighbor->isLinkedToUpNeighbor())
+			Grid::Coordinates node{ i, j };
+			if (grid.isLinkedWithNeighbor(node, Grid::Direction::SOUTH))
 				output << "|  ";
 			else
 				output << "   ";

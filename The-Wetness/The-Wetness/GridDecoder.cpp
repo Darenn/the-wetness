@@ -35,10 +35,8 @@ Grid GridDecoder::decode(const std::vector<bool> encodedGrid) const
 	Grid decodedGrid(numberRows, numberColumns);
 
 	// Modify each node accordingly to the encoded grid
-	std::vector<Node>& nodes = decodedGrid.getNodes();
-	for (size_t i = 0; i < nodes.size(); i++)
+	for (size_t i = 0; i < decodedGrid.getNodeCount(); i++)
 	{
-		Node& node = nodes[i];
 
 		// decode the content
 		std::pair<bool, bool> content(encodedGrid[sizeof(char)*8 + i*6], encodedGrid[sizeof(char)*8 + i*6 + 1]);
@@ -46,24 +44,28 @@ Grid GridDecoder::decode(const std::vector<bool> encodedGrid) const
 		if (content.first == 0)
 		{
 			if (content.second == 0)
-				node.data = Node::Data::START;
+				decodedGrid.setData(i, Grid::Data::START);
 			else
-				node.data = Node::Data::EXIT;
+				decodedGrid.setData(i, Grid::Data::EXIT);
 		}
 		else
 		{
 			if (content.second == 0)
-				node.data = Node::Data::MUST_PASS;
+				decodedGrid.setData(i, Grid::Data::MUST_PASS);
 			else
-				node.data = Node::Data::NOTHING;
+				decodedGrid.setData(i, Grid::Data::NOTHING);
 		}
 
 		// decode the links with neighbours
 		int ind = 8 + i * 6 + 2;
-		node.setLinkedToUpNeighbor(encodedGrid[sizeof(char)*8 + i*6 + 2]);
-		node.setLinkedToRightNeighbor(encodedGrid[sizeof(char)*8 + i*6 + 3]);
-		node.setLinkedToDownNeighbor(encodedGrid[sizeof(char)*8 + i*6 + 4]);
-		node.setLinkedToLeftNeighbor(encodedGrid[sizeof(char)*8 + i*6 + 5]);
+		if (decodedGrid.hasNeighbor(i, Grid::Direction::NORTH))
+			decodedGrid.setLinkWithNeighbor(i, Grid::Direction::NORTH, encodedGrid[sizeof(char)*8 + i*6 + 2]);
+		if (decodedGrid.hasNeighbor(i, Grid::Direction::EAST))
+			decodedGrid.setLinkWithNeighbor(i, Grid::Direction::EAST, encodedGrid[sizeof(char)*8 + i*6 + 3]);
+		if (decodedGrid.hasNeighbor(i, Grid::Direction::WEST))
+			decodedGrid.setLinkWithNeighbor(i, Grid::Direction::WEST, encodedGrid[sizeof(char)*8 + i*6 + 4]);
+		if (decodedGrid.hasNeighbor(i, Grid::Direction::SOUTH))
+			decodedGrid.setLinkWithNeighbor(i, Grid::Direction::SOUTH, encodedGrid[sizeof(char)*8 + i*6 + 5]);
 	}
 	return decodedGrid;
 }

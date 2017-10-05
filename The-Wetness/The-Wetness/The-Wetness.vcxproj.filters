@@ -48,9 +48,6 @@
     <ClInclude Include="GridEncoder.hpp">
       <Filter>Fichiers d%27en-tête\TheWetness</Filter>
     </ClInclude>
-    <ClInclude Include="Node.hpp">
-      <Filter>Fichiers d%27en-tête\TheWetness</Filter>
-    </ClInclude>
     <ClInclude Include="Window.hpp">
       <Filter>Fichiers d%27en-tête\Engine</Filter>
     </ClInclude>
@@ -84,9 +81,6 @@
       <Filter>Fichiers sources\TheWetness</Filter>
     </ClCompile>
     <ClCompile Include="GridEncoder.cpp">
-      <Filter>Fichiers sources\TheWetness</Filter>
-    </ClCompile>
-    <ClCompile Include="Node.cpp">
       <Filter>Fichiers sources\TheWetness</Filter>
     </ClCompile>
     <ClCompile Include="Window.cpp">
