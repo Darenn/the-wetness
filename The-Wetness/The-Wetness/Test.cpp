@@ -28,8 +28,8 @@ void display_vector(const vector<bool> &v)
 /// \brief	None
 void Test::TestGA(void)
 {
-	PuzzleGenerator pg;
-	grid = pg.generateNextPuzzle();
+	// PuzzleGenerator pg;
+	// grid = pg.generateNextPuzzle();
 
 	/*
 	GridEncoder ge;

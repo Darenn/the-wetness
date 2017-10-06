@@ -26,35 +26,34 @@ GridEncoder::~GridEncoder()
 std::vector<bool> GridEncoder::encode(const Grid & grid) const
 {
 	std::vector<bool> encodedGrid{};
-	auto nodes = grid.getNodes();
-	encodedGrid.reserve(sizeof(char) * 8 + nodes.size() * NUMBER_BITS_PER_NODE);
+
+	encodedGrid.reserve(sizeof(char) * 8 + grid.getNodeCount() * NUMBER_BITS_PER_NODE);
 
 	// Encode the number of rows
 	auto numberRows = fromChar(static_cast<char>(grid.getHeight()));
 	encodedGrid.insert(std::end(encodedGrid), std::begin(numberRows), std::end(numberRows));
 
-	for (size_t i = 0; i < nodes.size(); i++)
+	for (size_t i = 0; i < grid.getNodeCount(); i++)
 	{
 		// Encode a node
-		auto node = nodes[i];
 
 		// Encode the content
 		std::pair<bool, bool> content{};
-		switch (node.data)
+		switch (grid.getData(i))
 		{
-		case Node::Data::START:
+		case Grid::Data::START:
 			content.first = false;
 			content.second = false;
 			break;
-		case Node::Data::EXIT:
+		case Grid::Data::EXIT:
 			content.first = false;
 			content.second = true;
 			break;
-		case Node::Data::MUST_PASS:
+		case Grid::Data::MUST_PASS:
 			content.first = true;
 			content.second = false;
 			break;
-		case Node::Data::NOTHING:
+		case Grid::Data::NOTHING:
 			content.first = true;
 			content.second = true;
 			break;
@@ -63,12 +62,11 @@ std::vector<bool> GridEncoder::encode(const Grid & grid) const
 		encodedGrid.push_back(content.second);
 
 		// Encode the links with neighbours
-		encodedGrid.push_back(node.isLinkedToUpNeighbor());
-		encodedGrid.push_back(node.isLinkedToRightNeighbor());
-		encodedGrid.push_back(node.isLinkedToDownNeighbor());
-		encodedGrid.push_back(node.isLinkedToLeftNeighbor());
+		encodedGrid.push_back(grid.isLinkedWithNeighbor(i, Grid::Direction::NORTH));
+		encodedGrid.push_back(grid.isLinkedWithNeighbor(i, Grid::Direction::EAST));
+		encodedGrid.push_back(grid.isLinkedWithNeighbor(i, Grid::Direction::SOUTH));
+		encodedGrid.push_back(grid.isLinkedWithNeighbor(i, Grid::Direction::WEST));
 	}
-	int a = sizeof(char) * 8 + nodes.size() * NUMBER_BITS_PER_NODE;
-	assert(encodedGrid.size() == sizeof(char) * 8 + nodes.size() * NUMBER_BITS_PER_NODE);
+	assert(encodedGrid.size() == sizeof(char) * 8 + grid.getNodeCount() * NUMBER_BITS_PER_NODE);
 	return encodedGrid;
 }

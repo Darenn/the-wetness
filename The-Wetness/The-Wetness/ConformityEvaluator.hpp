@@ -8,6 +8,7 @@ public:
 	ConformityEvaluator();
 	~ConformityEvaluator();
 
-	bool evaluate(Grid& grid);
+	bool evaluate(Grid& grid) const;
+	void fixGrid(Grid& grid) const;
 };
 
