@@ -37,18 +37,24 @@ public:
 	std::vector<Coordinates> getLinkedNeighbors(Coordinates coord) const;
 	size_t getNodeCount() const;
 	unsigned int getDataCount(Data d) const;
-
 	static Coordinates getNeighbor(Coordinates coord, Direction neighborDirection);
 	bool hasNeighbor(int gridIndex, Direction neighborDirection) const;
-
 	bool hasNeighbor(Coordinates coord, Direction neighborDirection) const;
 	size_t getWidth() const;
 	size_t getHeight() const;
-
-
 	std::vector<std::vector<Coordinates>> getPaths(Coordinates start, Coordinates end) const;
+	//Coordinates getExit()
 
 	friend std::ostream &operator<<(std::ostream &output, const Grid &D);
+	Grid& operator=(const Grid & grid) {
+		m_nodesData = grid.m_nodesData;
+		m_nodesLinks = grid.m_nodesLinks;
+		_width = grid._width;
+		_height = grid._height;
+		return *this;
+	}
+
+
 
 private:
 	/// <summary>
@@ -56,6 +62,7 @@ private:
 	/// The first data correspond to the top left node, the second to the top left + 1
 	/// </summary>
 	std::vector<Data> m_nodesData;
+
 	/// <summary>
 	///	Contains links between nodes.
 	/// The four first bools correspond to the links of the top left node.

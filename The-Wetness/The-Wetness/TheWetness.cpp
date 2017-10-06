@@ -12,6 +12,10 @@ void display_vector(const vector<bool> &v)
 		ostream_iterator<bool>(std::cout, " "));
 }
 
+int& getInt() {
+	return *(int*)nullptr;
+}
+
 /// \brief Entry point
 int main(int argc, char ** argv)
 {
@@ -23,7 +27,8 @@ int main(int argc, char ** argv)
 	/////
 	PuzzleGenerator pg;
 
-	pg.generateNextPuzzle();
+	Grid g(0, 0);
+	g = pg.generateNextPuzzle();
 
 	/*GridEncoder ge;
 	GridDecoder gd;
