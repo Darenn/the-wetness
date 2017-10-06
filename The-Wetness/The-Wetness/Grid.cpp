@@ -1,6 +1,5 @@
 #include "Grid.hpp"
 #include <cassert>
-#include "Node.hpp"
 
 using namespace std;
 
@@ -242,6 +241,7 @@ std::vector<std::vector<Grid::Coordinates>> Grid::getPaths(Coordinates start, Co
 		toCheck.clear();
 		toCheck.insert(toCheck.begin(), nextToCheck.begin(), nextToCheck.end());
 		nextToCheck.clear();
+
 	}
 	
 	return paths;

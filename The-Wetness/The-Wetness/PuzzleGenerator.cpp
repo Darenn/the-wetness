@@ -55,17 +55,13 @@ Grid PuzzleGenerator::generateNextPuzzle()
 
 GA_Algorithms::Population PuzzleGenerator::initializePopulation(int numChromosomes)
 {
-	// LE BUG IL EST PAR LA OUECH
-	// Grid bonne en sortie de constructeur mais tous les pointeurs vers les voisins sont perdus juste après.
-	//auto grids = std::vector<Grid>(numChromosomes, Grid(4, 4));
-	std::vector<Grid*> grids;	
-	//std::cout <<  &g->getNode(0, 0) << std::endl;
+	std::vector<Grid*> grids;
 	for (size_t i = 0; i < numChromosomes; i++)
 	{
 		Grid* g = new Grid(4, 4);
 		grids.push_back(g);
 	}
-	//std::cout << &grids[0]->getNode(0, 0) << std::endl;
+
 	GA_Algorithms::Population population;
 	population.reserve(numChromosomes);
 
