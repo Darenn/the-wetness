@@ -7,7 +7,8 @@
 #define _ENGINE_HPP
 
 #include "Timer.hpp"
-#include "Window.hpp"
+#include "MainMenu.hpp"
+#include "GridDisplayer.hpp"
 
 /// \class  Engine
 /// \brief  Manages time 
@@ -28,17 +29,14 @@ private:
 
 private:
 
+	MainMenu      m_menu;
+	GridDisplayer m_displayer;
+
 	bool	m_isRunning;
 	Window	m_window;
 
-	///  \brief  Fixed update (ups = update per second)
-	///          16.67 =  60 ups
-	///          11.11 =  90 ups
-	///           8.33 = 120 ups
-	///           4.16 = 240 ups
-	///
-	const float SECONDS_PER_UPDATE = 1.0f / 120.0f;
-
+	///  \brief  Fixed update
+	const float SECONDS_PER_UPDATE = 1.0f / 60.0f;
 };
 
 #endif // _ENGINE_HPP

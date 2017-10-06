@@ -20,7 +20,7 @@ Engine::~Engine(void)
 /// \brief	Starts the engine
 void Engine::Start(void)
 {
-	m_window.Open("A", 200, 200);
+	m_window.Open("TheWetness", 500, 500);
 	GameLoop();
 }
 
@@ -49,10 +49,16 @@ void Engine::GameLoop(void)
 		{
 			// Retrieve elapsed time
 			lag -= SECONDS_PER_UPDATE;
-		}
 
-		// Rendering
-		m_window.Display();
+			// m_menu.Update(SECONDS_PER_UPDATE);
+			// m_menu.Render(m_window);
+
+			m_displayer.Update(SECONDS_PER_UPDATE);
+			m_displayer.Render(m_window);
+
+			// Rendering
+			m_window.Display();
+		}
 	}
 }
 
