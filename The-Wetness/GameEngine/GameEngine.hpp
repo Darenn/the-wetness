@@ -36,6 +36,7 @@ public:
 private:
 
 	bool		m_debug;
+	bool		m_running;
 	float       m_fps;
 	float       m_granularity;
 	Vector2u	m_windowSize;

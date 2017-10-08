@@ -7,8 +7,8 @@
 
 /// \brief	Game entry point
 ///			Command line helper
-///			-d 0 Disables debug mod
-///			-d 1 Enables  debud mod
+///			-d 0 Disables debug mode
+///			-d 1 Enables  debud mode
 int main(int argc, char ** argv)
 {
 	// Creating an instance of the game engine
