@@ -8,8 +8,9 @@
 /// \brief	Constructor
 GameEngine::GameEngine(void)
 {
-	m_debug = false;
-	m_fps   = 90.0f;
+	m_debug   = false;
+	m_running = false;
+	m_fps     = 90.0f;
 
 	m_granularity  = 60.0f;
 	m_windowSize.x = 500;
@@ -65,6 +66,9 @@ void GameEngine::SetInitWindowSize(const Vector2u& size)
 /// \brief	Initializes the game engine
 void GameEngine::Initialize(void)
 {
+	m_running = false;
+
+	// Rendering configuration
 	// TODO
 }
 
@@ -72,5 +76,22 @@ void GameEngine::Initialize(void)
 ///         by entering the game loop
 void GameEngine::Start(void)
 {
-	/// TODO
+	Timer clock;
+	float lag = 0.0f;
+	float previous = clock.GetElaspedTime();
+
+	m_running = true;
+	while (m_running)
+	{
+		float current = clock.GetElaspedTime();
+		float elapsed = current - previous;
+		previous = current;
+
+		lag += elapsed;
+		while (lag >= m_granularity)
+		{
+			// Retrieve elapsed time
+			lag -= m_granularity;
+		}
+	}
 }
