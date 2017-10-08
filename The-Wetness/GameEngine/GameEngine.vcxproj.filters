@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Fichiers sources">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Fichiers de ressources">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Engine">
+      <UniqueIdentifier>{a0e2dc85-6bd6-4062-9a4f-629973872fa2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Engine\Maths">
+      <UniqueIdentifier>{fbd75317-da2e-471f-bb02-04a6f7b6d3bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Engine\Maths\Impl">
+      <UniqueIdentifier>{4d2fdf4e-3c30-46f1-ba90-59f55c019f0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Engine\Rendering">
+      <UniqueIdentifier>{317c571f-6a05-44db-8321-ce8cba485429}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Engine\Platform">
+      <UniqueIdentifier>{f0e34db1-5ee6-4515-af84-6621006c4888}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Engine\Raycaster">
+      <UniqueIdentifier>{19bc0dd8-3275-424d-81c2-21f598ccda31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Engine\Raycaster\Impl">
+      <UniqueIdentifier>{236ee02a-edbc-4cc5-a539-08409fd146b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Engine\Platform\Time">
+      <UniqueIdentifier>{13c98e07-43f3-45e0-b4da-ae4b6977e8f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Engine\Platform\Window">
+      <UniqueIdentifier>{18c93bbb-aeff-40aa-95ef-2d500e6b196b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Engine">
+      <UniqueIdentifier>{685d17f8-79e7-4484-becc-53d16efb0663}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Engine\Maths">
+      <UniqueIdentifier>{86289065-545c-4190-a5e0-24086d05dbc9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Engine\Rendering">
+      <UniqueIdentifier>{583fd3c2-9b64-4f8c-8cca-1a2d8ba4cf50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Engine\Platform">
+      <UniqueIdentifier>{4db74a64-9389-4835-ac29-7798b5ee6c1f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Engine\Raycaster">
+      <UniqueIdentifier>{9d83e140-df26-4e8e-bebf-5070d8a1c2d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Engine\Platform\Time">
+      <UniqueIdentifier>{43560920-00d8-4029-8b52-1d2510b75f4a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Engine\Platform\Window">
+      <UniqueIdentifier>{2d9097da-b3c7-4646-9f4d-ef1960e0512a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Vector2.hpp">
+      <Filter>Fichiers d%27en-tête\Engine\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector3.hpp">
+      <Filter>Fichiers d%27en-tête\Engine\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderingEngine.hpp">
+      <Filter>Fichiers d%27en-tête\Engine\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.hpp">
+      <Filter>Fichiers d%27en-tête\Engine\Raycaster</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.hpp">
+      <Filter>Fichiers d%27en-tête\Engine\Platform\Time</Filter>
+    </ClInclude>
+    <ClInclude Include="Window.hpp">
+      <Filter>Fichiers d%27en-tête\Engine\Platform\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngine.hpp">
+      <Filter>Fichiers d%27en-tête\Engine</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Vector2.inl">
+      <Filter>Fichiers d%27en-tête\Engine\Maths\Impl</Filter>
+    </None>
+    <None Include="Vector3.inl">
+      <Filter>Fichiers d%27en-tête\Engine\Maths\Impl</Filter>
+    </None>
+    <None Include="Camera.inl">
+      <Filter>Fichiers d%27en-tête\Engine\Raycaster\Impl</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="RenderingEngine.cpp">
+      <Filter>Fichiers sources\Engine\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngine.cpp">
+      <Filter>Fichiers sources\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>Fichiers sources\Engine\Platform\Time</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>Fichiers sources\Engine\Platform\Window</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
