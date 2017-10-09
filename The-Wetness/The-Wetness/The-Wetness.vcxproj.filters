@@ -25,6 +25,18 @@
     <Filter Include="Fichiers sources\Engine">
       <UniqueIdentifier>{a9d33186-71b2-4f00-b102-84390fa9f861}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers d%27en-tête\Test">
+      <UniqueIdentifier>{db8e0852-02a9-43be-a6f3-6e6eeca47763}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Test">
+      <UniqueIdentifier>{3d68be06-ffce-4c79-9a31-c190bcf6eb8f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\GUI">
+      <UniqueIdentifier>{74a62f5f-afb1-4fef-a40e-11093f398002}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\GUI">
+      <UniqueIdentifier>{eac1aeab-f0da-4618-9663-e117c2551c4a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -60,6 +72,15 @@
     <ClInclude Include="Engine.hpp">
       <Filter>Fichiers d%27en-tête\Engine</Filter>
     </ClInclude>
+    <ClInclude Include="Test.hpp">
+      <Filter>Fichiers d%27en-tête\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenu.hpp">
+      <Filter>Fichiers d%27en-tête\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="GridDisplayer.hpp">
+      <Filter>Fichiers d%27en-tête\Test</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TheWetness.cpp">
@@ -94,6 +115,15 @@
     </ClCompile>
     <ClCompile Include="Engine.cpp">
       <Filter>Fichiers sources\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Test.cpp">
+      <Filter>Fichiers sources\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenu.cpp">
+      <Filter>Fichiers sources\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="GridDisplayer.cpp">
+      <Filter>Fichiers sources\Test</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -6,8 +6,11 @@
 #ifndef _WINDOW_HPP
 #define _WINDOW_HPP
 
+#include <string>
 #include <cassert>
+#include <wchar.h>
 #include <Windows.h>
+#include "Timer.hpp"
 
 /// \class  Window
 /// \brief  Manages frames 
@@ -18,13 +21,19 @@ public:
 	 Window				    (void);
 	~Window				    (void);
 
-	void Open				(const char * pWTitle, unsigned short WWidth, unsigned short WHeight);
+	void Open				(const char * pTitle, USHORT WWidth, USHORT WHeight);
 	void Close				(void);
 
+	// Rendering
 	void Clear				(void);
-	void Draw				(CHAR value, WORD attribute,  USHORT x, USHORT y);
-	void Draw				(CHAR_INFO * pBuffer,		  USHORT w, USHORT h, USHORT x, USHORT y);
+	void Draw               (WCHAR value, WORD attribute,  USHORT x, USHORT y);
+	void Draw				(CHAR value,  WORD attribute,  USHORT x, USHORT y);
+	void Draw				(CHAR_INFO * pBuffer,		   USHORT h, USHORT w, USHORT x, USHORT y);
 	void Display			(void);
+
+	// Utility
+	void SetTitle           (const char * pTitle);
+	void SetWindowSize      (USHORT H, USHORT W);
 
 	/// \brief	Tells if the window is open or not
 	/// \return True or false
@@ -46,10 +55,11 @@ public:
 private:
 
 	void InitializeFrameBuffers	(void);
+	void DrawFPS                (void);
 
 private:
 
-	CHAR_INFO		m_pFrameBuffer[200][200];
+	CHAR_INFO		m_pFrameBuffer[70][70];
 
 	HWND			m_pConsole;		   ///< A pointer on the console
 	HANDLE			m_pSTDOutput;	   ///< A pointer on the STD output
@@ -58,9 +68,18 @@ private:
 	COORD			m_dwBufferCoord;
 	SMALL_RECT		m_recRegion;	
 
+	Timer			m_timer;
+
 	bool			m_isOpen;
+	float			m_lastTime;
 	unsigned short  m_width;
 	unsigned short  m_height;
+	unsigned short  m_bufferWidth;
+	unsigned short  m_bufferHeight;
+	unsigned int    m_currentFrame;
+	unsigned int    m_fpsCounter;
+	unsigned int    m_frameCounter;
+	unsigned int    m_drawCallCounter;
 };
 
 #endif // _WINDOW_HPP

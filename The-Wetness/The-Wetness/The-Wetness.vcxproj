@@ -146,7 +146,10 @@
     <ClInclude Include="GA_Algorithms.hpp" />
     <ClInclude Include="Grid.hpp" />
     <ClInclude Include="GridDecoder.hpp" />
+    <ClInclude Include="GridDisplayer.hpp" />
     <ClInclude Include="GridEncoder.hpp" />
+    <ClInclude Include="MainMenu.hpp" />
+    <ClInclude Include="Test.hpp" />
     <ClInclude Include="Timer.hpp" />
     <ClInclude Include="Window.hpp" />
     <ClInclude Include="PuzzleGenerator.hpp" />
@@ -158,8 +161,11 @@
     <ClCompile Include="GA_Algorithms.cpp" />
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="GridDecoder.cpp" />
+    <ClCompile Include="GridDisplayer.cpp" />
     <ClCompile Include="GridEncoder.cpp" />
+    <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="PuzzleGenerator.cpp" />
+    <ClCompile Include="Test.cpp" />
     <ClCompile Include="TheWetness.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Window.cpp" />
