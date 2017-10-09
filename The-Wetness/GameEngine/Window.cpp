@@ -34,6 +34,10 @@ void Window::Open(const std::string & title, const Vector2u & size, bool debug)
 
 	m_pConsole     = nullptr;
 	m_pSTDOutput   = nullptr;
+
+	m_fps          = 0;
+	m_drawCall     = 0;
+	m_frameCounter = 0;
 	
 	m_pConsole   = GetConsoleHandle();
 	m_pSTDOutput = GetOutputHandle();
@@ -42,7 +46,7 @@ void Window::Open(const std::string & title, const Vector2u & size, bool debug)
 	assert(INVALID_HANDLE_VALUE != m_pSTDOutput);
 
 	SetTitle(m_title);
-	SetCharacterSize(1);
+	// SetCharacterSize(1);
 	SetWindowSize(m_windowSize);
 
 	// Buffering screen rect
@@ -200,18 +204,51 @@ void Window::Draw(CHAR_INFO * pBuffer, USHORT h, USHORT w, USHORT x, USHORT y)
 ///		   "The storage for this buffer is allocated from a shared heap for 
 ///			  the process that is 64 KB in size. The maximum size of the buffer 
 ///			  will depend on heap usage."
-///		   So, I have increase the stack size to 4 MB
 void Window::Display(void)
 {
+	if (m_debug)
+	{
+		DrawDebugInformations();
+	}
+
 	// Sends the current buffer to the windows console's buffer
 	WriteConsoleOutput(m_pSTDOutput, m_pFrameBuffer[0],
 		m_dwBufferSize,
 		m_dwBufferCoord,
 		&m_recRegion);
+
+	// Increasing frame counter
+	m_frameCounter++;
 }
 
 /// \brief	Draws debug informations
 void Window::DrawDebugInformations()
 {
+	// Background color ?
 	// TODO
+
+	// Building strings
+	std::string wSize  = "Window Size : " + std::string("(") + "m_title" + std::string(") ") + std::to_string(m_windowSize.x) + "x" + std::to_string(m_windowSize.y);
+	std::string bSize  = "Buffer Size : " + std::to_string(m_bufferSize.x) + "x" + std::to_string(m_bufferSize.y);
+	std::string fps    = "FPS         : " + std::to_string(m_fps);
+	std::string frames = "Frames      : " + std::to_string(m_frameCounter);
+	std::string drawC  = "Draw call   : " + std::to_string(m_drawCall);
+
+	DrawDebugString(wSize,  Vector2u(0, 0));
+	DrawDebugString(bSize,  Vector2u(0, 1));
+	DrawDebugString(fps,    Vector2u(0, 2));
+	DrawDebugString(drawC,  Vector2u(0, 3));
+	DrawDebugString(frames, Vector2u(0, 4));
+}
+
+/// \brief	Draws a debug string at the given position
+/// \param  debug The string to draw
+/// \param  position The position of the string to draw
+void Window::DrawDebugString(const std::string& debug, const Vector2u& position)
+{
+	for (int nChar = 0; nChar < debug.size(); ++nChar)
+	{
+		m_pFrameBuffer[position.y][position.x + nChar].Char.AsciiChar = debug[nChar];
+		m_pFrameBuffer[position.y][position.x + nChar].Attributes     = 0x0F;
+	}
 }

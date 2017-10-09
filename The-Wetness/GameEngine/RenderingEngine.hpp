@@ -32,8 +32,14 @@ private:
 
 private:
 
-	Window m_window;
-	bool   m_debug;
+	Window   m_window;
+	bool     m_debug;
+
+	Timer    m_timer;
+	float    m_fpsTimer;
+	float    m_frameTime;
+	float    m_elapsedTime;
+	unsigned m_frameCount;
 };
 
 #endif // _RENDERING_ENGINE_HPP

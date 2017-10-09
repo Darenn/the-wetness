@@ -40,19 +40,23 @@ public:
 	inline unsigned short GetWidth (void) const;
 	inline unsigned short GetHeight(void) const;
 
+	inline void SetDrawCall (float draw);
+	inline void SetFPS      (unsigned fps);
+
 private:
 
 	void	InitializeFrameBuffers	(void);
 	void	DrawDebugInformations	(void);
 	void    SetWindowSize           (const Vector2u & size);
 	void	SetCharacterSize        (unsigned short size);
+	void    DrawDebugString         (const std::string & debug, const Vector2u & size);
 
 	static HWND	  GetConsoleHandle(void);
 	static HANDLE GetOutputHandle (void);
 
 private:
 
-	CHAR_INFO       m_pFrameBuffer[1024][768];
+	CHAR_INFO       m_pFrameBuffer[MAX_BUFFER_Y][MAX_BUFFER_X];
 
 	HWND			m_pConsole;
 	HANDLE			m_pSTDOutput;
@@ -68,6 +72,11 @@ private:
 	Vector2u		m_bufferSize;
 
 	std::string     m_title;
+
+	// Debug informations
+	unsigned int 	m_fps;
+	unsigned int	m_frameCounter;
+	unsigned int    m_drawCall;
 };
 
 #include "Window.inl"
