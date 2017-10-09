@@ -25,3 +25,15 @@ inline unsigned short Window::GetHeight(void) const
 {
 	return m_windowSize.y;
 }
+
+/// \brief	Sets the total of draw call for the frame
+void Window::SetDrawCall(float draw)
+{
+	m_drawCall = draw;
+}
+
+/// \brief  Sets the total fps for the frame
+void Window::SetFPS(unsigned int fps)
+{
+	m_fps = fps;
+}
