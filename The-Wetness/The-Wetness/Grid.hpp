@@ -43,9 +43,16 @@ public:
 	size_t getWidth() const;
 	size_t getHeight() const;
 	std::vector<std::vector<Coordinates>> getPaths(Coordinates start, Coordinates end) const;
-	//Coordinates getExit()
+	std::vector<Coordinates> getDatas(Data d) {
+		std::vector<Coordinates> datas;
+		for (size_t i = 0; i < m_nodesData.size(); i++)
+			if (m_nodesData[i] == d)
+				datas.push_back(gridIndexToCoord(i));
+		return datas;
+	}
 
 	friend std::ostream &operator<<(std::ostream &output, const Grid &D);
+	
 	Grid& operator=(const Grid & grid) {
 		m_nodesData = grid.m_nodesData;
 		m_nodesLinks = grid.m_nodesLinks;
@@ -53,8 +60,6 @@ public:
 		_height = grid._height;
 		return *this;
 	}
-
-
 
 private:
 	/// <summary>

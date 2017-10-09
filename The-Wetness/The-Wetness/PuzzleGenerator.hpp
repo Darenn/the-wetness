@@ -13,7 +13,7 @@
 class PuzzleGenerator {
 public:
 	Grid generateNextPuzzle();
-	const unsigned GENERATION_SIZE = 10;
+	const unsigned GENERATION_SIZE = 50;
 	const unsigned NUM_ITER = 10;
 	const unsigned GRID_WIDTH = 2;
 	const unsigned GRID_HEIGHT = 2;

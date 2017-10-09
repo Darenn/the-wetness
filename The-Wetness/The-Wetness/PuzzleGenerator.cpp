@@ -46,7 +46,17 @@ Grid PuzzleGenerator::generateNextPuzzle()
 	auto best = population[0];
 	for (size_t i = 0; i < population.size(); i++)
 	{
-		std::cout << population[i].second << std::endl;
+		std::vector<Grid::Coordinates> start = _gridDecoder.decode(population[i].first).getDatas(Grid::Data::START);
+		std::vector<Grid::Coordinates> exit = _gridDecoder.decode(population[i].first).getDatas(Grid::Data::EXIT);
+		std::vector<std::vector<Grid::Coordinates>> paths = _gridDecoder.decode(population[i].first).getPaths(start[0], exit[0]);
+		for (std::vector<Grid::Coordinates> p : paths) {
+			std::cout << "[ ";
+			for (auto node : p) {
+				std::cout << "{" << node.x << ", " << node.y << "}";
+			}
+			std::cout << "]" << std::endl;
+		}
+		//std::cout << population[i].second << std::endl;
 		std::cout << _gridDecoder.decode(population[i].first) << std::endl;
 	}
 

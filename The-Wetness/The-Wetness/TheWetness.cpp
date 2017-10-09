@@ -16,6 +16,8 @@ int& getInt() {
 	return *(int*)nullptr;
 }
 
+#include <typeinfo>
+
 /// \brief Entry point
 int main(int argc, char ** argv)
 {
@@ -27,17 +29,15 @@ int main(int argc, char ** argv)
 	/////
 	PuzzleGenerator pg;
 
-	Grid g(0, 0);
-	g = pg.generateNextPuzzle();
+	pg.generateNextPuzzle();
 
 	/*GridEncoder ge;
 	GridDecoder gd;
 	Grid g(2, 2);
-	g.getNode(0, 0).setLinkedToDownNeighbor(false);
-	g.getNode(0, 0).setLinkedToRightNeighbor(false);
-	g.getNode(1, 1).data = Node::Data::START;
-	g.getNode(1, 0).data = Node::Data::EXIT;
-	std::cout << g.getPaths(&g.getNode(1, 1), &g.getNode(1, 0)).size() << std::endl;
+	//g.setLinkWithNeighbor(Grid::Coordinates{ 0, 0 }, Grid::Direction::SOUTH, true);
+	g.setLinkWithNeighbor(Grid::Coordinates{ 0, 1 }, Grid::Direction::EAST, true);
+	//g.setLinkWithNeighbor(Grid::Coordinates{ 1, 1 }, Grid::Direction::NORTH, true);
+	std::cout << g.isLinkedWithNeighbor(Grid::Coordinates{ 1, 0 }, Grid::Direction::EAST) << std::endl;
 	std::cout << g << std::endl;*/
 	//display_vector(ge.encode(g));
 	//std::cout << gd.decode(ge.encode(g)) << std::endl;
