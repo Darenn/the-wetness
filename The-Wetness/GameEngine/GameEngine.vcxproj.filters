@@ -61,6 +61,9 @@
     <Filter Include="Fichiers sources\Engine\Platform\Window">
       <UniqueIdentifier>{2d9097da-b3c7-4646-9f4d-ef1960e0512a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers d%27en-tête\Engine\Platform\Window\Impl">
+      <UniqueIdentifier>{dd5d69cf-b2bc-4e33-8656-b4a7e9937e0f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vector2.hpp">
@@ -94,6 +97,9 @@
     </None>
     <None Include="Camera.inl">
       <Filter>Fichiers d%27en-tête\Engine\Raycaster\Impl</Filter>
+    </None>
+    <None Include="Window.inl">
+      <Filter>Fichiers d%27en-tête\Engine\Platform\Window\Impl</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

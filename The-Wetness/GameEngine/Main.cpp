@@ -20,8 +20,8 @@ int main(int argc, char ** argv)
 	gameEngine.SetInitFrameRate(90);
 	gameEngine.SetInitUpdateRate(60);
 	gameEngine.SetInitWindowTitle("The Witness");
-	gameEngine.SetInitWindowSize(Vector2u(600, 600));
-	
+	gameEngine.SetInitWindowSize(Vector2u(1024, 768));
+	 
 	if(argc == 3)
 	{
 		if(strcmp(argv[1], "-d") == 0)
