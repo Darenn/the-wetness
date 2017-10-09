@@ -3,6 +3,7 @@
 /// \package    Engine
 /// \author     Vincent STEHLY--CALISTO
 
+#include "Timer.hpp"
 #include "GameEngine.hpp"
 
 /// \brief	Constructor
@@ -69,7 +70,7 @@ void GameEngine::Initialize(void)
 	m_running = false;
 
 	// Rendering configuration
-	// TODO
+	m_renderingEngine.Initialize(m_windowTitle, m_windowSize, m_fps, m_debug); 
 }
 
 /// \brief	Stars the game engine 
@@ -93,5 +94,8 @@ void GameEngine::Start(void)
 			// Retrieve elapsed time
 			lag -= m_granularity;
 		}
+
+		// Rendering ...
+		m_renderingEngine.Render(lag / m_granularity);
 	}
 }

@@ -5,11 +5,8 @@
 
 #ifndef _GAME_ENGINE_HPP
 #define _GAME_ENGINE_HPP
-
-#include <string>
-
-#include "Timer.hpp"
-#include "Vector2.hpp"
+ 
+#include "RenderingEngine.hpp"
 
 #define GAME_ENGINE_MIN_FPS 30
 #define GAME_ENGINE_MAX_FPS 240
@@ -35,12 +32,13 @@ public:
 
 private:
 
-	bool		m_debug;
-	bool		m_running;
-	float       m_fps;
-	float       m_granularity;
-	Vector2u	m_windowSize;
-	std::string m_windowTitle;
+	bool			m_debug;
+	bool			m_running;
+	float			m_fps;
+	float			m_granularity;
+	Vector2u		m_windowSize;
+	std::string		m_windowTitle;
+	RenderingEngine m_renderingEngine;
 };
 
 #endif // _GAME_ENGINE_HPP

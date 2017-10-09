@@ -92,6 +92,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
+      <StackReserveSize>40000000</StackReserveSize>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -151,6 +152,7 @@
     <None Include="Camera.inl" />
     <None Include="Vector2.inl" />
     <None Include="Vector3.inl" />
+    <None Include="Window.inl" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />

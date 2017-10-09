@@ -18,44 +18,39 @@ Window::~Window(void)
 }
 
 /// \brief	Initializes the console with a title and with the given dimensions
-/// \param  pWTitle  A c-string to set the title
-/// \param  WWidth  The console width
-/// \param  WHeight The console height
-void Window::Open(const char * pTitle, USHORT WWidth, USHORT WHeight)
+/// \param  title  The title of the window
+/// \param  size   The dimension of the window
+/// \param  debug  The debug mode
+void Window::Open(const std::string & title, const Vector2u & size, bool debug)
 {
-	m_width = WWidth;
-	m_height = WHeight;
-	m_bufferHeight = 70;
-	m_bufferWidth = 70;
-	m_isOpen = false;
-	m_pConsole = nullptr;
-	m_pSTDOutput = nullptr;
-	m_currentFrame = 0;
-	m_frameCounter = 0;
-	m_fpsCounter = 0;
-	m_lastTime = 0.0f;
-	m_drawCallCounter = 0;
+	assert(size.x >= 100  && size.y >= 100);
+	assert(size.x <= MAX_BUFFER_X && size.y <= MAX_BUFFER_Y);
 
-	// Gets descriptors
-	m_pConsole = GetConsoleWindow();
-	m_pSTDOutput = (HANDLE)GetStdHandle(STD_OUTPUT_HANDLE);
+	m_debug  = debug;
+	m_isOpen = false;
+
+	m_windowSize = size;
+	m_bufferSize = size;
+
+	m_pConsole     = nullptr;
+	m_pSTDOutput   = nullptr;
+	
+	m_pConsole   = GetConsoleHandle();
+	m_pSTDOutput = GetOutputHandle();
 
 	assert(nullptr != m_pConsole);
-	assert(nullptr != m_pSTDOutput);
 	assert(INVALID_HANDLE_VALUE != m_pSTDOutput);
 
-	// Initializes
-	SetTitle(pTitle);
-	SetWindowSize(m_height, m_width);
-
-	// FPS Timer
-	m_timer.Start();
+	SetTitle(m_title);
+	SetCharacterSize(1);
+	SetWindowSize(m_windowSize);
 
 	// Buffering screen rect
 	m_dwBufferCoord = { 0, 0 };
-	m_dwBufferSize = { static_cast<SHORT>(m_bufferWidth),     static_cast<SHORT>(m_bufferHeight) };
-	m_recRegion = { 0, 0, static_cast<SHORT>(m_bufferWidth) - 1, static_cast<SHORT>(m_bufferHeight) - 1 };
+	m_dwBufferSize  = {       static_cast<SHORT>(m_bufferSize.x),     static_cast<SHORT>(m_bufferSize.y)     };
+	m_recRegion     = { 0, 0, static_cast<SHORT>(m_bufferSize.x) - 1, static_cast<SHORT>(m_bufferSize.y) - 1 };
 
+	// Handles ok, initializing frame buffer
 	InitializeFrameBuffers();
 
 	// The window is now open
@@ -66,25 +61,94 @@ void Window::Open(const char * pTitle, USHORT WWidth, USHORT WHeight)
 void Window::Close(void)
 {
 	m_isOpen = false;
+	
+	m_pConsole     = nullptr;
+	m_pSTDOutput   = nullptr;
 }
 
 /// \brief	Initializes all frame buffers
 void Window::InitializeFrameBuffers(void)
 {
-	// TODO
 	Clear();
 }
 
-/// \brief	Clear the current buffer
+/// \brief	Returns the window console
+/// \return A handle on the window
+/* static */ HWND Window::GetConsoleHandle()
+{
+	return GetConsoleWindow();
+}
+
+/// \brief	Returns the handle on the standard output
+///			with a read write access
+/// \return An handle on the std output
+/* static */ HANDLE Window::GetOutputHandle()
+{
+	return GetStdHandle(STD_OUTPUT_HANDLE | GENERIC_READ | GENERIC_WRITE);
+}
+
+/// \brief	Sets the character size of the console
+/// \param  size The size to set
+void Window::SetCharacterSize(unsigned short size)
+{
+	CONSOLE_FONT_INFOEX consoleFontInfo;
+
+	// Filling the structure with the new font size
+	consoleFontInfo.nFont        = 0;
+	consoleFontInfo.cbSize		 = sizeof(consoleFontInfo);
+	consoleFontInfo.FontFamily   = FF_DONTCARE;
+	consoleFontInfo.FontWeight   = FW_DEMIBOLD;
+	consoleFontInfo.dwFontSize.X = static_cast<short>(size);
+	consoleFontInfo.dwFontSize.Y = static_cast<short>(size);
+	
+	// Font name copy
+	std::wcscpy(consoleFontInfo.FaceName, L"Consolas");
+
+	// Updates the console info ...
+	SetCurrentConsoleFontEx(m_pSTDOutput, FALSE, &consoleFontInfo);
+}
+
+/// \brief	Sets the window title
+/// \param  title The title to set
+void Window::SetTitle(const std::string& title)
+{
+	m_title = title;
+
+	assert(64 > m_title.size());
+	assert(nullptr != m_pConsole);
+	
+	wchar_t wTitle[64];
+	swprintf(wTitle, 64, L"%hs", m_title.c_str());
+	
+	SetConsoleTitle(wTitle);
+}
+
+/// \brief	Sets the window size
+/// \param  size The new size of the window
+void Window::SetWindowSize(const Vector2u& size)
+{
+	RECT currentRect;
+	GetWindowRect(m_pConsole, &currentRect);
+
+	// Resize the window to fit the given dimensions
+	MoveWindow(m_pConsole, 
+		currentRect.left, 
+		currentRect.top,
+		m_windowSize.x, 
+		m_windowSize.y, TRUE);
+}
+
+/// \brief	Clear the current frame buffer
 void Window::Clear(void)
 {
-	for (int i = 0; i < m_bufferHeight; ++i)
+	for (int nBufferY = 0; nBufferY < m_bufferSize.y; ++nBufferY)
 	{
-		for (int j = 0; j < m_bufferWidth; ++j)
+		CHAR_INFO * nBuffer = m_pFrameBuffer[nBufferY];
+		for (int nBufferX = 0; nBufferX < m_bufferSize.x; ++nBufferX)
 		{
-			m_pFrameBuffer[i][j].Char.UnicodeChar = 0x0020;
-			m_pFrameBuffer[i][j].Char.AsciiChar = ' ';
-			m_pFrameBuffer[i][j].Attributes = 0x0;
+			nBuffer[nBufferX].Attributes       = 0x0;
+			nBuffer[nBufferX].Char.AsciiChar   = ' ';
+			nBuffer[nBufferX].Char.UnicodeChar = 0x0020;
 		}
 	}
 }
@@ -97,9 +161,7 @@ void Window::Clear(void)
 void Window::Draw(CHAR value, WORD attribute, USHORT x, USHORT y)
 {
 	m_pFrameBuffer[y][x].Char.AsciiChar = value;
-	m_pFrameBuffer[y][x].Attributes = attribute;
-
-	m_drawCallCounter++;
+	m_pFrameBuffer[y][x].Attributes     = attribute;
 }
 
 /// \brief	Draws a wchar at the given position
@@ -111,8 +173,6 @@ void Window::Draw(WCHAR value, WORD attribute, USHORT x, USHORT y)
 {
 	m_pFrameBuffer[y][x].Char.UnicodeChar = value;
 	m_pFrameBuffer[y][x].Attributes = attribute;
-
-	m_drawCallCounter++;
 }
 
 /// \brief	Draws the given buffer at the given positions
@@ -127,85 +187,31 @@ void Window::Draw(CHAR_INFO * pBuffer, USHORT h, USHORT w, USHORT x, USHORT y)
 		CHAR_INFO * nBuffer = pBuffer + nRow * w;
 		for (int nCol = 0; nCol < w; ++nCol)
 		{
-			if (y + nRow < m_bufferHeight && x + nCol < m_bufferHeight)
+			if (y + nRow < m_bufferSize.y && x + nCol < m_bufferSize.x)
 			{
 				m_pFrameBuffer[y + nRow][x + nCol] = nBuffer[nCol];
 			}
 		}
 	}
-
-	m_drawCallCounter++;
 }
 
 /// \brief Displays the current buffer by swapping buffers
+/// \see   https://docs.microsoft.com/en-us/windows/console/writeconsoleoutput
+///		   "The storage for this buffer is allocated from a shared heap for 
+///			  the process that is 64 KB in size. The maximum size of the buffer 
+///			  will depend on heap usage."
+///		   So, I have increase the stack size to 4 MB
 void Window::Display(void)
 {
 	// Sends the current buffer to the windows console's buffer
-	WriteConsoleOutput(m_pSTDOutput, (CHAR_INFO *)m_pFrameBuffer,
+	WriteConsoleOutput(m_pSTDOutput, m_pFrameBuffer[0],
 		m_dwBufferSize,
 		m_dwBufferCoord,
 		&m_recRegion);
-
-	m_frameCounter++;
-	m_fpsCounter++;
-
-	float currentTime = m_timer.GetElaspedTime();
-	if (currentTime - m_lastTime >= 1.0f)
-	{
-		m_currentFrame = m_fpsCounter;
-		m_fpsCounter = 0;
-		m_lastTime = currentTime;
-	}
-
-	DrawFPS();
 }
 
-/// \brief	Sets the console title
-/// \param  pTitle a pointer on the new title
-void Window::SetTitle(const char * pTitle)
+/// \brief	Draws debug informations
+void Window::DrawDebugInformations()
 {
-	//assert(64 > strlen(pTitle));
-	//assert(nullptr != m_pConsole);
-	//
-	//wchar_t wTitle[64];
-	////swprintf(wTitle, 64, L"%hs", pTitle);
-	//
-	//SetConsoleTitle(wTitle);
-}
-
-/// \brief	Sets the window size
-/// \param  H The height of the window
-/// \param  W The width of the window
-void Window::SetWindowSize(USHORT H, USHORT W)
-{
-	RECT currentRect;
-	GetWindowRect(m_pConsole, &currentRect);
-
-	// Resize the window to fit the given dimensions
-	MoveWindow(m_pConsole, currentRect.left, currentRect.top, m_width, m_height, TRUE);
-}
-
-void Window::DrawFPS(void)
-{
-//	std::string frames = "Frames    : " + std::to_string(m_frameCounter);
-//	std::string fps = "FPS       : " + std::to_string(m_currentFrame);
-//	std::string drawCall = "Draw call : " + std::to_string(m_drawCallCounter);
-//
-//	for (int nChar = 0; nChar < fps.size(); ++nChar)
-//	{
-//		m_pFrameBuffer[0][0 + nChar].Char.AsciiChar = fps[nChar];
-//		m_pFrameBuffer[0][0 + nChar].Attributes = 0x0E;
-//	}
-//
-//	for (int nChar = 0; nChar < frames.size(); ++nChar)
-//	{
-//		m_pFrameBuffer[1][0 + nChar].Char.AsciiChar = frames[nChar];
-//		m_pFrameBuffer[1][0 + nChar].Attributes = 0x0F;
-//	}
-//
-//	for (int nChar = 0; nChar < drawCall.size(); ++nChar)
-//	{
-//		m_pFrameBuffer[2][0 + nChar].Char.AsciiChar = drawCall[nChar];
-//		m_pFrameBuffer[2][0 + nChar].Attributes = 0x0F;
-//	}
+	// TODO
 }
