@@ -33,6 +33,6 @@ const GA_Algorithms::Chromosome& GA_Algorithms::select(const std::vector<std::pa
 	#define COMPARISON [](std::pair<std::vector<bool>, int> a, std::pair<std::vector<bool>, int> b) { return  a.second < b.second; }
 	auto bestFitness = *std::max_element(population.begin(), population.end(), COMPARISON);
 	std::min_element(population.begin(), population.end(), COMPARISON);
-	auto parentIndex = std::rand() / static_cast<float>(RAND_MAX) * population.size() - 1;
+	auto parentIndex = std::rand() / static_cast<float>(RAND_MAX) * population.size();
 	return population[parentIndex].first;
 }

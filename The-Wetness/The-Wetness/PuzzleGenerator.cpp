@@ -13,6 +13,7 @@ Grid PuzzleGenerator::generateNextPuzzle()
 
 	for (auto i = 0; i < NUM_ITER; ++i)
 	{
+		std::cout << i << "iterations done." << std::endl;
 		GA_Algorithms::Population offspring{};
 		for (auto j = 0; j < population.size(); j++)
 		{
@@ -44,11 +45,13 @@ Grid PuzzleGenerator::generateNextPuzzle()
 	}
 
 	auto best = population[0];
-	for (size_t i = 0; i < population.size(); i++)
+	/*for (size_t i = 0; i < population.size(); i++)
 	{
 		std::vector<Grid::Coordinates> start = _gridDecoder.decode(population[i].first).getDatas(Grid::Data::START);
 		std::vector<Grid::Coordinates> exit = _gridDecoder.decode(population[i].first).getDatas(Grid::Data::EXIT);
-		std::vector<std::vector<Grid::Coordinates>> paths = _gridDecoder.decode(population[i].first).getPaths(start[0], exit[0]);
+		Grid g = _gridDecoder.decode(population[i].first);
+		std::vector<std::vector<Grid::Coordinates>> paths = g.getPaths(start[0], exit[0]);
+		paths = g.getWinningPaths(paths);
 		for (std::vector<Grid::Coordinates> p : paths) {
 			std::cout << "[ ";
 			for (auto node : p) {
@@ -56,9 +59,10 @@ Grid PuzzleGenerator::generateNextPuzzle()
 			}
 			std::cout << "]" << std::endl;
 		}
+		std::cout << g.getDataCount(Grid::Data::MUST_PASS) << std::endl;
 		//std::cout << population[i].second << std::endl;
 		std::cout << _gridDecoder.decode(population[i].first) << std::endl;
-	}
+	}*/
 
 	return _gridDecoder.decode(best.first);
 }
@@ -68,7 +72,7 @@ GA_Algorithms::Population PuzzleGenerator::initializePopulation(int numChromosom
 	std::vector<Grid*> grids;
 	for (size_t i = 0; i < numChromosomes; i++)
 	{
-		Grid* g = new Grid(4, 4);
+		Grid* g = new Grid(8, 8);
 		grids.push_back(g);
 	}
 

@@ -10,6 +10,10 @@ Grid::Grid(int width, int height) : _width(width), _height(height)
 	size_t nodeCount = width * height;
 	m_nodesData = vector<Data>(nodeCount, Grid::Data::NOTHING);
 	m_nodesLinks = vector<bool>(NEIGHBORS_COUNT * nodeCount, false);
+	for (size_t i = 0; i < nodeCount; i++)
+	{
+		setLinkToAllNeighbors(i, true);
+	}
 }
 
 Grid::~Grid()
@@ -188,6 +192,7 @@ Grid::Direction Grid::getInverseDirection(Direction d)
 }
 
 
+
 std::vector<std::vector<Grid::Coordinates>> Grid::getPaths(Coordinates start, Coordinates end) const
 {
 	std::vector<std::vector<Coordinates>> paths;
@@ -231,8 +236,26 @@ std::vector<std::vector<Grid::Coordinates>> Grid::getPaths(Coordinates start, Co
 		nextToCheck.clear();
 
 	}
-	
+
 	return paths;
+}
+
+std::vector<std::vector<Grid::Coordinates>> Grid::getWinningPaths(const std::vector<std::vector<Coordinates>>& pathsToExit) const
+{
+	std::vector<std::vector<Grid::Coordinates>> winningPaths;
+	int numMustPassInGrid = getDataCount(Grid::Data::MUST_PASS); // TODO optimiza by putting in member
+	for (const auto& path : pathsToExit) {
+		int numMustPassInPath = 0;
+		for (const auto& node : path) {
+			if (getData(node) == Grid::Data::MUST_PASS) {
+				numMustPassInPath++;
+			}
+		}
+		if (numMustPassInPath == numMustPassInGrid) {
+			winningPaths.push_back(path);
+		}
+	}
+	return winningPaths;
 }
 
 std::ostream & operator<<(std::ostream& output, const Grid& grid)

@@ -43,12 +43,30 @@ public:
 	size_t getWidth() const;
 	size_t getHeight() const;
 	std::vector<std::vector<Coordinates>> getPaths(Coordinates start, Coordinates end) const;
+	std::vector<std::vector<Coordinates>> getWinningPaths(const std::vector<std::vector<Coordinates>>&) const;
 	std::vector<Coordinates> getDatas(Data d) {
 		std::vector<Coordinates> datas;
 		for (size_t i = 0; i < m_nodesData.size(); i++)
 			if (m_nodesData[i] == d)
 				datas.push_back(gridIndexToCoord(i));
 		return datas;
+	}
+	void setLinkToAllNeighbors(Coordinates coord, bool linked) {
+		if (hasNeighbor(coord, Direction::EAST)) {
+			setLinkWithNeighbor(coord, Direction::EAST, linked);
+		}
+		if (hasNeighbor(coord, Direction::SOUTH)) {
+			setLinkWithNeighbor(coord, Direction::SOUTH, linked);
+		}
+		if (hasNeighbor(coord, Direction::NORTH)) {
+			setLinkWithNeighbor(coord, Direction::NORTH, linked);
+		}
+		if (hasNeighbor(coord, Direction::WEST)) {
+			setLinkWithNeighbor(coord, Direction::WEST, linked);
+		}
+	}
+	void setLinkToAllNeighbors(int gridIndex, bool linked) {
+		setLinkToAllNeighbors(gridIndexToCoord(gridIndex), linked);
 	}
 
 	friend std::ostream &operator<<(std::ostream &output, const Grid &D);
