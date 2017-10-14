@@ -191,8 +191,6 @@ Grid::Direction Grid::getInverseDirection(Direction d)
 	}
 }
 
-
-
 std::vector<std::vector<Grid::Coordinates>> Grid::getPaths(Coordinates start, Coordinates end) const
 {
 	std::vector<std::vector<Coordinates>> paths;
@@ -203,8 +201,11 @@ std::vector<std::vector<Grid::Coordinates>> Grid::getPaths(Coordinates start, Co
 	firstPath.push_back(start);
 	toCheck.push_back(firstPath);
 
+	int numiter = 0;
+
 	while (toCheck.size() > 0)
 	{
+		numiter++;
 		for (vector<Coordinates> path : toCheck)
 		{
 			Coordinates lastNode = path.back();
@@ -212,11 +213,11 @@ std::vector<std::vector<Grid::Coordinates>> Grid::getPaths(Coordinates start, Co
 			// If the last node is the end, add it to paths and continue with the next path
 			if (lastNode == end)
 			{
-				paths.push_back(path);
+				paths.push_back(std::move(path));
 				continue;
 			}
 
-			// Get the neighbors, remove the nodes already visited and create new paths
+			// Get the neighbors and create new paths with them
 			vector<Coordinates> neighbors = getLinkedNeighbors(lastNode);
 			for (std::vector<Coordinates>::iterator it = neighbors.begin(); it != neighbors.end(); ++it)
 			{
@@ -229,14 +230,11 @@ std::vector<std::vector<Grid::Coordinates>> Grid::getPaths(Coordinates start, Co
 				}
 			}
 		}
-
 		// Clear toCheck and add to it the new paths to check
 		toCheck.clear();
 		toCheck.insert(toCheck.begin(), nextToCheck.begin(), nextToCheck.end());
 		nextToCheck.clear();
-
 	}
-
 	return paths;
 }
 
