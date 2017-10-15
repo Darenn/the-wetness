@@ -19,19 +19,18 @@ int FitnessEvaluator::evaluate(Grid& grid) const
 	{
 		return -1000;
 	}
-	/*std::vector<std::vector<Grid::Coordinates>> paths = grid.getPaths(start[0], exit[0]);
+	std::vector<std::vector<Grid::Coordinates>> paths = grid.getPaths(start[0], exit[0]);
 	paths = grid.getWinningPaths(paths);
 	/*for (std::vector<Grid::Coordinates> p : paths) {
 		std::cout << "[ ";
-			for (auto node : p) {
-				std::cout << "{" << node.x << ", " << node.y << "}";
-			}
-			std::cout << "]" << std::endl;
-	}
+		for (auto node : p) {
+			std::cout << "{" << (int)node.x << ", " << (int)node.y << "}";
+		}
+		std::cout << "]" << std::endl;
+	}*/
 	//std::cout << grid << std::endl;
 	int nbPath = paths.size();
 	if (nbPath == 0)
 		return -1000;
-	return nbPath;*/
-	return 2;
+	return numMustPass;
 }

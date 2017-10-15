@@ -23,7 +23,6 @@ bool ConformityEvaluator::evaluate(Grid& grid) const
 	return true;
 }
 
-// TODO fix the links
 void ConformityEvaluator::fixGrid(Grid & grid) const
 {
 	// Take entries and exits and make them into nothing if there are too much

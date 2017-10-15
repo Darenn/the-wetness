@@ -25,7 +25,7 @@ void GridDisplayer::Update(float dt)
 
 void GridDisplayer::Render(Window & window)
 {
-	std::ostringstream stream;
+	/*std::ostringstream stream;
 	stream << grid;
 	std::string strGrid = stream.str();
 	//std::cout << strGrid << std::endl;
@@ -76,5 +76,5 @@ void GridDisplayer::Render(Window & window)
 				currentX++;
 				break;
 		}
-	}
+	}*/
 }
