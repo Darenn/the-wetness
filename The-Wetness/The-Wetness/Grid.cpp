@@ -56,11 +56,12 @@ void Grid::setLinkWithNeighbor(int gridIndex, Direction neighborDirection, bool 
 
 void Grid::setLinkWithNeighbor(Coordinates coord, Direction neighborDirection, bool linked)
 {
-	assert(hasNeighbor(coord, neighborDirection));
 	m_nodesLinks[getLinkIndex(coord, neighborDirection)] = linked;
-	Coordinates Neighbor = getNeighbor(coord, neighborDirection);
-	size_t linkIndex = getLinkIndex(Neighbor, getInverseDirection(neighborDirection));
-	m_nodesLinks[linkIndex] = linked;
+	if (hasNeighbor(coord, neighborDirection)) {
+		Coordinates Neighbor = getNeighbor(coord, neighborDirection);
+		size_t linkIndex = getLinkIndex(Neighbor, getInverseDirection(neighborDirection));
+		m_nodesLinks[linkIndex] = linked;
+	}
 }
 
 std::vector<Grid::Coordinates> Grid::getLinkedNeighbors(Coordinates coord) const

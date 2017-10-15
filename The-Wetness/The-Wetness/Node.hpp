@@ -1,23 +1,22 @@
 #pragma once
 
-#include <iostream>
-#include <vector>
+struct Vector2uc
+{
+	unsigned char x;
+	unsigned char y;
+
+	bool operator==(const Vector2uc& rhs) const {
+		return x == rhs.x && y == rhs.y;
+	}
+};
 
 class Node
 {
 public:
-	Node();
-	~Node();
-
-
-
-	std::vector<Node*> getLinkedNeighbors();
-
-	friend std::ostream & operator<<(std::ostream& output, const Node& node);
-
-	bool isLinkedToUpNeighbor = false;
-	bool isLinkedToRightNeighbor = false;
-	bool isLinkedToDownNeighbor = false;
-	bool isLinkedToLeftNeighbor = false;
+	Vector2uc position;
+	unsigned short g_cost;
+	unsigned short h_cost;
+	unsigned short f_cost;
+	bool isTraversable;
+	Node* parent;
 };
-

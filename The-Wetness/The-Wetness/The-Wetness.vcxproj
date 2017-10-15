@@ -144,11 +144,13 @@
     <ClInclude Include="Engine.hpp" />
     <ClInclude Include="FitnessEvaluator.hpp" />
     <ClInclude Include="GA_Algorithms.hpp" />
+    <ClInclude Include="Graph.hpp" />
     <ClInclude Include="Grid.hpp" />
     <ClInclude Include="GridDecoder.hpp" />
     <ClInclude Include="GridDisplayer.hpp" />
     <ClInclude Include="GridEncoder.hpp" />
     <ClInclude Include="MainMenu.hpp" />
+    <ClInclude Include="Node.hpp" />
     <ClInclude Include="Test.hpp" />
     <ClInclude Include="Timer.hpp" />
     <ClInclude Include="Window.hpp" />

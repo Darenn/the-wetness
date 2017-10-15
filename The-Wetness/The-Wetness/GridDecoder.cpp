@@ -1,5 +1,6 @@
 #include "GridDecoder.hpp"
 #include "GridEncoder.hpp"
+#include <cassert>
 
 
 char fromVector(std::vector<bool> vec) {
@@ -27,6 +28,7 @@ Grid GridDecoder::decode(const std::vector<bool> encodedGrid) const
 	auto first = encodedGrid.begin();
 	auto last = encodedGrid.begin() + sizeof(char)*8;
 	std::vector<bool> newVec(first, last);
+	assert(newVec.size() == 8);
 	int numberRows = fromVector(newVec);
 
 	int numberColumns = ((encodedGrid.size() - sizeof(char)*8) / GridEncoder::NUMBER_BITS_PER_NODE) / numberRows;
@@ -60,12 +62,20 @@ Grid GridDecoder::decode(const std::vector<bool> encodedGrid) const
 		int ind = 8 + i * 6 + 2;
 		if (decodedGrid.hasNeighbor(i, Grid::Direction::NORTH))
 			decodedGrid.setLinkWithNeighbor(i, Grid::Direction::NORTH, encodedGrid[sizeof(char)*8 + i*6 + 2]);
+		else decodedGrid.setLinkWithNeighbor(i, Grid::Direction::NORTH, false);
+
 		if (decodedGrid.hasNeighbor(i, Grid::Direction::EAST))
 			decodedGrid.setLinkWithNeighbor(i, Grid::Direction::EAST, encodedGrid[sizeof(char)*8 + i*6 + 3]);
-		if (decodedGrid.hasNeighbor(i, Grid::Direction::WEST))
-			decodedGrid.setLinkWithNeighbor(i, Grid::Direction::WEST, encodedGrid[sizeof(char)*8 + i*6 + 4]);
+		else decodedGrid.setLinkWithNeighbor(i, Grid::Direction::EAST, false);
+
 		if (decodedGrid.hasNeighbor(i, Grid::Direction::SOUTH))
-			decodedGrid.setLinkWithNeighbor(i, Grid::Direction::SOUTH, encodedGrid[sizeof(char)*8 + i*6 + 5]);
+			decodedGrid.setLinkWithNeighbor(i, Grid::Direction::SOUTH, encodedGrid[sizeof(char) * 8 + i * 6 + 4]);
+		else decodedGrid.setLinkWithNeighbor(i, Grid::Direction::SOUTH, false);
+
+		if (decodedGrid.hasNeighbor(i, Grid::Direction::WEST))
+			decodedGrid.setLinkWithNeighbor(i, Grid::Direction::WEST, encodedGrid[sizeof(char)*8 + i*6 + 5]);
+		else decodedGrid.setLinkWithNeighbor(i, Grid::Direction::WEST, false);
+
 	}
 	return decodedGrid;
 }
