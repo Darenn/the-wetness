@@ -37,6 +37,9 @@
     <Filter Include="Fichiers sources\GUI">
       <UniqueIdentifier>{eac1aeab-f0da-4618-9663-e117c2551c4a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers d%27en-tête\AI">
+      <UniqueIdentifier>{e7c10651-a9ef-4bd5-8221-429d218d59d8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -80,6 +83,27 @@
     </ClInclude>
     <ClInclude Include="GridDisplayer.hpp">
       <Filter>Fichiers d%27en-tête\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="DifficultyAnalyzer.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="DifficultyManager.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Pathfinding\Coordinate.hpp">
+      <Filter>Fichiers d%27en-tête\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="Pathfinding\Node.hpp">
+      <Filter>Fichiers d%27en-tête\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="Pathfinding\Pathfinding.hpp">
+      <Filter>Fichiers d%27en-tête\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="Pathfinding\SquaredGrid.hpp">
+      <Filter>Fichiers d%27en-tête\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="Pathfinding\TieHelper.hpp">
+      <Filter>Fichiers d%27en-tête\AI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -125,5 +149,13 @@
     <ClCompile Include="GridDisplayer.cpp">
       <Filter>Fichiers sources\Test</Filter>
     </ClCompile>
+    <ClCompile Include="DifficultyManager.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pathfinding\SquaredGrid.inl">
+      <Filter>Fichiers d%27en-tête\AI</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -1,5 +1,6 @@
 #include "Grid.hpp"
 #include <cassert>
+#include "SquaredGrid.hpp"
 
 using namespace std;
 
@@ -199,59 +200,36 @@ Grid::Direction Grid::getInverseDirection(Direction d)
 
 std::vector<std::vector<Grid::Coordinates>> Grid::getPaths(Coordinates start, Coordinates end) const
 {
-	std::vector<std::vector<Coordinates>> paths;
-	auto* pToCheck = new vector<vector<Coordinates>>();
-	pToCheck->reserve(m_nodesData.size() * m_nodesData.size() * 4);
-	auto* pNextToCheck = new vector<vector<Coordinates>>();
-	pNextToCheck->reserve(m_nodesData.size() * m_nodesData.size() * 4);
-	vector<Coordinates> firstPath;
-	vector<Coordinates> neighbors;
-	vector<Coordinates> newPath;
-	neighbors.reserve(4);
+	AI::SquaredGrid<unsigned char, int> grid;
 
-	firstPath.push_back(start);
-	pToCheck->push_back(firstPath);
+	grid.Initialize(_width * 2, _height * 2);
 
-	while (pToCheck->size() > 0)
-	{
-		for (vector<Coordinates>& path : *pToCheck)
-		{
-			Coordinates lastNode = path.back();
+	for (unsigned char x = 0; x < _width; x++)
+		for (unsigned char y = 0; y < _height; y++)
+				grid.SetNodeNonPassable(x, y);
 
-			// If the last node is the end, add it to paths and continue with the next path
-			if (lastNode == end)
-			{
-				bool isWinning = isWinningPath(path) > 0;
-				paths.push_back(std::move(path));
-				 /*if (isWinning) return paths;*/
-				continue;
-			}
+	// 4) Pre-computes all neighbors
+	grid.Precompute();
 
-			// Get the neighbors and create new paths with them
-			getLinkedNeighbors(lastNode, neighbors);
-			for (std::vector<Coordinates>::iterator it = neighbors.begin(); it != neighbors.end(); ++it)
-			{
-				if (std::find(path.begin(), path.end(), *it) == path.end())
-				{
-					// Add new path to check next with the new neighbor
-					newPath.insert(newPath.begin(), path.begin(), path.end());
-					newPath.push_back(*it);
-					pNextToCheck->push_back(newPath);
-					newPath.clear();
-				}
-			}
-			neighbors.clear();
-		}
-		// Clear toCheck and add to it the new paths to check
-		assert(pNextToCheck->size() <= pToCheck->size() * 4);
-		pToCheck->clear();
-		auto* temp = pToCheck;
-		pToCheck = pNextToCheck;
-		pNextToCheck = temp;
-	}
-	delete pToCheck;
-	delete pNextToCheck;
-	return paths;
+	// 5) Creates the vector that will contains the path
+	std::vector <Node<int, int>> path;
+
+	// Don't forget to clear the result vector to not concatenate paths ...
+	path.clear();
+
+	// 6) Call the pathfinding methods
+	//    The 1st template arg is the graph type (The grid for us)
+	//    The second template arg is the coordinate type
+	//    The third template arg is the priority type
+	//    It use automatically the Manhattan distance
+	//
+	//    The first arg is the graph instance
+	//    The second is the result vector
+	//    The third is the start node
+	//    The second is the end node
+	//Pathfinding<Grid<int, int>, int, int>::GetPath(grid, path, grid.GetNode(0, 0), grid.GetNode(N - 1, M - 1));
+	std::vector<std::vector<Grid::Coordinates>> winningPaths;
+	return winningPaths;
 }
 
 std::vector<std::vector<Grid::Coordinates>> Grid::getWinningPaths(const std::vector<std::vector<Coordinates>>& pathsToExit) const
