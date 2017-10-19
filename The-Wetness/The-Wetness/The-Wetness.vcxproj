@@ -141,6 +141,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConformityEvaluator.hpp" />
+    <ClInclude Include="DifficultyAnalyzer.hpp" />
+    <ClInclude Include="DifficultyManager.h" />
     <ClInclude Include="Engine.hpp" />
     <ClInclude Include="FitnessEvaluator.hpp" />
     <ClInclude Include="GA_Algorithms.hpp" />
@@ -158,6 +160,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ConformityEvaluator.cpp" />
+    <ClCompile Include="DifficultyManager.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="FitnessEvaluator.cpp" />
     <ClCompile Include="GA_Algorithms.cpp" />
