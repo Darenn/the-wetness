@@ -146,17 +146,15 @@
     <ClInclude Include="Engine.hpp" />
     <ClInclude Include="FitnessEvaluator.hpp" />
     <ClInclude Include="GA_Algorithms.hpp" />
-    <ClInclude Include="Graph.hpp" />
     <ClInclude Include="Grid.hpp" />
     <ClInclude Include="GridDecoder.hpp" />
     <ClInclude Include="GridDisplayer.hpp" />
     <ClInclude Include="GridEncoder.hpp" />
     <ClInclude Include="MainMenu.hpp" />
-    <ClInclude Include="Node.hpp" />
     <ClInclude Include="Pathfinding\Coordinate.hpp" />
-    <ClInclude Include="Pathfinding\Grid.hpp" />
     <ClInclude Include="Pathfinding\Node.hpp" />
     <ClInclude Include="Pathfinding\Pathfinding.hpp" />
+    <ClInclude Include="Pathfinding\SquaredGrid.hpp" />
     <ClInclude Include="Pathfinding\TieHelper.hpp" />
     <ClInclude Include="Test.hpp" />
     <ClInclude Include="Timer.hpp" />
@@ -181,7 +179,7 @@
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Pathfinding\Grid.inl" />
+    <None Include="Pathfinding\SquaredGrid.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

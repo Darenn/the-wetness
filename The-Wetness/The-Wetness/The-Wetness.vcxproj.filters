@@ -87,22 +87,16 @@
     <ClInclude Include="DifficultyManager.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="Graph.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="Node.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="Pathfinding\Coordinate.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="Pathfinding\Grid.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="Pathfinding\Node.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="Pathfinding\Pathfinding.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Pathfinding\SquaredGrid.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="Pathfinding\TieHelper.hpp">
@@ -157,7 +151,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Pathfinding\Grid.inl">
+    <None Include="Pathfinding\SquaredGrid.inl">
       <Filter>Fichiers d%27en-tête</Filter>
     </None>
   </ItemGroup>
