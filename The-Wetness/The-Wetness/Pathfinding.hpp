@@ -14,10 +14,14 @@
 
 #include "Node.hpp"
 
+/// \namespace AI
+namespace AI
+{
+
 /// \brief Computes the manhattan distance between two nodes
-template <typename CoordinateType, typename PriorityType>
-/* inline */ PriorityType Heuristic(const Node<CoordinateType, PriorityType> & lhs,
-                                    const Node<CoordinateType, PriorityType> & rhs)
+template<typename CoordinateType, typename PriorityType>
+/* inline */ PriorityType Heuristic(const Node<CoordinateType, PriorityType> &lhs,
+                                    const Node<CoordinateType, PriorityType> &rhs)
 {
     return abs(lhs.X() - rhs.X()) + abs(lhs.Y() - rhs.Y());
 }
@@ -27,7 +31,7 @@ template <typename CoordinateType, typename PriorityType>
 /// \tparam Graph The graph class
 /// \tparam CoordinateType The type of coordinates
 /// \tparam PriorityType The type of the priority
-template <typename Graph, typename CoordinateType, typename PriorityType>
+template<typename Graph, typename CoordinateType, typename PriorityType>
 class Pathfinding
 {
 public:
@@ -41,7 +45,7 @@ public:
     /// \param  path The vector to store the result (in reverse order)
     /// \param  start The start node
     /// \param  end The end node
-    static void GetPath(Graph & graph, std::vector < TNode > & path, const TNode & start, const TNode & end)
+    static void GetPath(const Graph & graph, std::vector<TNode> & path, const TNode & start, const TNode & end)
     {
         std::vector         <TNode> neighbors;
         std::priority_queue <TNode> frontier;
@@ -65,7 +69,7 @@ public:
             }
 
             neighbors.clear();
-            graph.GetComputedNeighbors(current, neighbors);
+            graph.GetNeighbors(current, neighbors);
 
             for (TNode & next : neighbors)
             {
@@ -94,4 +98,5 @@ public:
     }
 };
 
+}
 #endif // _PATHFINDING_HPP

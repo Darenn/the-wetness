@@ -151,12 +151,16 @@
     <ClInclude Include="GridDisplayer.hpp" />
     <ClInclude Include="GridEncoder.hpp" />
     <ClInclude Include="MainMenu.hpp" />
+    <ClInclude Include="Node.hpp" />
+    <ClInclude Include="Pathfinding.hpp" />
     <ClInclude Include="Pathfinding\Coordinate.hpp" />
     <ClInclude Include="Pathfinding\Node.hpp" />
     <ClInclude Include="Pathfinding\Pathfinding.hpp" />
     <ClInclude Include="Pathfinding\SquaredGrid.hpp" />
     <ClInclude Include="Pathfinding\TieHelper.hpp" />
+    <ClInclude Include="SquareGrid.hpp" />
     <ClInclude Include="Test.hpp" />
+    <ClInclude Include="TieHelper.hpp" />
     <ClInclude Include="Timer.hpp" />
     <ClInclude Include="Window.hpp" />
     <ClInclude Include="PuzzleGenerator.hpp" />
@@ -180,6 +184,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Pathfinding\SquaredGrid.inl" />
+    <None Include="SquareGrid.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

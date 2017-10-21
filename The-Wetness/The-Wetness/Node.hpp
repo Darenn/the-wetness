@@ -3,10 +3,17 @@
 /// \package    Pathfinding
 /// \author     Vincent STEHLY--CALISTO
 
-#ifndef __NODE_HPP
-#define __NODE_HPP
+#ifndef __AI_NODE_HPP
+#define __AI_NODE_HPP
 
-#include "Coordinate.hpp"
+#include <memory>  ///< std::hash<T>
+#include <cstdlib> ///< std::size_t
+
+#include "TieHelper.hpp"
+
+/// \namespace AI
+namespace AI
+{
 
 /// \class  Node
 /// \brief  Stores node
@@ -15,72 +22,85 @@
 template <typename CoordinateType, typename PriorityType>
 class Node
 {
-public :
+public:
+
+    /// \brief  Typed enum to represent in native language
+    ///         all masks to test neighbor directions
+    ///
+    enum EMask : unsigned char
+    {
+        NONE  = 0x0,        ///< 0b00000000
+        NORTH = 0x1 << 3,   ///< 0b00001000
+        EAST  = 0x1 << 2,   ///< 0b00000100
+        SOUTH = 0x1 << 1,   ///< 0b00000010
+        WEST  = 0x1 << 0,   ///< 0b00000001
+        ALL   = 0xF         ///< 0b00001111
+    };
 
     typedef Node<CoordinateType, PriorityType> TNode;
 
     /// \brief  Default constructor
-    explicit /* inline */ Node(void) : m_isPassable(true), m_priority(0), m_coordinate(Tie<CoordinateType>(0, 0))
+    explicit /* inline */ Node() : xy(0), m_priority(0), m_neighbors(TNode::EMask::NONE)
     { /* None */ }
 
     /// \brief  Constructs a node from 2 coordinates
     /// \param  X The x coordinate
     /// \param  Y The y coordinate
-    explicit /* inline */ Node(CoordinateType X, CoordinateType Y) :  m_isPassable(true), m_priority(0), m_coordinate(X, Y)
+    explicit /* inline */ Node(CoordinateType X, CoordinateType Y) : x(X), y(Y), m_priority(0), m_neighbors(TNode::EMask::NONE)
     { /* None */ }
 
     /// \brief  Constructs a node from the packed coordinates
     /// \param  XY The xy coordinate
-    explicit /* inline */ Node(typename TieTypeHelper<CoordinateType>::TieType XY) :  m_isPassable(true), m_priority(0), m_coordinate(XY)
+    explicit /* inline */ Node(typename TieTypeHelper<CoordinateType>::TieType XY) : xy(XY), m_priority(0), m_neighbors(TNode::EMask::NONE)
     { /* None */ }
 
     /// \brief  Copy Constructor
     /// \param  other The node to copy
-    /* inline */ Node(const TNode & other) :  m_isPassable(other.m_isPassable), m_priority(other.m_priority), m_coordinate(other.m_coordinate.XY), m_neighbors(other.m_neighbors)
+    /* inline */ Node(const TNode & other) : xy(other.xy), m_priority(other.m_priority), m_neighbors(other.m_neighbors)
     { /* None */ }
 
     /// \brief  Default destructor
-    /* inline */ ~Node(void) = default;
+    /* inline */ ~Node() = default;
 
     /// \brief  Returns the X coordinate of the node
     /// \return  The X coordinate
-    /* inline */ CoordinateType X(void) const
-    { return m_coordinate.X; }
+    /* inline */ CoordinateType X() const
+    { return x; }
 
     /// \brief  Returns the Y coordinate of the node
     /// \return  The Y coordinate
-    /* inline */ CoordinateType Y(void) const
-    { return m_coordinate.Y; }
+    /* inline */ CoordinateType Y() const
+    { return y; }
 
     /// \brief  Returns the XY coordinate of the node
     /// \return  The XY coordinate
-    /* inline */ typename TieTypeHelper<CoordinateType>::TieType XY(void) const
-    { return m_coordinate.XY; }
+    /* inline */ typename TieTypeHelper<CoordinateType>::TieType XY() const
+    { return xy; }
 
     /// \brief  Sets the X coordinate
     /// \param  X The X coordinate
     /* inline */ void X(CoordinateType X)
-    { m_coordinate.X = X; }
+    { x = X; }
 
     /// \brief  Sets the Y coordinate
     /// \param  Y The Y coordinate
     /* inline */ void Y(CoordinateType Y)
-    { m_coordinate.Y = Y; }
+    { y = Y; }
 
     /// \brief  Sets the XY coordinate
     /// \param  XY The XY coordinate
     /* inline */ void XY(typename TieTypeHelper<CoordinateType>::TieType XY)
-    { m_coordinate.XY = XY; }
+    { xy = XY; }
 
     /// \brief  Tells if the given node is equal of the current node
     /// \return Returns true or false
     /* inline */ bool operator==(const TNode & other) const
-    { return m_coordinate == other.m_coordinate; }
+    { return xy == other.xy; }
 
     /// \brief  Tells if the given node is different of the current node
     /// \return True or false
     /* inline */ bool operator!=(const TNode & other) const
-    { return m_coordinate != other.m_coordinate; }
+    { return xy != other.xy; }
 
     /// \brief  Sets the priority of the node
     /// \param  cost The new priority
@@ -89,46 +109,50 @@ public :
 
     /// \brief  Returns the priority of the node
     /// \return The priority of the node
-    /* inline */ PriorityType GetPriority(void) const
+    /* inline */ PriorityType GetPriority() const
     { return m_priority; }
 
-    /// \brief  Tells if the node is passable
-    /// \return True or false
-    /* inline */ bool IsPassable(void) const
-    { return m_isPassable; }
-
-    /// \brief  Sets the type of the node
-    /// \param  passable True or false
-    /* inline */ void SetPassable(bool passable)
-    { m_isPassable = passable; }
-
     /// \brief  Overload of operator < for priority queue
+    ///         Note : This operator makes sense only for queue
     /// \return True or false
     /* inline */ bool operator<(const TNode & other) const
     { return m_priority > other.m_priority; }
 
     /// \brief  Adds a neighbor to the current node
-    /// \param  neighbor A const reference on the neighbor to add
-    /* inline */ void AddNeighbor(TNode * neighbor)
-    { m_neighbors.push_back(neighbor); }
+    /// \param  neighborMask The mask corresponding to the neighbor to add
+    /* inline */ void AddNeighborMask(EMask neighborMask)
+    { m_neighbors |= neighborMask; }
 
-    /// \brief  Returns the list of neighbors of the current node
-    /// \return A vector of nodes
-    /* inline */ const std::vector < TNode * > & GetNeighbors(void) const
+    /// \brief  Sets the neighbors from a mask
+    /// \param  neighborMask The mask corresponding to neighbors
+    /* inline */ void SetNeighborMask(unsigned char neighborMask)
+    { m_neighbors = neighborMask; }
+
+    /// \brief  Returns the neighbors mask
+    /// \return The neighbors mask
+    /* inline */ unsigned char GetNeighborMask() const
     { return m_neighbors; }
-
-    /// \brief  Reserves the order of the neighbors
-    /* inline */ void ReverseNeighbors(void)
-    { std::reverse(m_neighbors.begin(), m_neighbors.end()); }
 
 private:
 
-    Coordinate<CoordinateType> m_coordinate;
-    PriorityType               m_priority;
-    bool                       m_isPassable;
+    /// \brief  Coordinates aren't store in a Coordinate class anymore
+    ///         to avoid automatic call to constructors
+    union
+    {
+        struct
+        {
+            CoordinateType x;   ///< The X coordinate
+            CoordinateType y;   ///< The Y coordinate
+        };
 
-    // Optimization for static grids
-    std::vector < TNode * >     m_neighbors;
+        typename TieTypeHelper<CoordinateType>::TieType xy; ///< The XY coordinate
+    };
+
+    PriorityType m_priority; ///< The priority of the node
+
+    /// \brief  Stores the positions of all neighbors
+    ///         of the current node in binary
+    unsigned char m_neighbors;
 };
 
 /// \brief  Functor to hash a node
@@ -137,12 +161,10 @@ private:
 template <typename CoordinateType, typename CostType>
 struct NodeHash
 {
-    //typedef Node<CoordinateType, CostType> TNode;
-
     /* inline */ std::size_t operator() (const Node<CoordinateType, CostType> & current) const
     {
-        return ((std::hash<int>()(current.X()) ^
-                (std::hash<int>()(current.Y()) << 1)) >> 1);
+        return ((std::hash<CoordinateType>()(current.X()) ^
+                (std::hash<CoordinateType>()(current.Y()) << 1)) >> 1);
     }
 };
 
@@ -152,12 +174,13 @@ struct NodeHash
 template <typename CoordinateType, typename CostType>
 struct NodeCompare
 {
-    //typedef Node<CoordinateType, CostType> TNode;
-
-    /* inline */ bool operator() (const Node<CoordinateType, CostType> & lhs, const Node<CoordinateType, CostType> & rhs) const
+    /* inline */ bool operator() (const Node<CoordinateType, CostType> & lhs,
+                                  const Node<CoordinateType, CostType> & rhs) const
     {
         return (lhs.XY() == rhs.XY());
     }
 };
 
-#endif // __NODE_HPP
+} /// AI
+
+#endif // __AI_NODE_HPP

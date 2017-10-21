@@ -1,9 +1,10 @@
 #include "Grid.hpp"
 #include <cassert>
-#include "SquaredGrid.hpp"
+
+#include "SquareGrid.hpp"
+#include "Pathfinding.hpp"
 
 using namespace std;
-
 
 Grid::Grid(int width, int height) : _width(width), _height(height)
 {
@@ -200,19 +201,40 @@ Grid::Direction Grid::getInverseDirection(Direction d)
 
 std::vector<std::vector<Grid::Coordinates>> Grid::getPaths(Coordinates start, Coordinates end) const
 {
-	AI::SquaredGrid<unsigned char, int> grid;
+	// Typedef helpers
+	typedef char  CoordinateType;
+	typedef short PriorityType;
 
-	grid.Initialize(_width * 2, _height * 2);
+	typedef AI::Node       <CoordinateType, PriorityType> TNode;
+	typedef AI::SquareGrid <CoordinateType, PriorityType> TSquareGrid;
+	
+	// char - short is the best combo 
+	// from what I have benchmarked
+	TSquareGrid squareGrid;
 
-	for (unsigned char x = 0; x < _width; x++)
-		for (unsigned char y = 0; y < _height; y++)
-				grid.SetNodeNonPassable(x, y);
+	// Initializes the gris
+	squareGrid.Initialize(_width, _height);
 
-	// 4) Pre-computes all neighbors
-	grid.Precompute();
+	// You have to initializes the grid here
+	// By default, all nodes are set to EMask::Node
+	// It means that are not connected at all (0 connection / 4)
+	//
+	// To set up a node, just call the following methods
+	// squareGrid.SetNodeMask(x, y, TNode::NORTH | TNode::EAST);
+	// In this particular case, the node referenced by x, y will
+	// be connected with two neighbors : NORTH and EAST
+	// The mask is in fact a binary flag that you can set with different values
+	// You have : TNode::NORTH, TNode::EAST, TNode::SOUTH, TNode::WEST
 
-	// 5) Creates the vector that will contains the path
-	std::vector <Node<int, int>> path;
+	// Update this code
+	//for (unsigned char x = 0; x < _width; x++)
+	//	for (unsigned char y = 0; y < _height; y++)
+	//			grid.SetNodeNonPassable(x, y);
+
+	// 5) Creates the vector that will contains the result path
+	//    Note : If you will call GetPath many times, please 
+	//           considere using path as a class member variable
+	std::vector <TNode> path;
 
 	// Don't forget to clear the result vector to not concatenate paths ...
 	path.clear();
@@ -227,8 +249,14 @@ std::vector<std::vector<Grid::Coordinates>> Grid::getPaths(Coordinates start, Co
 	//    The second is the result vector
 	//    The third is the start node
 	//    The second is the end node
-	//Pathfinding<Grid<int, int>, int, int>::GetPath(grid, path, grid.GetNode(0, 0), grid.GetNode(N - 1, M - 1));
+	//    On a grid NxM up to 8x8, the function can last less then 1 microsecond.
+	AI::Pathfinding<TSquareGrid, CoordinateType, PriorityType>::GetPath(squareGrid, path, 
+		squareGrid.GetNode(start.x, start.y), 
+		squareGrid.GetNode(end.x,   end.y));
+	 
+	// Updates this code
 	std::vector<std::vector<Grid::Coordinates>> winningPaths;
+
 	return winningPaths;
 }
 
