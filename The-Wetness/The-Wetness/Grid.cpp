@@ -1,8 +1,10 @@
 #include "Grid.hpp"
 #include <cassert>
 
-using namespace std;
+#include "SquareGrid.hpp"
+#include "Pathfinding.hpp"
 
+using namespace std;
 
 Grid::Grid(int width, int height) : _width(width), _height(height)
 {
@@ -199,8 +201,62 @@ Grid::Direction Grid::getInverseDirection(Direction d)
 
 std::vector<std::vector<Grid::Coordinates>> Grid::getPaths(Coordinates start, Coordinates end) const
 {
+	// Typedef helpers
+	typedef char  CoordinateType;
+	typedef short PriorityType;
+
+	typedef AI::Node       <CoordinateType, PriorityType> TNode;
+	typedef AI::SquareGrid <CoordinateType, PriorityType> TSquareGrid;
 	
+	// char - short is the best combo 
+	// from what I have benchmarked
+	TSquareGrid squareGrid;
+
+	// Initializes the gris
+	squareGrid.Initialize(_width, _height);
+
+	// You have to initializes the grid here
+	// By default, all nodes are set to EMask::Node
+	// It means that are not connected at all (0 connection / 4)
+	//
+	// To set up a node, just call the following methods
+	// squareGrid.SetNodeMask(x, y, TNode::NORTH | TNode::EAST);
+	// In this particular case, the node referenced by x, y will
+	// be connected with two neighbors : NORTH and EAST
+	// The mask is in fact a binary flag that you can set with different values
+	// You have : TNode::NORTH, TNode::EAST, TNode::SOUTH, TNode::WEST
+
+	// Update this code
+	//for (unsigned char x = 0; x < _width; x++)
+	//	for (unsigned char y = 0; y < _height; y++)
+	//			grid.SetNodeNonPassable(x, y);
+
+	// 5) Creates the vector that will contains the result path
+	//    Note : If you will call GetPath many times, please 
+	//           considere using path as a class member variable
+	std::vector <TNode> path;
+
+	// Don't forget to clear the result vector to not concatenate paths ...
+	path.clear();
+
+	// 6) Call the pathfinding methods
+	//    The 1st template arg is the graph type (The grid for us)
+	//    The second template arg is the coordinate type
+	//    The third template arg is the priority type
+	//    It use automatically the Manhattan distance
+	//
+	//    The first arg is the graph instance
+	//    The second is the result vector
+	//    The third is the start node
+	//    The second is the end node
+	//    On a grid NxM up to 8x8, the function can last less then 1 microsecond.
+	AI::Pathfinding<TSquareGrid, CoordinateType, PriorityType>::GetPath(squareGrid, path, 
+		squareGrid.GetNode(start.x, start.y), 
+		squareGrid.GetNode(end.x,   end.y));
+	 
+	// Updates this code
 	std::vector<std::vector<Grid::Coordinates>> winningPaths;
+
 	return winningPaths;
 }
 
