@@ -1,6 +1,5 @@
 #include "Grid.hpp"
 #include <cassert>
-#include "SquaredGrid.hpp"
 
 using namespace std;
 
@@ -200,34 +199,7 @@ Grid::Direction Grid::getInverseDirection(Direction d)
 
 std::vector<std::vector<Grid::Coordinates>> Grid::getPaths(Coordinates start, Coordinates end) const
 {
-	AI::SquaredGrid<unsigned char, int> grid;
-
-	grid.Initialize(_width * 2, _height * 2);
-
-	for (unsigned char x = 0; x < _width; x++)
-		for (unsigned char y = 0; y < _height; y++)
-				grid.SetNodeNonPassable(x, y);
-
-	// 4) Pre-computes all neighbors
-	grid.Precompute();
-
-	// 5) Creates the vector that will contains the path
-	std::vector <Node<int, int>> path;
-
-	// Don't forget to clear the result vector to not concatenate paths ...
-	path.clear();
-
-	// 6) Call the pathfinding methods
-	//    The 1st template arg is the graph type (The grid for us)
-	//    The second template arg is the coordinate type
-	//    The third template arg is the priority type
-	//    It use automatically the Manhattan distance
-	//
-	//    The first arg is the graph instance
-	//    The second is the result vector
-	//    The third is the start node
-	//    The second is the end node
-	//Pathfinding<Grid<int, int>, int, int>::GetPath(grid, path, grid.GetNode(0, 0), grid.GetNode(N - 1, M - 1));
+	
 	std::vector<std::vector<Grid::Coordinates>> winningPaths;
 	return winningPaths;
 }

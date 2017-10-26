@@ -150,14 +150,11 @@
     <ClInclude Include="GridDecoder.hpp" />
     <ClInclude Include="GridDisplayer.hpp" />
     <ClInclude Include="GridEncoder.hpp" />
+    <ClInclude Include="LinearRegression.h" />
     <ClInclude Include="MainMenu.hpp" />
-    <ClInclude Include="Pathfinding\Coordinate.hpp" />
-    <ClInclude Include="Pathfinding\Node.hpp" />
-    <ClInclude Include="Pathfinding\Pathfinding.hpp" />
-    <ClInclude Include="Pathfinding\SquaredGrid.hpp" />
-    <ClInclude Include="Pathfinding\TieHelper.hpp" />
     <ClInclude Include="Test.hpp" />
     <ClInclude Include="Timer.hpp" />
+    <ClInclude Include="Utils.h" />
     <ClInclude Include="Window.hpp" />
     <ClInclude Include="PuzzleGenerator.hpp" />
   </ItemGroup>
@@ -171,15 +168,14 @@
     <ClCompile Include="GridDecoder.cpp" />
     <ClCompile Include="GridDisplayer.cpp" />
     <ClCompile Include="GridEncoder.cpp" />
+    <ClCompile Include="LinearRegression.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="PuzzleGenerator.cpp" />
     <ClCompile Include="Test.cpp" />
     <ClCompile Include="TheWetness.cpp" />
     <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="Utils.cpp" />
     <ClCompile Include="Window.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Pathfinding\SquaredGrid.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

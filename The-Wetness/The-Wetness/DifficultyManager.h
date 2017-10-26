@@ -1,17 +1,27 @@
 #pragma once
 
+#include "DifficultyAnalyzer.hpp"
+
 class DifficultyManager {
 
 public:
-	int getTargetScore() {
 
+	DifficultyManager(string difficultyDataFile) : m_currentScore(0), m_difficultyAnalyzer(difficultyDataFile) {
+
+	}
+
+	int getTargetScore() {
+		int timeToAchieve = m_difficultyAnalyzer.getTimeForScore(m_currentScore);
+		int remainingTime = timeToAchieve - m_timeTaken;
+		m_currentScore += remainingTime;
 	}
 
 	void adjustDifficulty(int timeTaken) {
-
+		m_timeTaken = timeTaken;
 	}
+
 private:
-	int m_currentLevel;
-	const int m_scoresByDifficultyLevel[] = {  0, 50, 70, 80, 100, 130, 150 };
-	const int m_timesByDifficultyLevel[] =  { 15, 30, 30, 30,  30, 120, 140 };
+	int m_currentScore;
+	bool m_timeTaken;
+	DifficultyAnalyzer m_difficultyAnalyzer;
 };
