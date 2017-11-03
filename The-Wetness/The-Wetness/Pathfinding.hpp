@@ -45,8 +45,11 @@ public:
     /// \param  path The vector to store the result (in reverse order)
     /// \param  start The start node
     /// \param  end The end node
-    static void GetPath(const Graph & graph, std::vector<TNode> & path, const TNode & start, const TNode & end)
+    static bool GetPath(Graph & graph, std::vector<TNode> & path, const TNode & start, const TNode & end)
     {
+        // Tells if there is a path between start and end
+        bool bHasPath = false;
+
         std::vector         <TNode> neighbors;
         std::priority_queue <TNode> frontier;
         std::unordered_map  <TNode, TNode,        TNodeHash, TNodeCompare> cameFrom;
@@ -65,13 +68,14 @@ public:
             // the exit for the first time
             if (current == end)
             {
+                bHasPath = true;
                 break;
             }
 
             neighbors.clear();
             graph.GetNeighbors(current, neighbors);
 
-            for (TNode & next : neighbors)
+            for (TNode &next : neighbors)
             {
                 int new_cost = costSoFar[current];
 
@@ -88,13 +92,18 @@ public:
             }
         }
 
-        TNode current = end;
-        path.push_back(end);
-        while (current != start)
+        if(bHasPath)
         {
-            current = cameFrom[current];
-            path.push_back(current);
+            TNode current = end;
+            path.push_back(end);
+            while (current != start)
+            {
+                current = cameFrom[current];
+                path.push_back(current);
+            }
         }
+
+        return bHasPath;
     }
 };
 
