@@ -15,8 +15,8 @@ int main(int argc, char ** argv)
 	/*Engine gameEngine;
 	gameEngine.Start();*/
 
-	//PuzzleGenerator pg;
-	//pg.generateNextPuzzle();
+	PuzzleGenerator pg;
+	pg.generateNextPuzzle();
 
 	/*Grid g = Grid(2, 2);
 	srand(std::time(nullptr));

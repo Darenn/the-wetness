@@ -19,5 +19,6 @@ int FitnessEvaluator::evaluate(Grid& grid) const
 	{
 		return -1000;
 	}
+	grid.hasValidPath(start[0], exit[0]);
 	return numMustPass;
 }

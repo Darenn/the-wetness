@@ -37,6 +37,9 @@
     <Filter Include="Fichiers sources\GUI">
       <UniqueIdentifier>{eac1aeab-f0da-4618-9663-e117c2551c4a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers d%27en-tête\Engine\AI">
+      <UniqueIdentifier>{e1c87bc0-c804-488b-b1b1-55b77c44b4ad}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -102,6 +105,18 @@
     <ClInclude Include="Pathfinding\TieHelper.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="Node.hpp">
+      <Filter>Fichiers d%27en-tête\Engine\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="Pathfinding.hpp">
+      <Filter>Fichiers d%27en-tête\Engine\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="SquareGrid.hpp">
+      <Filter>Fichiers d%27en-tête\Engine\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="TieHelper.hpp">
+      <Filter>Fichiers d%27en-tête\Engine\AI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TheWetness.cpp">
@@ -153,6 +168,9 @@
   <ItemGroup>
     <None Include="Pathfinding\SquaredGrid.inl">
       <Filter>Fichiers d%27en-tête</Filter>
+    </None>
+    <None Include="SquareGrid.inl">
+      <Filter>Fichiers d%27en-tête\Engine\AI</Filter>
     </None>
   </ItemGroup>
 </Project>
