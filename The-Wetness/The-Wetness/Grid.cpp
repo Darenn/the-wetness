@@ -229,10 +229,10 @@ bool Grid::hasValidPath(Coordinates start, Coordinates end) const
 
 	// check that there is a path between start and end to avoid useless calculations
 	std::vector <TNode> path;
-	AI::Pathfinding<TSquareGrid, CoordinateType, PriorityType>::GetPath(squareGrid, path, 
+	bool hasPath = AI::Pathfinding<TSquareGrid, CoordinateType, PriorityType>::GetPath(squareGrid, path, 
 		squareGrid.GetNode(start.x, start.y), 
 		squareGrid.GetNode(end.x,   end.y));
-	if (path.size() <= 2) return false;
+	if (!hasPath) return false;
 	
 	// search a possible path passing by all must_pass in all possible orders
 	vector<Coordinates> mustPassNodes = getDatas(Data::MUST_PASS);
@@ -246,11 +246,11 @@ bool Grid::hasValidPath(Coordinates start, Coordinates end) const
 		{
 			Coordinates node = mustPassNodes[i];
 			std::vector <TNode> path;
-			AI::Pathfinding<TSquareGrid, CoordinateType, PriorityType>::GetPath(squareGridCopy, path,
+			bool hasPath = AI::Pathfinding<TSquareGrid, CoordinateType, PriorityType>::GetPath(squareGridCopy, path,
 				squareGridCopy.GetNode(prevNode.x, prevNode.y),
 				squareGridCopy.GetNode(node.x, node.y));
 			// If there is a valid path, insert in the final path and continue
-			if (path.size() <= 2)
+			if (!hasPath)
 			{
 				noValidPath = true;
 				break;
