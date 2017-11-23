@@ -8,7 +8,7 @@ public:
 	typedef std::vector<std::pair<std::vector<bool>, int>> Population;
 	typedef std::vector<bool> Chromosome;
 
-	void mutate(Chromosome& chromosome, float mutationProbability = 0.5f) const;
+	void mutate(Chromosome& chromosome, float mutationProbability = 0.1f) const;
 	/// <summary>
 	/// One-point crossover
 	/// </summary>

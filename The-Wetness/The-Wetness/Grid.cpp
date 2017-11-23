@@ -1,8 +1,11 @@
 #include "Grid.hpp"
 #include <cassert>
+#include <cmath>
+
+#include "SquareGrid.hpp"
+#include "Pathfinding.hpp"
 
 using namespace std;
-
 
 Grid::Grid(int width, int height) : _width(width), _height(height)
 {
@@ -197,61 +200,76 @@ Grid::Direction Grid::getInverseDirection(Direction d)
 	}
 }
 
-std::vector<std::vector<Grid::Coordinates>> Grid::getPaths(Coordinates start, Coordinates end) const
+bool Grid::hasValidPath(Coordinates start, Coordinates end) const
 {
-	std::vector<std::vector<Coordinates>> paths;
-	auto* pToCheck = new vector<vector<Coordinates>>();
-	pToCheck->reserve(m_nodesData.size() * m_nodesData.size() * 4);
-	auto* pNextToCheck = new vector<vector<Coordinates>>();
-	pNextToCheck->reserve(m_nodesData.size() * m_nodesData.size() * 4);
-	vector<Coordinates> firstPath;
-	vector<Coordinates> neighbors;
-	vector<Coordinates> newPath;
-	neighbors.reserve(4);
+	// alias helpers
+	using CoordinateType = char;
+	using PriorityType   = short;
 
-	firstPath.push_back(start);
-	pToCheck->push_back(firstPath);
+	using TNode       = AI::Node<CoordinateType, PriorityType>;
+	using TSquareGrid = AI::SquareGrid <CoordinateType, PriorityType>;
+	
+	TSquareGrid squareGrid;
 
-	while (pToCheck->size() > 0)
+	squareGrid.Initialize(_width, _height);
+
+	// Fill the grid with links
+	for (unsigned char x = 0; x < _width; x++)
 	{
-		for (vector<Coordinates>& path : *pToCheck)
+		for (unsigned char y = 0; y < _height; y++)
 		{
-			Coordinates lastNode = path.back();
-
-			// If the last node is the end, add it to paths and continue with the next path
-			if (lastNode == end)
-			{
-				bool isWinning = isWinningPath(path) > 0;
-				paths.push_back(std::move(path));
-				 /*if (isWinning) return paths;*/
-				continue;
-			}
-
-			// Get the neighbors and create new paths with them
-			getLinkedNeighbors(lastNode, neighbors);
-			for (std::vector<Coordinates>::iterator it = neighbors.begin(); it != neighbors.end(); ++it)
-			{
-				if (std::find(path.begin(), path.end(), *it) == path.end())
-				{
-					// Add new path to check next with the new neighbor
-					newPath.insert(newPath.begin(), path.begin(), path.end());
-					newPath.push_back(*it);
-					pNextToCheck->push_back(newPath);
-					newPath.clear();
-				}
-			}
-			neighbors.clear();
+			Coordinates coord{ x, y };
+			unsigned char linkedToEast = isLinkedWithNeighbor(coord, Direction::EAST) ? TNode::EMask::EAST : 0;
+			unsigned char linkedToWest = isLinkedWithNeighbor(coord, Direction::WEST) ? TNode::EMask::WEST : 0;
+			unsigned char linkedToNorth = isLinkedWithNeighbor(coord, Direction::NORTH) ? TNode::EMask::NORTH : 0;
+			unsigned char linkedToSouth = isLinkedWithNeighbor(coord, Direction::SOUTH) ? TNode::EMask::SOUTH : 0;
+			squareGrid.SetNodeMask(x, y, linkedToEast | linkedToWest | linkedToSouth | linkedToNorth);
 		}
-		// Clear toCheck and add to it the new paths to check
-		assert(pNextToCheck->size() <= pToCheck->size() * 4);
-		pToCheck->clear();
-		auto* temp = pToCheck;
-		pToCheck = pNextToCheck;
-		pNextToCheck = temp;
 	}
-	delete pToCheck;
-	delete pNextToCheck;
-	return paths;
+
+	// check that there is a path between start and end to avoid useless calculations
+	std::vector <TNode> path;
+	bool hasPath = AI::Pathfinding<TSquareGrid, CoordinateType, PriorityType>::GetPath(squareGrid, path, 
+		squareGrid.GetNode(start.x, start.y), 
+		squareGrid.GetNode(end.x,   end.y));
+	if (!hasPath) return false;
+	
+	// search a possible path passing by all must_pass in all possible orders
+	vector<Coordinates> mustPassNodes = getDatas(Data::MUST_PASS);
+	std::sort(mustPassNodes.begin(), mustPassNodes.end());
+	do {
+		Coordinates prevNode = start;		
+		std::vector <TNode> finalPath = { squareGrid.GetNode(prevNode.x, prevNode.y) };
+		bool noValidPath = false;
+		TSquareGrid squareGridCopy = TSquareGrid(squareGrid);
+		for (size_t i = 0; i < mustPassNodes.size(); i++)
+		{
+			Coordinates node = mustPassNodes[i];
+			std::vector <TNode> path;
+			bool hasPath = AI::Pathfinding<TSquareGrid, CoordinateType, PriorityType>::GetPath(squareGridCopy, path,
+				squareGridCopy.GetNode(prevNode.x, prevNode.y),
+				squareGridCopy.GetNode(node.x, node.y));
+			// If there is a valid path, insert in the final path and continue
+			if (!hasPath)
+			{
+				noValidPath = true;
+				break;
+			}
+			std::reverse(path.begin(), path.end()); // The given path is reversed
+			finalPath.insert(finalPath.end(), path.begin() + 1, path.end());
+			prevNode = node;
+
+			// Update the grid by removing the nodes from path to avoid repetition
+			for (size_t i = 0; i < finalPath.size() - 1; i++) {
+				TNode node = finalPath[i];
+				squareGridCopy.SetNodeMask(node.X(), node.Y(), TNode::NONE);
+			}
+		}
+		if (!noValidPath) 
+			return true;
+	} while (std::next_permutation(mustPassNodes.begin(), mustPassNodes.end()));
+
+	return false;
 }
 
 std::vector<std::vector<Grid::Coordinates>> Grid::getWinningPaths(const std::vector<std::vector<Coordinates>>& pathsToExit) const
@@ -287,7 +305,7 @@ bool Grid::isWinningPath(const std::vector<Coordinates>& path) const
 	return false;
 }
 
-std::vector<Grid::Coordinates> Grid::getDatas(Data d)
+std::vector<Grid::Coordinates> Grid::getDatas(Data d) const
 {
 	std::vector<Coordinates> datas;
 	for (size_t i = 0; i < m_nodesData.size(); i++)

@@ -15,6 +15,11 @@ public:
 		{
 			return l.x == r.x && l.y == r.y;
 		}
+
+		friend bool operator<(const Coordinates& l, const Coordinates& r)
+		{
+			return l.x < r.x && l.y < r.y;
+		}
 	};
 
 	enum Data { NOTHING = '#', START = 'S', EXIT = 'E', MUST_PASS = 'X' };
@@ -47,10 +52,10 @@ public:
 	bool hasNeighbor(Coordinates coord, Direction neighborDirection) const;
 	size_t getWidth() const;
 	size_t getHeight() const;
-	std::vector<std::vector<Coordinates>> getPaths(Coordinates start, Coordinates end) const;
+	bool hasValidPath(Coordinates start, Coordinates end) const;
 	std::vector<std::vector<Coordinates>> getWinningPaths(const std::vector<std::vector<Coordinates>>&) const;
 	bool isWinningPath(const std::vector<Coordinates>&) const;
-	std::vector<Coordinates> getDatas(Data d);
+	std::vector<Coordinates> getDatas(Data d) const;
 
 	void setLinkToAllNeighbors(Coordinates coord, bool linked);
 

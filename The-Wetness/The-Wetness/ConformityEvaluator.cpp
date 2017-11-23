@@ -1,6 +1,5 @@
 #include "ConformityEvaluator.hpp"
 #include "Grid.hpp"
-#include "Node.hpp"
 
 
 ConformityEvaluator::ConformityEvaluator()

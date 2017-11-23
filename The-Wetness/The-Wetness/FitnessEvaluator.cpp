@@ -19,5 +19,13 @@ int FitnessEvaluator::evaluate(Grid& grid) const
 	{
 		return -1000;
 	}
+
+	if (!grid.hasValidPath(start[0], exit[0])) {
+		std::cout << "has not valid path :" << std::endl;
+		std::cout << grid << std::endl;
+		return -2000;
+	}
+	std::cout << "hasvalid path :" << std::endl;
+	std::cout << grid << std::endl;
 	return numMustPass;
 }

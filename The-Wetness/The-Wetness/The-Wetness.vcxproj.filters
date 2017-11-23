@@ -37,6 +37,9 @@
     <Filter Include="Fichiers sources\GUI">
       <UniqueIdentifier>{eac1aeab-f0da-4618-9663-e117c2551c4a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers d%27en-tête\Engine\AI">
+      <UniqueIdentifier>{e1c87bc0-c804-488b-b1b1-55b77c44b4ad}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -81,11 +84,38 @@
     <ClInclude Include="GridDisplayer.hpp">
       <Filter>Fichiers d%27en-tête\Test</Filter>
     </ClInclude>
-    <ClInclude Include="Node.hpp">
-      <Filter>Fichiers d%27en-tête\TheWetness</Filter>
+    <ClInclude Include="DifficultyAnalyzer.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="Graph.hpp">
-      <Filter>Fichiers d%27en-tête\TheWetness</Filter>
+    <ClInclude Include="DifficultyManager.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Pathfinding\Coordinate.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Pathfinding\Node.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Pathfinding\Pathfinding.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Pathfinding\SquaredGrid.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Pathfinding\TieHelper.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Node.hpp">
+      <Filter>Fichiers d%27en-tête\Engine\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="Pathfinding.hpp">
+      <Filter>Fichiers d%27en-tête\Engine\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="SquareGrid.hpp">
+      <Filter>Fichiers d%27en-tête\Engine\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="TieHelper.hpp">
+      <Filter>Fichiers d%27en-tête\Engine\AI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -131,5 +161,16 @@
     <ClCompile Include="GridDisplayer.cpp">
       <Filter>Fichiers sources\Test</Filter>
     </ClCompile>
+    <ClCompile Include="DifficultyManager.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pathfinding\SquaredGrid.inl">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </None>
+    <None Include="SquareGrid.inl">
+      <Filter>Fichiers d%27en-tête\Engine\AI</Filter>
+    </None>
   </ItemGroup>
 </Project>

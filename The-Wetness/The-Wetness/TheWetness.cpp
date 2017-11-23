@@ -1,5 +1,6 @@
 #include "Engine.hpp"
 #include "PuzzleGenerator.hpp"
+#include "DifficultyAnalyzer.hpp"
 #include <ctime>
 
 void display_vector2(const std::vector<bool> &v)
@@ -13,8 +14,10 @@ int main(int argc, char ** argv)
 {
 	/*Engine gameEngine;
 	gameEngine.Start();*/
+
 	PuzzleGenerator pg;
 	pg.generateNextPuzzle();
+
 	/*Grid g = Grid(2, 2);
 	srand(std::time(nullptr));
 	g.setData(Grid::Coordinates{ 1, 1 }, Grid::Data::MUST_PASS);
@@ -32,5 +35,9 @@ int main(int argc, char ** argv)
 	ga_algo.mutate(gEncoded);
 	std::cout << gd.decode(gEncoded) << std::endl;
 	auto a = 2;*/
+
+	/*DifficultyAnalyzer da("test.data");
+	std::cout << std::endl << da.getTimeForScore(5) << std::endl;
+	da.saveData();*/
     return 0;
 }
