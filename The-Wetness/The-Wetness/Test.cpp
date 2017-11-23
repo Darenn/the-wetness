@@ -31,17 +31,7 @@ void Test::TestGA(void)
 	// PuzzleGenerator pg;
 	// grid = pg.generateNextPuzzle();
 
-	/*
-	GridEncoder ge;
-	GridDecoder gd;
-	Grid g(2, 2);
-	g.getNode(0, 0).setLinkedToDownNeighbor(false);
-	g.getNode(0, 0).setLinkedToRightNeighbor(false);
-	g.getNode(1, 1).data = Node::Data::MUST_PASS;
-	std::cout << g << std::endl;
-	display_vector(ge.encode(g));
-	std::cout << gd.decode(ge.encode(g)) << std::endl;
-	*/
+	
 }
 
 /// \brief	None

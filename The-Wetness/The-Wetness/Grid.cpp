@@ -227,12 +227,14 @@ bool Grid::hasValidPath(Coordinates start, Coordinates end) const
 		}
 	}
 
-	// check that there is a path between start and end to avoid useless calculations
-	std::vector <TNode> path;
-	bool hasPath = AI::Pathfinding<TSquareGrid, CoordinateType, PriorityType>::GetPath(squareGrid, path, 
+	// Checks to avoid useless calculations
+	// check that there is a path between start and end 
+	std::vector <TNode> pathTest;
+	bool hasPath = AI::Pathfinding<TSquareGrid, CoordinateType, PriorityType>::GetPath(squareGrid, pathTest, 
 		squareGrid.GetNode(start.x, start.y), 
 		squareGrid.GetNode(end.x,   end.y));
 	if (!hasPath) return false;
+	// TODO check that there is a path between start and all must pass
 	
 	// search a possible path passing by all must_pass in all possible orders
 	vector<Coordinates> mustPassNodes = getDatas(Data::MUST_PASS);
@@ -242,6 +244,7 @@ bool Grid::hasValidPath(Coordinates start, Coordinates end) const
 		std::vector <TNode> finalPath = { squareGrid.GetNode(prevNode.x, prevNode.y) };
 		bool noValidPath = false;
 		TSquareGrid squareGridCopy = TSquareGrid(squareGrid);
+		// Add to finalPath the path to go on the ith must pass
 		for (size_t i = 0; i < mustPassNodes.size(); i++)
 		{
 			Coordinates node = mustPassNodes[i];
@@ -249,7 +252,7 @@ bool Grid::hasValidPath(Coordinates start, Coordinates end) const
 			bool hasPath = AI::Pathfinding<TSquareGrid, CoordinateType, PriorityType>::GetPath(squareGridCopy, path,
 				squareGridCopy.GetNode(prevNode.x, prevNode.y),
 				squareGridCopy.GetNode(node.x, node.y));
-			// If there is a valid path, insert in the final path and continue
+
 			if (!hasPath)
 			{
 				noValidPath = true;
@@ -259,12 +262,24 @@ bool Grid::hasValidPath(Coordinates start, Coordinates end) const
 			finalPath.insert(finalPath.end(), path.begin() + 1, path.end());
 			prevNode = node;
 
-			// Update the grid by removing the nodes from path to avoid repetition
+			// Update the grid by removing links from the nodes from path (but the last) to avoid repetition
 			for (size_t i = 0; i < finalPath.size() - 1; i++) {
 				TNode node = finalPath[i];
 				squareGridCopy.SetNodeMask(node.X(), node.Y(), TNode::NONE);
 			}
 		}
+		// Handle the path to the exit
+		Coordinates node = end;
+		std::vector <TNode> path;
+		bool hasPath = AI::Pathfinding<TSquareGrid, CoordinateType, PriorityType>::GetPath(squareGridCopy, path,
+			squareGridCopy.GetNode(prevNode.x, prevNode.y),
+			squareGridCopy.GetNode(node.x, node.y));
+		if (hasPath) {
+			std::reverse(path.begin(), path.end()); // The given path is reversed
+			finalPath.insert(finalPath.end(), path.begin() + 1, path.end());
+		}
+		else noValidPath = true;
+
 		if (!noValidPath) 
 			return true;
 	} while (std::next_permutation(mustPassNodes.begin(), mustPassNodes.end()));
