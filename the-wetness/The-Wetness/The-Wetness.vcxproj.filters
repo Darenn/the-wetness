@@ -81,6 +81,12 @@
     <ClInclude Include="GridDisplayer.hpp">
       <Filter>Fichiers d%27en-tête\Test</Filter>
     </ClInclude>
+    <ClInclude Include="Node.hpp">
+      <Filter>Fichiers d%27en-tête\TheWetness</Filter>
+    </ClInclude>
+    <ClInclude Include="Graph.hpp">
+      <Filter>Fichiers d%27en-tête\TheWetness</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TheWetness.cpp">
