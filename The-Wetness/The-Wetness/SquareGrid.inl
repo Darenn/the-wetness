@@ -48,10 +48,34 @@ void SquareGrid<CoordinateType, PriorityType>::GetNeighbors(const TNode & curren
             // There is a neighbor in this direction
             switch(currentMask)
             {
-                case TNode::EMask ::NORTH: neighbors.push_back(GetNode(x,     y - 1)); break;
-                case TNode::EMask ::EAST:  neighbors.push_back(GetNode(x + 1, y    )); break;
-                case TNode::EMask ::SOUTH: neighbors.push_back(GetNode(x,     y + 1)); break;
-                case TNode::EMask ::WEST:  neighbors.push_back(GetNode(x - 1, y    )); break;
+                case TNode::NORTH:
+                    if(IsValidNode(x, y - 1) && (GetNode(x, y - 1).GetNeighborMask() & TNode::SOUTH))
+                    {
+                        neighbors.push_back(GetNode(x, y - 1));
+                    }
+                    break;
+
+                case TNode::EAST:
+                    if(IsValidNode(x + 1, y) && (GetNode(x + 1, y).GetNeighborMask() & TNode::WEST))
+                    {
+                        neighbors.push_back(GetNode(x + 1, y    ));
+                    }
+                    break;
+
+                case TNode::SOUTH:
+                    if(IsValidNode(x, y + 1) && (GetNode(x, y + 1).GetNeighborMask() & TNode::NORTH))
+                    {
+                        neighbors.push_back(GetNode(x, y + 1));
+                    }
+                    break;
+
+                case TNode::WEST:
+                    if(IsValidNode(x - 1, y) && (GetNode(x - 1, y).GetNeighborMask() & TNode::EAST))
+                    {
+                        neighbors.push_back(GetNode(x - 1, y));
+                    }
+                    break;
+
                 default: break;
             }
         }
@@ -85,6 +109,14 @@ inline void SquareGrid<CoordinateType, PriorityType>::SetNodeMask(CoordinateType
     m_grid[y * m_width + x].SetNeighborMask(mask);
 }
 
+/// \brief  Tells if the node is valid or node
+/// \param  x The X coordinate of the node
+/// \param  y The Y coordinate of the node
+/// \return True or false
+template <typename CoordinateType, typename PriorityType>
+inline bool SquareGrid<CoordinateType, PriorityType>::IsValidNode(CoordinateType x, CoordinateType y) const
+{
+    return (x >= 0 && x < m_width && y >= 0 && y < m_height);
 }
 
-
+}

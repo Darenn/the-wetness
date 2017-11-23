@@ -47,6 +47,12 @@ public:
     /// \param  mask The mask to apply
     inline void SetNodeMask(CoordinateType x, CoordinateType y, unsigned char mask);
 
+    /// \brief  Tells if the node is valid or node
+    /// \param  x The X coordinate of the node
+    /// \param  y The Y coordinate of the node
+    /// \return True or false
+    inline bool IsValidNode(CoordinateType x, CoordinateType y) const;
+
 private:
 
     CoordinateType m_width;

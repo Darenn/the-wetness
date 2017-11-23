@@ -48,7 +48,7 @@ public:
     static bool GetPath(Graph & graph, std::vector<TNode> & path, const TNode & start, const TNode & end)
     {
         // Tells if there is a path between start and end
-        bool bHasPath = false;
+        bool  bHasPath = false;
 
         std::vector         <TNode> neighbors;
         std::priority_queue <TNode> frontier;
