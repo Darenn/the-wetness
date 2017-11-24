@@ -200,7 +200,7 @@ Grid::Direction Grid::getInverseDirection(Direction d)
 	}
 }
 
-bool Grid::hasValidPath(Coordinates start, Coordinates end) const
+std::vector<Grid::Coordinates> Grid::getValidPath(Coordinates start, Coordinates end) const
 {
 	// alias helpers
 	using CoordinateType = char;
@@ -233,11 +233,18 @@ bool Grid::hasValidPath(Coordinates start, Coordinates end) const
 	bool hasPath = AI::Pathfinding<TSquareGrid, CoordinateType, PriorityType>::GetPath(squareGrid, pathTest, 
 		squareGrid.GetNode(start.x, start.y), 
 		squareGrid.GetNode(end.x,   end.y));
-	if (!hasPath) return false;
-	// TODO check that there is a path between start and all must pass
+	if (!hasPath) return std::vector<Grid::Coordinates>();
+	// Check that there is a path between start and all must pass
+	vector<Coordinates> mustPassNodes = getDatas(Data::MUST_PASS);
+	for each (Coordinates coord in mustPassNodes)
+	{
+		if (!AI::Pathfinding<TSquareGrid, CoordinateType, PriorityType>::GetPath(squareGrid, pathTest,
+			squareGrid.GetNode(coord.x, coord.y),
+			squareGrid.GetNode(start.x, start.y)))
+			return std::vector<Grid::Coordinates>();
+	}
 	
 	// search a possible path passing by all must_pass in all possible orders
-	vector<Coordinates> mustPassNodes = getDatas(Data::MUST_PASS);
 	std::sort(mustPassNodes.begin(), mustPassNodes.end());
 	do {
 		Coordinates prevNode = start;		
@@ -280,11 +287,18 @@ bool Grid::hasValidPath(Coordinates start, Coordinates end) const
 		}
 		else noValidPath = true;
 
-		if (!noValidPath) 
-			return true;
+		if (!noValidPath) {
+			std::vector<Grid::Coordinates> coordinatesPath(finalPath.size());
+			for each (TNode node in finalPath)
+			{
+				coordinatesPath.push_back(Grid::Coordinates{ static_cast<unsigned char>(node.X()), static_cast<unsigned char>(node.Y()) });
+			}
+			return coordinatesPath;
+		}
+			
 	} while (std::next_permutation(mustPassNodes.begin(), mustPassNodes.end()));
 
-	return false;
+	return std::vector<Grid::Coordinates>();
 }
 
 std::vector<std::vector<Grid::Coordinates>> Grid::getWinningPaths(const std::vector<std::vector<Coordinates>>& pathsToExit) const

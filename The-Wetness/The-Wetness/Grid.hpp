@@ -35,6 +35,14 @@ public:
 	Data getData(int number) const;
 	void setData(Coordinates coord, Data d);
 	void setData(int number, Data d);
+	int getNumberUnlinks() {
+		int count = 0;
+		for each (bool isLinked in m_nodesLinks)
+		{
+			if (!isLinked) count++;
+		}
+		return count / 2;
+	}
 	inline bool Grid::isLinkedWithNeighbor(Coordinates coord, Direction neighborDirection) const
 	{
 		if (!hasNeighbor(coord, neighborDirection)) return false;
@@ -52,7 +60,7 @@ public:
 	bool hasNeighbor(Coordinates coord, Direction neighborDirection) const;
 	size_t getWidth() const;
 	size_t getHeight() const;
-	bool hasValidPath(Coordinates start, Coordinates end) const;
+	std::vector<Grid::Coordinates> getValidPath(Coordinates start, Coordinates end) const;
 	std::vector<std::vector<Coordinates>> getWinningPaths(const std::vector<std::vector<Coordinates>>&) const;
 	bool isWinningPath(const std::vector<Coordinates>&) const;
 	std::vector<Coordinates> getDatas(Data d) const;

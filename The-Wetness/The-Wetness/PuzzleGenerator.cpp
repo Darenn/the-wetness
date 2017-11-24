@@ -45,15 +45,15 @@ Grid PuzzleGenerator::generateNextPuzzle()
 	}
 
 	auto best = population[0];
-	for (size_t i = 0; i < population.size(); i++)
+	/*for (size_t i = 0; i < population.size(); i++)
 	{
 		std::vector<Grid::Coordinates> start = _gridDecoder.decode(population[i].first).getDatas(Grid::Data::START);
 		std::vector<Grid::Coordinates> exit = _gridDecoder.decode(population[i].first).getDatas(Grid::Data::EXIT);
 		Grid g = _gridDecoder.decode(population[i].first);
 		std::cout << population[i].second << std::endl;
 		std::cout << g << std::endl;
-	}
-	//std::cout << _gridDecoder.decode(best.first) << std::endl;
+	}*/
+	std::cout << _gridDecoder.decode(best.first) << std::endl;
 	return _gridDecoder.decode(best.first);
 }
 

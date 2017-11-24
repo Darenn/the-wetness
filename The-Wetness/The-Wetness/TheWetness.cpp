@@ -18,10 +18,10 @@ int main(int argc, char ** argv)
 	/*Engine gameEngine;
 	gameEngine.Start();*/
 
-	/*PuzzleGenerator pg;
-	pg.generateNextPuzzle();*/
+	PuzzleGenerator pg;
+	pg.generateNextPuzzle();
 
-	GridEncoder ge;
+	/*GridEncoder ge;
 	GridDecoder gd;
 	Grid g(3, 3);
 	g.setLinkWithNeighbor(Grid::Coordinates{ 0, 0 }, Grid::Direction::EAST, false);
@@ -29,7 +29,7 @@ int main(int argc, char ** argv)
 	g.setData(Grid::Coordinates{ 1, 0 }, Grid::Data::MUST_PASS);
 	std::cout << g << std::endl;
 	std::cout << std::boolalpha << g.hasValidPath(Grid::Coordinates{ 0, 0 }, Grid::Coordinates{ 2, 2 }) << std::endl;
-
+	*/
 	/*// alias helpers
 	using CoordinateType = char;
 	using PriorityType = short;
