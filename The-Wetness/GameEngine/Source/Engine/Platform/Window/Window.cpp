@@ -3,7 +3,8 @@
 /// \package    Engine
 /// \author     Vincent STEHLY--CALISTO
 
-#include "Window.hpp"
+#include <cassert>
+#include "Engine/Platform/Window/Window.hpp"
 
 /// \brief Default constructor
 Window::Window(void)
@@ -228,7 +229,7 @@ void Window::DrawDebugInformations()
 	// TODO
 
 	// Building strings
-	std::string wSize  = "Window Size : " + std::string("(") + "m_title" + std::string(") ") + std::to_string(m_windowSize.x) + "x" + std::to_string(m_windowSize.y);
+	std::string wSize  = "Window Size : " + std::to_string(m_windowSize.x) + "x" + std::to_string(m_windowSize.y) + std::string("(") + " m_title" + std::string(") ");
 	std::string bSize  = "Buffer Size : " + std::to_string(m_bufferSize.x) + "x" + std::to_string(m_bufferSize.y);
 	std::string fps    = "FPS         : " + std::to_string(m_fps);
 	std::string frames = "Frames      : " + std::to_string(m_frameCounter);

@@ -38,7 +38,7 @@ template <typename T> Vector2<T>& operator /= (Vector2<T>& left, T right);
 template <typename T> bool        operator == (const Vector2<T>& left, const Vector2<T>& right);
 template <typename T> bool        operator != (const Vector2<T>& left, const Vector2<T>& right);
 
-#include "Vector2.inl"
+#include "Impl/Vector2.inl"
 
 typedef Vector2<int>          Vector2i; ///< Handy typedef for int   vector
 typedef Vector2<float>		  Vector2f; ///< Handy typedef for float vector

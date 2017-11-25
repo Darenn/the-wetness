@@ -6,7 +6,7 @@
 #ifndef _GAME_ENGINE_HPP
 #define _GAME_ENGINE_HPP
  
-#include "RenderingEngine.hpp"
+#include "Rendering/RenderingEngine.hpp"
 
 #define GAME_ENGINE_MIN_FPS 30
 #define GAME_ENGINE_MAX_FPS 240

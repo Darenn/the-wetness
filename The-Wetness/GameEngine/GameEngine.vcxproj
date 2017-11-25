@@ -18,6 +18,26 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Header\Engine\GameEngine.hpp" />
+    <ClInclude Include="Header\Engine\Maths\Vector2.hpp" />
+    <ClInclude Include="Header\Engine\Maths\Vector3.hpp" />
+    <ClInclude Include="Header\Engine\Platform\Time\Timer.hpp" />
+    <ClInclude Include="Header\Engine\Platform\Window\Window.hpp" />
+    <ClInclude Include="Header\Engine\Rendering\RenderingEngine.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Header\Engine\Maths\Impl\Vector2.inl" />
+    <None Include="Header\Engine\Maths\Impl\Vector3.inl" />
+    <None Include="Header\Engine\Platform\Window\Impl\Window.inl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\Engine\GameEngine.cpp" />
+    <ClCompile Include="Source\Engine\Platform\Time\Timer.cpp" />
+    <ClCompile Include="Source\Engine\Platform\Window\Window.cpp" />
+    <ClCompile Include="Source\Engine\Rendering\RenderingEngine.cpp" />
+    <ClCompile Include="Source\Main.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{ED2FCF34-1591-4C63-A4C8-EF4AD47D9634}</ProjectGuid>
@@ -72,6 +92,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>C:\Users\Aredhele\Desktop\The-Wetness\The-Wetness\GameEngine\Header;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
@@ -139,28 +160,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="Camera.hpp" />
-    <ClInclude Include="GameEngine.hpp" />
-    <ClInclude Include="RenderingEngine.hpp" />
-    <ClInclude Include="Timer.hpp" />
-    <ClInclude Include="Vector2.hpp" />
-    <ClInclude Include="Vector3.hpp" />
-    <ClInclude Include="Window.hpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Camera.inl" />
-    <None Include="Vector2.inl" />
-    <None Include="Vector3.inl" />
-    <None Include="Window.inl" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Main.cpp" />
-    <ClCompile Include="GameEngine.cpp" />
-    <ClCompile Include="RenderingEngine.cpp" />
-    <ClCompile Include="Timer.cpp" />
-    <ClCompile Include="Window.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

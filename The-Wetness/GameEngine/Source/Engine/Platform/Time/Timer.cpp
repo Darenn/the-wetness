@@ -3,7 +3,7 @@
 /// \package    Engine
 /// \author     Vincent STEHLY--CALISTO
 
-#include "Timer.hpp"
+#include "Engine/Platform/Time/Timer.hpp"
 
 /// \brief Constructor of the timer
 ///		   Initializes frequency

@@ -3,8 +3,7 @@
 /// \package    Engine
 /// \author     Vincent STEHLY--CALISTO
 
-#include "Timer.hpp"
-#include "GameEngine.hpp"
+#include "Engine/GameEngine.hpp"
 
 /// \brief	Constructor
 GameEngine::GameEngine(void)
@@ -96,6 +95,8 @@ void GameEngine::Start(void)
 		}
 
 		// Rendering ...
+		// lag / m_granularity is the progression in
+		// the current frame to interpolate position
 		m_renderingEngine.Render(lag / m_granularity);
 	}
 }

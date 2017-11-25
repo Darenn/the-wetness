@@ -3,7 +3,7 @@
 /// \package    Engine/Rendering
 /// \author     Vincent STEHLY--CALISTO
 
-#include "RenderingEngine.hpp"
+#include "Engine/Rendering/RenderingEngine.hpp"
 
 /// \brief	Constructor (private)
 RenderingEngine::RenderingEngine(void)
@@ -41,6 +41,8 @@ void RenderingEngine::Initialize(const std::string & title, const Vector2u & siz
 ///         of the engine in the frame
 void RenderingEngine::Render(float interpolate)
 {
+	m_window.Clear();
+
 	float current = m_timer.GetElaspedTime();
 	if(current - m_fpsTimer >= 1.0f)
 	{
