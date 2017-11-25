@@ -5,7 +5,9 @@
 
 #ifndef _GAME_ENGINE_HPP
 #define _GAME_ENGINE_HPP
- 
+
+#include "Engine.hpp"
+#include "AI/State/StateMachine.hpp"
 #include "Rendering/RenderingEngine.hpp"
 
 #define GAME_ENGINE_MIN_FPS 30
@@ -38,7 +40,9 @@ private:
 	float			m_granularity;
 	Vector2u		m_windowSize;
 	std::string		m_windowTitle;
-	RenderingEngine m_renderingEngine;
+
+	StateMachine    * const m_pStateMachine;
+	RenderingEngine * const m_pRenderingEngine;
 };
 
 #endif // _GAME_ENGINE_HPP

@@ -26,6 +26,7 @@ private:
 			 RenderingEngine(const RenderingEngine & other);
 	
 	// But the game engine has an access to the rendering engine
+	friend class Engine;
 	friend class GameEngine;
 
 	void Initialize(const std::string & title, const Vector2u & size, float fps, bool debug);

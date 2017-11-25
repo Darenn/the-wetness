@@ -7,6 +7,8 @@
 
 /// \brief	Constructor
 GameEngine::GameEngine(void)
+: m_pStateMachine(Engine::pStateMachine)
+, m_pRenderingEngine(Engine::pRendering)
 {
 	m_debug   = false;
 	m_running = false;
@@ -69,7 +71,7 @@ void GameEngine::Initialize(void)
 	m_running = false;
 
 	// Rendering configuration
-	m_renderingEngine.Initialize(m_windowTitle, m_windowSize, m_fps, m_debug); 
+	m_pRenderingEngine->Initialize(m_windowTitle, m_windowSize, m_fps, m_debug);
 }
 
 /// \brief	Stars the game engine 
@@ -90,6 +92,9 @@ void GameEngine::Start(void)
 		lag += elapsed;
 		while (lag >= m_granularity)
 		{
+			// Logic update
+			m_pStateMachine->Update(m_granularity);
+
 			// Retrieve elapsed time
 			lag -= m_granularity;
 		}
@@ -97,6 +102,6 @@ void GameEngine::Start(void)
 		// Rendering ...
 		// lag / m_granularity is the progression in
 		// the current frame to interpolate position
-		m_renderingEngine.Render(lag / m_granularity);
+		m_pRenderingEngine->Render(lag / m_granularity);
 	}
 }

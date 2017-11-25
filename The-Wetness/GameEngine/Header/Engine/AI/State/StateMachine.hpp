@@ -24,6 +24,7 @@ public:
 
 private:
 
+	friend class Engine;
 	friend class GameEngine;
 
 	// The update method must only be accessed by the game engine
