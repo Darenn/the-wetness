@@ -14,10 +14,11 @@ class GameState : public IState
 {
 public:
 
-	void OnEnter(void)    override final;
-	void OnExit (void)    override final;
-	void Update(float dt) override final;
-};
+	virtual ~GameState();
 
+	virtual void OnEnter(void)     override final;
+	virtual void OnExit (void)     override final;
+	virtual void Update (float dt) override final;
+};
 
 #endif // _GAME_STATE_HPP

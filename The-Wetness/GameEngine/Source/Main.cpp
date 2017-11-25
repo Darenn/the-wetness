@@ -4,6 +4,7 @@
 /// \author     Vincent STEHLY--CALISTO
 
 #include "Engine/GameEngine.hpp"
+#include "Game/State/GameState.hpp"
 
 /// \brief	Game entry point
 ///			Command line helper
@@ -34,6 +35,9 @@ int main(int argc, char ** argv)
 			}
 		}
 	}
+
+	// Pushing the first state : WIP
+	Engine::pStateMachine->PushState<GameState>("GameState");
 
 	// The game engine is now initialized.
 	// Starting the game loop
