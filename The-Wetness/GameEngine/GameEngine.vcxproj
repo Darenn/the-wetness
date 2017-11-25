@@ -19,19 +19,27 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Header\Engine\AI\State\IState.hpp" />
+    <ClInclude Include="Header\Engine\AI\State\StateMachine.hpp" />
+    <ClInclude Include="Header\Engine\Engine.hpp" />
     <ClInclude Include="Header\Engine\GameEngine.hpp" />
     <ClInclude Include="Header\Engine\Maths\Vector2.hpp" />
     <ClInclude Include="Header\Engine\Maths\Vector3.hpp" />
     <ClInclude Include="Header\Engine\Platform\Time\Timer.hpp" />
     <ClInclude Include="Header\Engine\Platform\Window\Window.hpp" />
     <ClInclude Include="Header\Engine\Rendering\RenderingEngine.hpp" />
+    <ClInclude Include="Header\Game\State\GameState.hpp" />
+    <ClInclude Include="Source\Game\State\GameState.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Header\Engine\AI\State\Impl\StateMachine.inl" />
     <None Include="Header\Engine\Maths\Impl\Vector2.inl" />
     <None Include="Header\Engine\Maths\Impl\Vector3.inl" />
     <None Include="Header\Engine\Platform\Window\Impl\Window.inl" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Engine\AI\State\StateMachine.cpp" />
+    <ClCompile Include="Source\Engine\Engine.cpp" />
     <ClCompile Include="Source\Engine\GameEngine.cpp" />
     <ClCompile Include="Source\Engine\Platform\Time\Timer.cpp" />
     <ClCompile Include="Source\Engine\Platform\Window\Window.cpp" />

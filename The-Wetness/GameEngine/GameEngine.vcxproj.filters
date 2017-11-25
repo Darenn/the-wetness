@@ -67,6 +67,21 @@
     <Filter Include="Fichiers sources\Engine\AI\State">
       <UniqueIdentifier>{56ab3b98-3466-42fe-91b3-ea3268ab1c2e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers d%27en-tête\Engine\AI\State\Impl">
+      <UniqueIdentifier>{f95a5693-70c3-4722-bcd5-6af7a8095d83}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Game">
+      <UniqueIdentifier>{eab28359-9222-49af-995a-5cf8936b6711}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Game">
+      <UniqueIdentifier>{1ae34eb5-b1bc-4af8-9752-f55d97f1850d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Game\State">
+      <UniqueIdentifier>{176ecadf-b7c0-447f-8485-70e5c6a05488}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Game\State">
+      <UniqueIdentifier>{9ace9813-ce00-4bb1-86f0-8c302e5a9565}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\Engine\Maths\Vector2.hpp">
@@ -87,6 +102,21 @@
     <ClInclude Include="Header\Engine\GameEngine.hpp">
       <Filter>Fichiers d%27en-tête\Engine</Filter>
     </ClInclude>
+    <ClInclude Include="Header\Engine\AI\State\IState.hpp">
+      <Filter>Fichiers d%27en-tête\Engine\AI\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Engine\AI\State\StateMachine.hpp">
+      <Filter>Fichiers d%27en-tête\Engine\AI\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Engine\Engine.hpp">
+      <Filter>Fichiers d%27en-tête\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Game\State\GameState.hpp">
+      <Filter>Fichiers d%27en-tête\Game\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\State\GameState.cpp">
+      <Filter>Fichiers sources\Game\State</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Header\Engine\Maths\Impl\Vector2.inl">
@@ -97,6 +127,9 @@
     </None>
     <None Include="Header\Engine\Platform\Window\Impl\Window.inl">
       <Filter>Fichiers d%27en-tête\Engine\Platform\Window\Impl</Filter>
+    </None>
+    <None Include="Header\Engine\AI\State\Impl\StateMachine.inl">
+      <Filter>Fichiers d%27en-tête\Engine\AI\State\Impl</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -114,6 +147,12 @@
     </ClCompile>
     <ClCompile Include="Source\Main.cpp">
       <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\AI\State\StateMachine.cpp">
+      <Filter>Fichiers sources\Engine\AI\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Engine.cpp">
+      <Filter>Fichiers sources\Engine</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
