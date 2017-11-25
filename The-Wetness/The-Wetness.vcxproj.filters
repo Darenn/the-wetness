@@ -1,0 +1,262 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Fichiers sources">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Engine">
+      <UniqueIdentifier>{cc0de609-5d8f-4312-a100-651c422c747d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Game">
+      <UniqueIdentifier>{3047376e-dfb1-4f2f-a43a-5b1796ddadd8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Engine">
+      <UniqueIdentifier>{4eb056f9-699e-4874-a478-457ea347e173}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Game">
+      <UniqueIdentifier>{4f4f6e6c-eca7-490f-a92f-6c033ef00fea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Engine\AI">
+      <UniqueIdentifier>{73e08942-738b-4e0c-8a3a-7320a375278e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Engine\Maths">
+      <UniqueIdentifier>{5820701a-5a27-4556-a658-7cae228be12e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Engine\Platform">
+      <UniqueIdentifier>{3a444e33-b8cf-4122-9cef-32b18eaf5a9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Engine\Rendering">
+      <UniqueIdentifier>{33b7c16a-f138-4280-a1fb-8547ae5c46e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Engine\AI\Navigation">
+      <UniqueIdentifier>{24d0e2ba-a91e-4466-b517-5c8c09ae404b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Engine\AI\State">
+      <UniqueIdentifier>{3423d0e1-5df7-44ed-a31a-6e2d6a8cb1a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Engine\AI\Navigation\Impl">
+      <UniqueIdentifier>{4fbd952d-df94-443d-84b9-6e87cc355137}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Engine\AI\State\Impl">
+      <UniqueIdentifier>{dc5be6f5-154d-40a7-bf79-70575a63f765}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Engine\Maths\Impl">
+      <UniqueIdentifier>{d8045efe-3d5a-483c-aca0-3f6994818525}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Engine\Platform\Time">
+      <UniqueIdentifier>{5ef506c0-a3d6-4965-80e9-b176b57201fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Engine\Platform\Window">
+      <UniqueIdentifier>{f7171312-cfd4-42a2-b8e9-44a5fde4267c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Engine\Platform\Window\Impl">
+      <UniqueIdentifier>{dbe19b9c-eaa3-42ad-b116-d7e66e9a7775}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Game\State">
+      <UniqueIdentifier>{c92cb8d3-9e48-4819-8fe7-8c82153054da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Engine\AI">
+      <UniqueIdentifier>{9497e7de-27f7-4926-88a6-be3a1075f4ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Engine\Platform">
+      <UniqueIdentifier>{4c0867e8-fd9a-4bff-9e73-0cc9cb8d4f24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Engine\Rendering">
+      <UniqueIdentifier>{3a1427f2-8e21-4d62-81a9-39b46061d979}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Game\State">
+      <UniqueIdentifier>{464626e8-138a-45a5-b666-6d5da998025a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Engine\AI\State">
+      <UniqueIdentifier>{b41d2b6a-9f6b-4e30-893f-23c796f479ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Engine\Platform\Window">
+      <UniqueIdentifier>{0fa09e8c-e94b-4d19-b668-16c8a14f738b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Engine\Platform\Time">
+      <UniqueIdentifier>{cc1e83ef-f9d3-48a7-b644-ed5903d67c03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Generation">
+      <UniqueIdentifier>{bccfa971-80a8-4f83-8e86-2cf60bd65229}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Generation">
+      <UniqueIdentifier>{7351e8bd-582f-45b7-a7ef-c0e3df806df6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Generation\Grid">
+      <UniqueIdentifier>{95a4ce72-2982-462e-93a2-07a03e8f53be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Generation\Grid">
+      <UniqueIdentifier>{5e8427f4-21aa-469f-bad1-7c8ef021198f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Generation\Utility">
+      <UniqueIdentifier>{0aa0c2cf-d231-4c74-901e-29ace38bd32e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Generation\GA">
+      <UniqueIdentifier>{93e1692f-f2c6-41ea-acc4-99f7ec40a826}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Generation\GA">
+      <UniqueIdentifier>{ac0b40ed-c1b1-4e04-9adc-39771f919629}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Generation\Utility">
+      <UniqueIdentifier>{ccbb6eb8-8dfd-4653-80d7-6a91b8778223}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Header\Engine\Engine.hpp">
+      <Filter>Fichiers d%27en-tête\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Engine\GameEngine.hpp">
+      <Filter>Fichiers d%27en-tête\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Engine\AI\Navigation\Node.hpp">
+      <Filter>Fichiers d%27en-tête\Engine\AI\Navigation</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Engine\AI\Navigation\Pathfinding.hpp">
+      <Filter>Fichiers d%27en-tête\Engine\AI\Navigation</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Engine\AI\Navigation\SquareGrid.hpp">
+      <Filter>Fichiers d%27en-tête\Engine\AI\Navigation</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Engine\AI\Navigation\TieHelper.hpp">
+      <Filter>Fichiers d%27en-tête\Engine\AI\Navigation</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Engine\AI\State\IState.hpp">
+      <Filter>Fichiers d%27en-tête\Engine\AI\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Engine\AI\State\StateMachine.hpp">
+      <Filter>Fichiers d%27en-tête\Engine\AI\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Engine\Maths\Vector2.hpp">
+      <Filter>Fichiers d%27en-tête\Engine\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Engine\Maths\Vector3.hpp">
+      <Filter>Fichiers d%27en-tête\Engine\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Engine\Rendering\RenderingEngine.hpp">
+      <Filter>Fichiers d%27en-tête\Engine\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Engine\Platform\Window\Window.hpp">
+      <Filter>Fichiers d%27en-tête\Engine\Platform\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Engine\Platform\Time\Timer.hpp">
+      <Filter>Fichiers d%27en-tête\Engine\Platform\Time</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Game\State\GameState.hpp">
+      <Filter>Fichiers d%27en-tête\Game\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Generation\Grid\Grid.hpp">
+      <Filter>Fichiers d%27en-tête\Generation\Grid</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Generation\Grid\GridDecoder.hpp">
+      <Filter>Fichiers d%27en-tête\Generation\Grid</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Generation\Grid\GridEncoder.hpp">
+      <Filter>Fichiers d%27en-tête\Generation\Grid</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Generation\PuzzleGenerator.hpp">
+      <Filter>Fichiers d%27en-tête\Generation</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Generation\Utility\Utils.h">
+      <Filter>Fichiers d%27en-tête\Generation\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Generation\GA\DifficultyAnalyzer.hpp">
+      <Filter>Fichiers d%27en-tête\Generation\GA</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Generation\GA\DifficultyManager.h">
+      <Filter>Fichiers d%27en-tête\Generation\GA</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Generation\GA\LinearRegression.h">
+      <Filter>Fichiers d%27en-tête\Generation\GA</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Generation\GA\NodeDarenn.hpp">
+      <Filter>Fichiers d%27en-tête\Generation\GA</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Generation\GA\ConformityEvaluator.hpp">
+      <Filter>Fichiers d%27en-tête\Generation\GA</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Generation\GA\FitnessEvaluator.hpp">
+      <Filter>Fichiers d%27en-tête\Generation\GA</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Generation\GA\GA_Algorithms.hpp">
+      <Filter>Fichiers d%27en-tête\Generation\GA</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Header\Engine\AI\Navigation\Impl\SquareGrid.inl">
+      <Filter>Fichiers d%27en-tête\Engine\AI\Navigation\Impl</Filter>
+    </None>
+    <None Include="Header\Engine\AI\State\Impl\StateMachine.inl">
+      <Filter>Fichiers d%27en-tête\Engine\AI\State\Impl</Filter>
+    </None>
+    <None Include="Header\Engine\Maths\Impl\Vector2.inl">
+      <Filter>Fichiers d%27en-tête\Engine\Maths\Impl</Filter>
+    </None>
+    <None Include="Header\Engine\Maths\Impl\Vector3.inl">
+      <Filter>Fichiers d%27en-tête\Engine\Maths\Impl</Filter>
+    </None>
+    <None Include="Header\Engine\Platform\Window\Impl\Window.inl">
+      <Filter>Fichiers d%27en-tête\Engine\Platform\Window\Impl</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\Engine\AI\State\StateMachine.cpp">
+      <Filter>Fichiers sources\Engine\AI\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Platform\Time\Timer.cpp">
+      <Filter>Fichiers sources\Engine\Platform\Time</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Platform\Window\Window.cpp">
+      <Filter>Fichiers sources\Engine\Platform\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Rendering\RenderingEngine.cpp">
+      <Filter>Fichiers sources\Engine\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Engine.cpp">
+      <Filter>Fichiers sources\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\GameEngine.cpp">
+      <Filter>Fichiers sources\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Main.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\State\GameState.cpp">
+      <Filter>Fichiers sources\Game\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Generation\Grid\Grid.cpp">
+      <Filter>Fichiers sources\Generation\Grid</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Generation\Grid\GridDecoder.cpp">
+      <Filter>Fichiers sources\Generation\Grid</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Generation\PuzzleGenerator.cpp">
+      <Filter>Fichiers sources\Generation</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Generation\Utility\Utils.cpp">
+      <Filter>Fichiers sources\Generation\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Generation\Grid\GridEncoder.cpp">
+      <Filter>Fichiers sources\Generation\Grid</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Generation\GA\GA_Algorithms.cpp">
+      <Filter>Fichiers sources\Generation\GA</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Generation\GA\LinearRegression.cpp">
+      <Filter>Fichiers sources\Generation\GA</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Generation\GA\ConformityEvaluator.cpp">
+      <Filter>Fichiers sources\Generation\GA</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Generation\GA\DifficultyManager.cpp">
+      <Filter>Fichiers sources\Generation\GA</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Generation\GA\FitnessEvaluator.cpp">
+      <Filter>Fichiers sources\Generation\GA</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
