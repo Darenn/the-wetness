@@ -114,9 +114,6 @@
     <ClInclude Include="Header\Game\State\GameState.hpp">
       <Filter>Fichiers d%27en-tête\Game\State</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Game\State\GameState.cpp">
-      <Filter>Fichiers sources\Game\State</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Header\Engine\Maths\Impl\Vector2.inl">
@@ -153,6 +150,9 @@
     </ClCompile>
     <ClCompile Include="Source\Engine\Engine.cpp">
       <Filter>Fichiers sources\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\State\GameState.cpp">
+      <Filter>Fichiers sources\Game\State</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

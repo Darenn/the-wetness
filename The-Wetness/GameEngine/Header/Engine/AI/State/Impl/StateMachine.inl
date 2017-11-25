@@ -3,9 +3,6 @@
 /// \package    Engine
 /// \author     Vincent STEHLY--CALISTO
 
-#ifndef _STATE_MACHINE_INL
-#define _STATE_MACHINE_INL
-
 /// \brief	Adds at the end of the stack a new state
 /// \tparam Tp The type of the state, must derived from IState
 /// \param  key The key of the state
@@ -27,5 +24,3 @@ inline void StateMachine::Update(float dt)
 		m_stateStack.back().second->Update(dt);
 	}
 }
-
-#endif // _STATE_MACHINE_INL

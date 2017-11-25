@@ -3,24 +3,29 @@
 /// \package    Game
 /// \author     Vincent STEHLY--CALISTO
 
-#include "Engine/Engine.hpp"
 #include "Game/State/GameState.hpp"
 
-/// \brief	Called when the state is pushed
-void GameState::OnEnter(void)
+/// \brief	Destructor
+/* virtual */ GameState::~GameState(void)
 {
-	// TODO
+	// None
+}
+
+/// \brief	Called when the state is pushed
+/* virtual */ void GameState::OnEnter(void)
+{
+	int x;
 }
 
 /// \brief	Called when the state is removed
-void GameState::OnExit(void)
+/* virtual */ void GameState::OnExit(void)
 {
-	// TODO
+	int x;
 }
 
 /// \brief	Called each frame
 /// \param  dt The elapsed time since the last frame
-void GameState::Update(float dt)
+/* virtual */ void GameState::Update(float dt)
 {
-	// TODO
+	int x;
 }
