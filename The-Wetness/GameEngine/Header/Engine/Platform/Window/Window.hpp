@@ -9,8 +9,7 @@
 #include <string>
 #include <Windows.h>
 
-#include "Timer.hpp"
-#include "Vector2.hpp"
+#include "Engine/Maths/Vector2.hpp"
 
 #define	MAX_BUFFER_X 1024
 #define MAX_BUFFER_Y 768
@@ -79,6 +78,6 @@ private:
 	unsigned int    m_drawCall;
 };
 
-#include "Window.inl"
+#include "Impl/Window.inl"
 
 #endif // _WINDOW_HPP

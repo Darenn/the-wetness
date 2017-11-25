@@ -3,7 +3,7 @@
 /// \package    None
 /// \author     Vincent STEHLY--CALISTO
 
-#include "GameEngine.hpp"
+#include "Engine/GameEngine.hpp"
 
 /// \brief	Game entry point
 ///			Command line helper

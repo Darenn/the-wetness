@@ -8,14 +8,16 @@
 
 #include <string>
 
-#include "Timer.hpp"
-#include "Window.hpp"
-#include "Vector2.hpp"
+#include "Engine/Platform/Time/Timer.hpp"
+#include "Engine/Platform/Window/Window.hpp"
 
 /// \class  RenderingEngine
 /// \brief  Handles rendering, FPS etc.
 class RenderingEngine
 {
+public:
+
+
 private:
 
 	// The engine canno't be constructed

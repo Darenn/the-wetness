@@ -28,12 +28,6 @@
     <Filter Include="Fichiers d%27en-tête\Engine\Platform">
       <UniqueIdentifier>{f0e34db1-5ee6-4515-af84-6621006c4888}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Fichiers d%27en-tête\Engine\Raycaster">
-      <UniqueIdentifier>{19bc0dd8-3275-424d-81c2-21f598ccda31}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Fichiers d%27en-tête\Engine\Raycaster\Impl">
-      <UniqueIdentifier>{236ee02a-edbc-4cc5-a539-08409fd146b2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Fichiers d%27en-tête\Engine\Platform\Time">
       <UniqueIdentifier>{13c98e07-43f3-45e0-b4da-ae4b6977e8f6}</UniqueIdentifier>
     </Filter>
@@ -43,17 +37,11 @@
     <Filter Include="Fichiers sources\Engine">
       <UniqueIdentifier>{685d17f8-79e7-4484-becc-53d16efb0663}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Fichiers sources\Engine\Maths">
-      <UniqueIdentifier>{86289065-545c-4190-a5e0-24086d05dbc9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Fichiers sources\Engine\Rendering">
       <UniqueIdentifier>{583fd3c2-9b64-4f8c-8cca-1a2d8ba4cf50}</UniqueIdentifier>
     </Filter>
     <Filter Include="Fichiers sources\Engine\Platform">
       <UniqueIdentifier>{4db74a64-9389-4835-ac29-7798b5ee6c1f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Fichiers sources\Engine\Raycaster">
-      <UniqueIdentifier>{9d83e140-df26-4e8e-bebf-5070d8a1c2d6}</UniqueIdentifier>
     </Filter>
     <Filter Include="Fichiers sources\Engine\Platform\Time">
       <UniqueIdentifier>{43560920-00d8-4029-8b52-1d2510b75f4a}</UniqueIdentifier>
@@ -64,59 +52,68 @@
     <Filter Include="Fichiers d%27en-tête\Engine\Platform\Window\Impl">
       <UniqueIdentifier>{dd5d69cf-b2bc-4e33-8656-b4a7e9937e0f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers d%27en-tête\Engine\AI">
+      <UniqueIdentifier>{20ecf41b-60ad-4a78-a507-a1343f1b70a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Engine\AI">
+      <UniqueIdentifier>{003a5d07-125e-4c47-a319-f5e899e27a04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Engine\AI\State">
+      <UniqueIdentifier>{4edeae74-6f84-4d99-8bdd-5816973a1d9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Engine\AI\Navigation">
+      <UniqueIdentifier>{38e56515-856d-4cc5-8284-7c90668cc271}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Engine\AI\State">
+      <UniqueIdentifier>{56ab3b98-3466-42fe-91b3-ea3268ab1c2e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Vector2.hpp">
+    <ClInclude Include="Header\Engine\Maths\Vector2.hpp">
       <Filter>Fichiers d%27en-tête\Engine\Maths</Filter>
     </ClInclude>
-    <ClInclude Include="Vector3.hpp">
+    <ClInclude Include="Header\Engine\Maths\Vector3.hpp">
       <Filter>Fichiers d%27en-tête\Engine\Maths</Filter>
     </ClInclude>
-    <ClInclude Include="RenderingEngine.hpp">
-      <Filter>Fichiers d%27en-tête\Engine\Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Camera.hpp">
-      <Filter>Fichiers d%27en-tête\Engine\Raycaster</Filter>
-    </ClInclude>
-    <ClInclude Include="Timer.hpp">
+    <ClInclude Include="Header\Engine\Platform\Time\Timer.hpp">
       <Filter>Fichiers d%27en-tête\Engine\Platform\Time</Filter>
     </ClInclude>
-    <ClInclude Include="Window.hpp">
+    <ClInclude Include="Header\Engine\Platform\Window\Window.hpp">
       <Filter>Fichiers d%27en-tête\Engine\Platform\Window</Filter>
     </ClInclude>
-    <ClInclude Include="GameEngine.hpp">
+    <ClInclude Include="Header\Engine\Rendering\RenderingEngine.hpp">
+      <Filter>Fichiers d%27en-tête\Engine\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Engine\GameEngine.hpp">
       <Filter>Fichiers d%27en-tête\Engine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Vector2.inl">
+    <None Include="Header\Engine\Maths\Impl\Vector2.inl">
       <Filter>Fichiers d%27en-tête\Engine\Maths\Impl</Filter>
     </None>
-    <None Include="Vector3.inl">
+    <None Include="Header\Engine\Maths\Impl\Vector3.inl">
       <Filter>Fichiers d%27en-tête\Engine\Maths\Impl</Filter>
     </None>
-    <None Include="Camera.inl">
-      <Filter>Fichiers d%27en-tête\Engine\Raycaster\Impl</Filter>
-    </None>
-    <None Include="Window.inl">
+    <None Include="Header\Engine\Platform\Window\Impl\Window.inl">
       <Filter>Fichiers d%27en-tête\Engine\Platform\Window\Impl</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="RenderingEngine.cpp">
-      <Filter>Fichiers sources\Engine\Rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="GameEngine.cpp">
-      <Filter>Fichiers sources\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Main.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="Timer.cpp">
+    <ClCompile Include="Source\Engine\Platform\Time\Timer.cpp">
       <Filter>Fichiers sources\Engine\Platform\Time</Filter>
     </ClCompile>
-    <ClCompile Include="Window.cpp">
+    <ClCompile Include="Source\Engine\Platform\Window\Window.cpp">
       <Filter>Fichiers sources\Engine\Platform\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Rendering\RenderingEngine.cpp">
+      <Filter>Fichiers sources\Engine\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\GameEngine.cpp">
+      <Filter>Fichiers sources\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Main.cpp">
+      <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
