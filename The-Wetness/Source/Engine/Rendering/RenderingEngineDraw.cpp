@@ -72,30 +72,27 @@ void RenderingEngine::Draw(RectangleShape const& rect)
 	}
 }
 
+
 /// \brief	Draws the grid at the center of the screen
 /// \param  gridSize The size of the grid
+/// \param  size The size of the blocks
 /// \param  formatedGrid The grid as a string
-void RenderingEngine::Draw(Vector2u const& gridSize, std::string const& formatedGrid)
+void RenderingEngine::Draw(Vector2u const& gridSize, USHORT const size, std::string const& formatedGrid)
 {
-	USHORT blockSize = 15;
-	USHORT borderThickness = blockSize * 2;
-	USHORT doubleBlockSize = blockSize * 2;
+	USHORT borderThickness = size * 2;
+	USHORT doubleBlockSize = size * 2;
 	USHORT playGroundThickness = borderThickness / 2;
 
-	USHORT width  = gridSize.x;
-	USHORT height = gridSize.y;
-	USHORT puzzleWidth  = width  * blockSize;
-	USHORT puzzleHeight = height * blockSize;
+	USHORT puzzleWidth  = gridSize.x * size;
+	USHORT puzzleHeight = gridSize.y * size;
 
-	USHORT centerX = m_window.GetWidth()  / 2;
-	USHORT centerY = m_window.GetHeight() / 2;
-	USHORT startX  = centerX - puzzleWidth;
-	USHORT startY  = centerY - puzzleHeight;
+	USHORT startX = m_window.GetWidth() / 2 - puzzleWidth;
+	USHORT startY = m_window.GetHeight() / 2 - puzzleHeight;
 
 	// Draws grey borders
-    Draw(RectangleShape(startX - borderThickness, startY - borderThickness,
+	Draw(RectangleShape(startX - borderThickness, startY - borderThickness,
 		puzzleHeight + borderThickness,
-		puzzleWidth  + borderThickness,
+		puzzleWidth + borderThickness,
 		Color::Grey));
 
 	// Draws puzzle background
@@ -105,8 +102,8 @@ void RenderingEngine::Draw(Vector2u const& gridSize, std::string const& formated
 		Color::Green));
 
 	// Draws grid
-	startX += blockSize;
-	startY += blockSize;
+	startX += size;
+	startY += size;
 	USHORT posX = startX;
 	USHORT posY = startY;
 
@@ -114,18 +111,18 @@ void RenderingEngine::Draw(Vector2u const& gridSize, std::string const& formated
 	{
 		switch (caseType)
 		{
-			case '#': Draw(RectangleShape(posX, posY, blockSize, blockSize, Color::Black));  break;
-			case '=': Draw(RectangleShape(posX, posY, blockSize, blockSize, Color::Black));  break;
-			case '|': Draw(RectangleShape(posX, posY, blockSize, blockSize, Color::Black));  break;
-			case 'E': Draw(RectangleShape(posX, posY, blockSize, blockSize, Color::Purple)); break;
-			case 'S': Draw(RectangleShape(posX, posY, blockSize, blockSize, Color::Red));    break;
-			case 'X': Draw(RectangleShape(posX, posY, blockSize, blockSize, Color::Blue));   break;
-			default: break;
+		case '#': Draw(RectangleShape(posX, posY, size, size, Color::Black));  break;
+		case '=': Draw(RectangleShape(posX, posY, size, size, Color::Black));  break;
+		case '|': Draw(RectangleShape(posX, posY, size, size, Color::Black));  break;
+		case 'E': Draw(RectangleShape(posX, posY, size, size, Color::Purple)); break;
+		case 'S': Draw(RectangleShape(posX, posY, size, size, Color::Red));    break;
+		case 'X': Draw(RectangleShape(posX, posY, size, size, Color::Blue));   break;
+		default: break;
 		}
 
 		posX += doubleBlockSize;
 
-		if(caseType == '\n')
+		if (caseType == '\n')
 		{
 			posX = startX;
 			posY += doubleBlockSize;
@@ -135,25 +132,24 @@ void RenderingEngine::Draw(Vector2u const& gridSize, std::string const& formated
 
 /// \brief	Draws a rectangle on the grid
 /// \param  gridSize The size of the grid
+/// \param  size The size of the blocks
 /// \param  X The x coordinate of the rectangle
 /// \param  Y The y coordinate of the rectangle
-void RenderingEngine::Draw(Vector2u const& gridSize, USHORT X, USHORT Y)
+void RenderingEngine::Draw(Vector2u const& gridSize, USHORT const size, USHORT X, USHORT Y)
 {
-	USHORT blockSize = 15;
-	USHORT doubleBlockSize = blockSize * 2;
+	USHORT doubleBlockSize = size * 2;
 
-	USHORT width = gridSize.x;
-	USHORT height = gridSize.y;
-	USHORT puzzleWidth = width  * blockSize;
-	USHORT puzzleHeight = height * blockSize;
+	USHORT startX = m_window.GetWidth() / 2  - gridSize.x * size + size;
+	USHORT startY = m_window.GetHeight() / 2 - gridSize.y * size + size;
 
-	USHORT centerX = m_window.GetWidth() / 2;
-	USHORT centerY = m_window.GetHeight() / 2;
-	USHORT startX = centerX - puzzleWidth;
-	USHORT startY = centerY - puzzleHeight;
+	Draw(RectangleShape(startX + X * doubleBlockSize, startY + Y * doubleBlockSize, size, size, Color::White));
+}
 
-	startX += blockSize;
-	startY += blockSize;
+/// \brief	Draws a rectangle on the grid
+/// \param  gridSize The size of the grid
+/// \param  size The size of the blocks
+/// \param  path The path to draw
+void RenderingEngine::Draw(Vector2u const& gridSize, USHORT const size, std::vector<Vector2u> const& path)
+{
 
-	Draw(RectangleShape(startX + X * doubleBlockSize, startY + Y * doubleBlockSize, blockSize, blockSize, Color::White));
 }

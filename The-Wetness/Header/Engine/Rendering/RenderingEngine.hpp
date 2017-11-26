@@ -12,6 +12,7 @@
 #include "Engine/Platform/Window/Window.hpp"
 
 #include "RectangleShape.hpp"
+#include <vector>
 
 class Grid;
 
@@ -32,8 +33,9 @@ public:
 	void Draw(char        const* text, USHORT x, USHORT y);
 	
 	// Grid draw methods
-	void Draw(Vector2u const& gridSize, USHORT x, USHORT y);
-	void Draw(Vector2u const& gridSize, std::string const& formatedGrid);
+	void Draw(Vector2u const& gridSize, USHORT const size, USHORT x, USHORT y);
+	void Draw(Vector2u const& gridSize, USHORT const size, std::string const& formatedGrid);
+	void Draw(Vector2u const& gridSize, USHORT const size, std::vector<Vector2u> const& path);
 	
 private:
 
