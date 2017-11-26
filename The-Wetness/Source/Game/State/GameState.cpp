@@ -76,6 +76,16 @@ std::string GameState::GetStringGrid(Grid const& grid) const
 	std::string formatedGrid(GetStringGrid(grid));
 	Vector2u gridSize(grid.getWidth() * 2, grid.getHeight() * 2);
 
-	Engine::pRendering->Draw(gridSize, 15, formatedGrid);
-	Engine::pRendering->Draw(gridSize, 15, 6, 6);
+	Engine::pRendering->Draw(gridSize, 20, formatedGrid);
+	Engine::pRendering->Draw(gridSize, 20, 6, 6);
+
+	std::vector<Vector2u> path;
+	path.push_back(Vector2u(0, 0));
+	path.push_back(Vector2u(0, 1));
+	path.push_back(Vector2u(0, 2));
+	path.push_back(Vector2u(1, 2));
+	path.push_back(Vector2u(2, 2));
+	path.push_back(Vector2u(3, 2));
+
+	Engine::pRendering->Draw(gridSize, 20, path);
 }

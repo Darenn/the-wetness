@@ -151,5 +151,13 @@ void RenderingEngine::Draw(Vector2u const& gridSize, USHORT const size, USHORT X
 /// \param  path The path to draw
 void RenderingEngine::Draw(Vector2u const& gridSize, USHORT const size, std::vector<Vector2u> const& path)
 {
+	USHORT doubleBlockSize = size * 2;
 
+	USHORT startX = m_window.GetWidth() / 2  - gridSize.x * size + size;
+	USHORT startY = m_window.GetHeight() / 2 - gridSize.y * size + size;
+
+	for(Vector2u const& pos : path)
+	{
+		Draw(RectangleShape(startX + pos.x * doubleBlockSize, startY + pos.y * doubleBlockSize, size, size, Color::Yellow));
+	}
 }
