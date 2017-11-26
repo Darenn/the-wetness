@@ -7,6 +7,9 @@
 #include "Game/State/GameState.hpp"
 #include "Generation/PuzzleGenerator.hpp"
 
+#include <sstream>
+#include <fstream>
+
 std::string GameState::GetStringGrid(Grid const& grid) const
 {
 	std::string formatedGrid = "";
@@ -35,7 +38,7 @@ std::string GameState::GetStringGrid(Grid const& grid) const
 			}
 			else
 			{
-				formatedGrid += ' ';
+				formatedGrid += "  ";
 			}
 		}
 		formatedGrid += '\n';
@@ -71,7 +74,8 @@ std::string GameState::GetStringGrid(Grid const& grid) const
 	Grid grid = pg.generateNextPuzzle();
 
 	std::string formatedGrid(GetStringGrid(grid));
-	Vector2u gridSize(grid.getWidth(), grid.getHeight());
+	Vector2u gridSize(grid.getWidth() * 2, grid.getHeight() * 2);
 
-	Engine::pRendering->Draw(formatedGrid, gridSize);
+	Engine::pRendering->Draw(gridSize, formatedGrid);
+	Engine::pRendering->Draw(gridSize, 6, 6);
 }

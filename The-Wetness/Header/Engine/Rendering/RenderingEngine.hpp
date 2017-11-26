@@ -32,9 +32,9 @@ public:
 	void Draw(char        const* text, USHORT x, USHORT y);
 	
 	// Grid draw methods
-	void Draw(std::string const& formatedGrid, Vector2u const& gridSize);
-	void Draw(std::string const& formatedGrid, Vector2u const& gridSize, USHORT x, USHORT y);
-
+	void Draw(Vector2u const& gridSize, USHORT x, USHORT y);
+	void Draw(Vector2u const& gridSize, std::string const& formatedGrid);
+	
 private:
 
 	// The engine canno't be constructed

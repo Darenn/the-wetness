@@ -3,7 +3,6 @@
 /// \package    Engine/Rendering
 /// \author     Vincent STEHLY--CALISTO
 
-#include "Generation/Grid/Grid.hpp"
 #include "Engine/Rendering/RectangleShape.hpp"
 #include "Engine/Rendering/RenderingEngine.hpp"
 
@@ -74,17 +73,17 @@ void RenderingEngine::Draw(RectangleShape const& rect)
 }
 
 /// \brief	Draws the grid at the center of the screen
-/// \param  formatedGrid The grid as a string
 /// \param  gridSize The size of the grid
-void RenderingEngine::Draw(std::string const& formatedGrid, Vector2u const& gridSize)
+/// \param  formatedGrid The grid as a string
+void RenderingEngine::Draw(Vector2u const& gridSize, std::string const& formatedGrid)
 {
 	USHORT blockSize = 15;
 	USHORT borderThickness = blockSize * 2;
 	USHORT doubleBlockSize = blockSize * 2;
 	USHORT playGroundThickness = borderThickness / 2;
 
-	USHORT width  = gridSize.x * 2;
-	USHORT height = gridSize.y * 2;
+	USHORT width  = gridSize.x;
+	USHORT height = gridSize.y;
 	USHORT puzzleWidth  = width  * blockSize;
 	USHORT puzzleHeight = height * blockSize;
 
@@ -135,11 +134,26 @@ void RenderingEngine::Draw(std::string const& formatedGrid, Vector2u const& grid
 }
 
 /// \brief	Draws a rectangle on the grid
-/// \param  formatedGrid The grid as a string
 /// \param  gridSize The size of the grid
 /// \param  X The x coordinate of the rectangle
 /// \param  Y The y coordinate of the rectangle
-void RenderingEngine::Draw(std::string const& formatedGrid, Vector2u const& gridSize, USHORT X, USHORT Y)
+void RenderingEngine::Draw(Vector2u const& gridSize, USHORT X, USHORT Y)
 {
-	// TODO
+	USHORT blockSize = 15;
+	USHORT doubleBlockSize = blockSize * 2;
+
+	USHORT width = gridSize.x;
+	USHORT height = gridSize.y;
+	USHORT puzzleWidth = width  * blockSize;
+	USHORT puzzleHeight = height * blockSize;
+
+	USHORT centerX = m_window.GetWidth() / 2;
+	USHORT centerY = m_window.GetHeight() / 2;
+	USHORT startX = centerX - puzzleWidth;
+	USHORT startY = centerY - puzzleHeight;
+
+	startX += blockSize;
+	startY += blockSize;
+
+	Draw(RectangleShape(startX + X * doubleBlockSize, startY + Y * doubleBlockSize, blockSize, blockSize, Color::White));
 }
