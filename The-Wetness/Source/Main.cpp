@@ -18,7 +18,7 @@ int main(int argc, char ** argv)
 
 	// Default initialization
 	gameEngine.SetInitFrameRate(90);
-	gameEngine.SetInitUpdateRate(60);
+	gameEngine.SetInitUpdateRate(90);
 	gameEngine.SetInitWindowTitle("The Witness");
 	gameEngine.SetInitWindowSize(Vector2u(1024, 768));
 	 

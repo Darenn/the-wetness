@@ -18,6 +18,37 @@ RenderingEngine::RenderingEngine(const RenderingEngine& other)
 	// None
 }
 
+void RenderingEngine::Draw(WCHAR value, WORD attribute, USHORT x, USHORT y)
+{
+	m_window.Draw(value, attribute, x, y);
+}
+
+void RenderingEngine::Draw(CHAR  value, WORD attribute, USHORT x, USHORT y)
+{
+	m_window.Draw(value, attribute, x, y);
+}
+
+void RenderingEngine::Draw(CHAR_INFO * pBuffer, USHORT h, USHORT w, USHORT x, USHORT y)
+{
+	m_window.Draw(pBuffer, h, w, x, y);
+}
+
+// Other draw methods
+void RenderingEngine::Draw(std::string const& text, USHORT x, USHORT y)
+{
+	Draw(text.c_str(), x, y);
+}
+
+void RenderingEngine::Draw(char const * text, USHORT x, USHORT y)
+{
+	while(*text)
+	{
+		m_window.Draw(*text, 0x0F, x, y);
+		++x;
+		++text;
+	}	
+}
+
 /// \brief	Initializes the rendering engine from parameters
 /// \param  title The title of the window
 /// \param  size The size of the window
@@ -41,8 +72,6 @@ void RenderingEngine::Initialize(const std::string & title, const Vector2u & siz
 ///         of the engine in the frame
 void RenderingEngine::Render(float interpolate)
 {
-	m_window.Clear();
-
 	float current = m_timer.GetElaspedTime();
 	if(current - m_fpsTimer >= 1.0f)
 	{
@@ -56,6 +85,8 @@ void RenderingEngine::Render(float interpolate)
 	{
 		m_elapsedTime = current;
 		m_window.Display();
+		m_window.Clear();
+
 		m_frameCount++;
 	}
 }

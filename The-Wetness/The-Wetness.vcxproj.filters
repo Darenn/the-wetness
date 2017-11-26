@@ -185,6 +185,9 @@
     <ClInclude Include="Header\Generation\GA\GA_Algorithms.hpp">
       <Filter>Fichiers d%27en-tête\Generation\GA</Filter>
     </ClInclude>
+    <ClInclude Include="Header\Engine\Rendering\Rectangle.hpp">
+      <Filter>Fichiers d%27en-tête\Engine\Rendering</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Header\Engine\AI\Navigation\Impl\SquareGrid.inl">
@@ -257,6 +260,9 @@
     </ClCompile>
     <ClCompile Include="Source\Generation\GA\FitnessEvaluator.cpp">
       <Filter>Fichiers sources\Generation\GA</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Rendering\Rectangle.cpp">
+      <Filter>Fichiers sources\Engine\Rendering</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

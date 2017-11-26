@@ -17,6 +17,15 @@ class RenderingEngine
 {
 public:
 
+	// Primitive draw methods
+	void Draw(WCHAR value, WORD attribute, USHORT x, USHORT y);
+	void Draw(CHAR  value, WORD attribute, USHORT x, USHORT y);
+	void Draw(CHAR_INFO * pBuffer, USHORT h, USHORT w, USHORT x, USHORT y);
+
+	// Other draw methods
+	void Draw(std::string const& text, USHORT x, USHORT y);
+	void Draw(char const * text, USHORT x, USHORT y);
+
 
 private:
 
