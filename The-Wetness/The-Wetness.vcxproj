@@ -31,7 +31,8 @@
     <ClInclude Include="Header\Engine\Maths\Vector3.hpp" />
     <ClInclude Include="Header\Engine\Platform\Time\Timer.hpp" />
     <ClInclude Include="Header\Engine\Platform\Window\Window.hpp" />
-    <ClInclude Include="Header\Engine\Rendering\Rectangle.hpp" />
+    <ClInclude Include="Header\Engine\Rendering\Color.hpp" />
+    <ClInclude Include="Header\Engine\Rendering\RectangleShape.hpp" />
     <ClInclude Include="Header\Engine\Rendering\RenderingEngine.hpp" />
     <ClInclude Include="Header\Game\State\GameState.hpp" />
     <ClInclude Include="Header\Generation\GA\ConformityEvaluator.hpp" />
@@ -60,8 +61,10 @@
     <ClCompile Include="Source\Engine\GameEngine.cpp" />
     <ClCompile Include="Source\Engine\Platform\Time\Timer.cpp" />
     <ClCompile Include="Source\Engine\Platform\Window\Window.cpp" />
-    <ClCompile Include="Source\Engine\Rendering\Rectangle.cpp" />
+    <ClCompile Include="Source\Engine\Rendering\Color.cpp" />
+    <ClCompile Include="Source\Engine\Rendering\RectangleShape.cpp" />
     <ClCompile Include="Source\Engine\Rendering\RenderingEngine.cpp" />
+    <ClCompile Include="Source\Engine\Rendering\RenderingEngineDraw.cpp" />
     <ClCompile Include="Source\Game\State\GameState.cpp" />
     <ClCompile Include="Source\Generation\GA\ConformityEvaluator.cpp" />
     <ClCompile Include="Source\Generation\GA\DifficultyManager.cpp" />

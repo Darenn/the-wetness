@@ -30,6 +30,11 @@
 /// \param  dt The elapsed time since the last frame
 /* virtual */ void GameState::Update(float dt)
 {
-	Engine::pRendering->Draw('X', 0x0F, 10, 6);
-	Engine::pRendering->Draw(std::string("Game Engine !"), 10, 6);
+	//Engine::pRendering->Draw('X', 0x0F, 10, 6);
+	//Engine::pRendering->Draw(std::string("Game Engine !"), 10, 6);
+	//Engine::pRendering->Draw(RectangleShape(5, 5, 7, 15, Color(Color::EColor::RED)));
+
+	PuzzleGenerator pg;
+	Grid grid = pg.generateNextPuzzle();
+	Engine::pRendering->Draw(grid);
 }

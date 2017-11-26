@@ -185,7 +185,10 @@
     <ClInclude Include="Header\Generation\GA\GA_Algorithms.hpp">
       <Filter>Fichiers d%27en-tête\Generation\GA</Filter>
     </ClInclude>
-    <ClInclude Include="Header\Engine\Rendering\Rectangle.hpp">
+    <ClInclude Include="Header\Engine\Rendering\Color.hpp">
+      <Filter>Fichiers d%27en-tête\Engine\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Engine\Rendering\RectangleShape.hpp">
       <Filter>Fichiers d%27en-tête\Engine\Rendering</Filter>
     </ClInclude>
   </ItemGroup>
@@ -261,7 +264,13 @@
     <ClCompile Include="Source\Generation\GA\FitnessEvaluator.cpp">
       <Filter>Fichiers sources\Generation\GA</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Engine\Rendering\Rectangle.cpp">
+    <ClCompile Include="Source\Engine\Rendering\RectangleShape.cpp">
+      <Filter>Fichiers sources\Engine\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Rendering\RenderingEngineDraw.cpp">
+      <Filter>Fichiers sources\Engine\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Rendering\Color.cpp">
       <Filter>Fichiers sources\Engine\Rendering</Filter>
     </ClCompile>
   </ItemGroup>

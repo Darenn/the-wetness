@@ -47,7 +47,7 @@ void Window::Open(const std::string & title, const Vector2u & size, bool debug)
 	assert(INVALID_HANDLE_VALUE != m_pSTDOutput);
 
 	SetTitle(m_title);
-	// SetCharacterSize(1);
+	SetCharacterSize(1);
 	SetWindowSize(m_windowSize);
 
 	// Buffering screen rect
@@ -102,12 +102,12 @@ void Window::SetCharacterSize(unsigned short size)
 	consoleFontInfo.nFont        = 0;
 	consoleFontInfo.cbSize		 = sizeof(consoleFontInfo);
 	consoleFontInfo.FontFamily   = FF_DONTCARE;
-	consoleFontInfo.FontWeight   = FW_DEMIBOLD;
-	consoleFontInfo.dwFontSize.X = static_cast<short>(size);
-	consoleFontInfo.dwFontSize.Y = static_cast<short>(size);
+	consoleFontInfo.FontWeight   = FW_DONTCARE;
+	consoleFontInfo.dwFontSize.X = size;
+	consoleFontInfo.dwFontSize.Y = size;
 	
 	// Font name copy
-	std::wcscpy(consoleFontInfo.FaceName, L"Consolas");
+	std::wcscpy(consoleFontInfo.FaceName, L"Lucida Console");
 
 	// Updates the console info ...
 	SetCurrentConsoleFontEx(m_pSTDOutput, FALSE, &consoleFontInfo);
@@ -209,7 +209,7 @@ void Window::Display(void)
 {
 	if (m_debug)
 	{
-		DrawDebugInformations();
+		// DrawDebugInformations();
 	}
 
 	// Sends the current buffer to the windows console's buffer

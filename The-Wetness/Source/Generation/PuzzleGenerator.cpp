@@ -13,7 +13,7 @@ Grid PuzzleGenerator::generateNextPuzzle()
 
 	for (auto i = 0; i < NUM_ITER; ++i)
 	{
-		std::cout << i << " iterations done." << std::endl;
+		//std::cout << i << " iterations done." << std::endl;
 		GA_Algorithms::Population offspring{};
 		for (auto j = 0; j < population.size(); j++)
 		{
@@ -53,7 +53,7 @@ Grid PuzzleGenerator::generateNextPuzzle()
 		std::cout << population[i].second << std::endl;
 		std::cout << g << std::endl;
 	}*/
-	std::cout << _gridDecoder.decode(best.first) << std::endl;
+	//std::cout << _gridDecoder.decode(best.first) << std::endl;
 	return _gridDecoder.decode(best.first);
 }
 

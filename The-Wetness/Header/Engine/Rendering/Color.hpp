@@ -16,6 +16,7 @@ public:
 
 	enum class EColor : USHORT
 	{
+		BLACK  = 0x0000,
 		GREY   = 0x0008,
 		BLUE   = 0x0009,
 		GREEN  = 0x000A,

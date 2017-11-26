@@ -11,6 +11,10 @@
 #include "Engine/Platform/Time/Timer.hpp"
 #include "Engine/Platform/Window/Window.hpp"
 
+#include "RectangleShape.hpp"
+
+class Grid;
+
 /// \class  RenderingEngine
 /// \brief  Handles rendering, FPS etc.
 class RenderingEngine
@@ -25,7 +29,8 @@ public:
 	// Other draw methods
 	void Draw(std::string const& text, USHORT x, USHORT y);
 	void Draw(char const * text, USHORT x, USHORT y);
-
+	void Draw(RectangleShape const& rect);
+	void Draw(Grid const& grid);
 
 private:
 

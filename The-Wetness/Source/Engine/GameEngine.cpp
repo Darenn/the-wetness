@@ -97,6 +97,7 @@ void GameEngine::Start(void)
 
 			// Retrieve elapsed time
 			lag -= m_granularity;
+			m_pRenderingEngine->Render(lag / m_granularity);
 		}
 
 		// Rendering ...
