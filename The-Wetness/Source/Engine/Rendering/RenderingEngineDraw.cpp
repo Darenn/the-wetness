@@ -49,18 +49,15 @@ void RenderingEngine::Draw(RectangleShape const& rect)
 	}
 }
 
-void RenderingEngine::Draw(Grid const& grid)
+void RenderingEngine::Draw(std::string const& formatedGrid, Vector2u const& gridSize)
 {
-	USHORT offsetX = 0;
-	USHORT offsetY = 0;
-	
 	USHORT blockSize = 15;
 	USHORT borderThickness = blockSize * 2;
 	USHORT doubleBlockSize = blockSize * 2;
 	USHORT playGroundThickness = borderThickness / 2;
 
-	USHORT width  = grid.getWidth()  * 2;
-	USHORT height = grid.getHeight() * 2;
+	USHORT width  = gridSize.x * 2;
+	USHORT height = gridSize.y * 2;
 	USHORT puzzleWidth  = width * blockSize;
 	USHORT puzzleHeight = height * blockSize;
 
@@ -76,7 +73,7 @@ void RenderingEngine::Draw(Grid const& grid)
 		startY - borderThickness,
 		puzzleHeight + borderThickness,
 		puzzleWidth  + borderThickness,
-		Color(Color::EColor::GREY)));
+		Color::Grey));
 
 	// Draws puzzle background
 	Draw(RectangleShape(
@@ -84,72 +81,40 @@ void RenderingEngine::Draw(Grid const& grid)
 		startY - playGroundThickness,
 		puzzleHeight + playGroundThickness,
 		puzzleWidth + playGroundThickness,
-		Color(Color::EColor::GREEN)));
+		Color::Green));
 
-	// Draws path
+	// Draws grid
 	startX += blockSize;
 	startY += blockSize;
 	USHORT posX = startX;
 	USHORT posY = startY;
-
-	std::string formatedGrid = "";
-	for (size_t i = 0; i < grid.getWidth(); i++)
-	{
-		for (size_t j = 0; j < grid.getHeight(); j++)
-		{
-			Grid::Coordinates node{ j, i };
-			formatedGrid += static_cast<char>(grid.getData(node));
-			if (grid.isLinkedWithNeighbor(node, Grid::Direction::EAST))
-			{
-				formatedGrid += '=';
-			}	
-			else
-			{
-				formatedGrid += ' ';
-			}
-		}
-		formatedGrid += '\n';
-		for (size_t j = 0; j < grid.getHeight(); j++)
-		{
-			Grid::Coordinates node{ j, i };
-			if (grid.isLinkedWithNeighbor(node, Grid::Direction::SOUTH))
-			{
-				formatedGrid += "| ";
-			}
-			else
-			{
-				formatedGrid += ' ';
-			}
-		}
-		formatedGrid += '\n';
-	}
 
 	for (char caseType : formatedGrid)
 	{
 		switch (caseType)
 		{
 		case '#':
-			Draw(RectangleShape(posX, posY, blockSize, blockSize, Color(Color::EColor::BLACK)));
+			Draw(RectangleShape(posX, posY, blockSize, blockSize, Color::Black));
 			posX += doubleBlockSize;
 			break;
 
 		case '=':
-			Draw(RectangleShape(posX, posY, blockSize, blockSize, Color(Color::EColor::BLACK)));
+			Draw(RectangleShape(posX, posY, blockSize, blockSize, Color::Black));
 			posX += doubleBlockSize;
 			break;
 
 		case '|':
-			Draw(RectangleShape(posX, posY, blockSize, blockSize, Color(Color::EColor::BLACK)));
+			Draw(RectangleShape(posX, posY, blockSize, blockSize, Color::Black));
 			posX += doubleBlockSize;
 			break;
 
 		case 'E':
-			Draw(RectangleShape(posX, posY, blockSize, blockSize, Color(Color::EColor::PURPLE)));
+			Draw(RectangleShape(posX, posY, blockSize, blockSize, Color::Purple));
 			posX += doubleBlockSize;
 			break;
 
 		case 'S':
-			Draw(RectangleShape(posX, posY, blockSize, blockSize, Color(Color::EColor::RED)));
+			Draw(RectangleShape(posX, posY, blockSize, blockSize, Color::Red));
 			posX += doubleBlockSize;
 			break;
 
@@ -159,7 +124,7 @@ void RenderingEngine::Draw(Grid const& grid)
 			break;
 
 		case 'X':
-			Draw(RectangleShape(posX, posY, blockSize, blockSize, Color(Color::EColor::BLUE)));
+			Draw(RectangleShape(posX, posY, blockSize, blockSize, Color::Blue));
 			posX += doubleBlockSize;
 			break;
 
@@ -171,4 +136,9 @@ void RenderingEngine::Draw(Grid const& grid)
 			break;
 		}
 	}
+}
+
+void RenderingEngine::Draw(std::string const& formatedGrid, Vector2u const& gridSize, USHORT X, USHORT Y)
+{
+	// TODO
 }

@@ -26,7 +26,17 @@ public:
 		WHITE  = 0x000F,
 	};
 
+	static Color const Black;
+	static Color const Grey;
+	static Color const Blue;
+	static Color const Green;
+	static Color const Red;
+	static Color const Purple;
+	static Color const Yellow;
+	static Color const White;
+
 	Color();
+	Color(Color const& other);
 	explicit Color(EColor color);
 	explicit Color(USHORT attribute);
 

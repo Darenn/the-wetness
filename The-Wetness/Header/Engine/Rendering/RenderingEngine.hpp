@@ -27,10 +27,13 @@ public:
 	void Draw(CHAR_INFO * pBuffer, USHORT h, USHORT w, USHORT x, USHORT y);
 
 	// Other draw methods
-	void Draw(std::string const& text, USHORT x, USHORT y);
-	void Draw(char const * text, USHORT x, USHORT y);
 	void Draw(RectangleShape const& rect);
-	void Draw(Grid const& grid);
+	void Draw(std::string const& text, USHORT x, USHORT y);
+	void Draw(char        const* text, USHORT x, USHORT y);
+	
+	// Grid draw methods
+	void Draw(std::string const& formatedGrid, Vector2u const& gridSize);
+	void Draw(std::string const& formatedGrid, Vector2u const& gridSize, USHORT x, USHORT y);
 
 private:
 

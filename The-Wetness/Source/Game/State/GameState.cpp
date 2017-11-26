@@ -7,6 +7,43 @@
 #include "Game/State/GameState.hpp"
 #include "Generation/PuzzleGenerator.hpp"
 
+std::string GameState::GetStringGrid(Grid const& grid) const
+{
+	std::string formatedGrid = "";
+	for (size_t i = 0; i < grid.getWidth(); i++)
+	{
+		for (size_t j = 0; j < grid.getHeight(); j++)
+		{
+			Grid::Coordinates node{ j, i };
+			formatedGrid += static_cast<char>(grid.getData(node));
+			if (grid.isLinkedWithNeighbor(node, Grid::Direction::EAST))
+			{
+				formatedGrid += '=';
+			}
+			else
+			{
+				formatedGrid += ' ';
+			}
+		}
+		formatedGrid += '\n';
+		for (size_t j = 0; j < grid.getHeight(); j++)
+		{
+			Grid::Coordinates node{ j, i };
+			if (grid.isLinkedWithNeighbor(node, Grid::Direction::SOUTH))
+			{
+				formatedGrid += "| ";
+			}
+			else
+			{
+				formatedGrid += ' ';
+			}
+		}
+		formatedGrid += '\n';
+	}
+
+	return formatedGrid;
+}
+
 /// \brief	Destructor
 /* virtual */ GameState::~GameState(void)
 {
@@ -30,11 +67,11 @@
 /// \param  dt The elapsed time since the last frame
 /* virtual */ void GameState::Update(float dt)
 {
-	//Engine::pRendering->Draw('X', 0x0F, 10, 6);
-	//Engine::pRendering->Draw(std::string("Game Engine !"), 10, 6);
-	//Engine::pRendering->Draw(RectangleShape(5, 5, 7, 15, Color(Color::EColor::RED)));
-
 	PuzzleGenerator pg;
 	Grid grid = pg.generateNextPuzzle();
-	Engine::pRendering->Draw(grid);
+
+	std::string formatedGrid(GetStringGrid(grid));
+	Vector2u gridSize(grid.getWidth(), grid.getHeight());
+
+	Engine::pRendering->Draw(formatedGrid, gridSize);
 }

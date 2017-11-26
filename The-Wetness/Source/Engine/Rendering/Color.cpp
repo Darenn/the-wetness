@@ -12,6 +12,13 @@
 	// None
 }
 
+/// \brief	Copy constructor
+/* explicit */ Color::Color(Color const& other)
+: attribute(other.attribute)
+{
+	// None
+}
+
 /// \brief	Constructor
 /// \param  color The color enum
 /* explicit */ Color::Color(EColor color)
@@ -27,3 +34,12 @@
 {
 	// None
 }
+
+/* static */ Color const Color::Black  = Color(Color::EColor::BLACK);
+/* static */ Color const Color::Grey   = Color(Color::EColor::GREY);;
+/* static */ Color const Color::Blue   = Color(Color::EColor::BLUE);
+/* static */ Color const Color::Green  = Color(Color::EColor::GREEN);
+/* static */ Color const Color::Red    = Color(Color::EColor::RED);
+/* static */ Color const Color::Purple = Color(Color::EColor::PURPLE);
+/* static */ Color const Color::Yellow = Color(Color::EColor::YELLOW);
+/* static */ Color const Color::White  = Color(Color::EColor::WHITE);
