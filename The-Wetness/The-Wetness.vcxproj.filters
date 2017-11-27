@@ -105,6 +105,18 @@
     <Filter Include="Fichiers sources\Generation\Utility">
       <UniqueIdentifier>{ccbb6eb8-8dfd-4653-80d7-6a91b8778223}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers d%27en-tête\Engine\Sound">
+      <UniqueIdentifier>{0a227020-bcc9-405d-8efc-91aa11e05e09}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Engine\Sound">
+      <UniqueIdentifier>{6b4c722c-b8e5-4c04-82f0-2837d367de43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Engine\Utility">
+      <UniqueIdentifier>{5dc86bf9-08ca-4021-93e8-4c910ee36475}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Engine\Utility">
+      <UniqueIdentifier>{5ac8313e-5fb1-4c6a-bc35-54ac2c5c8e95}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\Engine\Engine.hpp">
@@ -191,6 +203,12 @@
     <ClInclude Include="Header\Engine\Rendering\RectangleShape.hpp">
       <Filter>Fichiers d%27en-tête\Engine\Rendering</Filter>
     </ClInclude>
+    <ClInclude Include="Header\Engine\Sound\SoundEngine.hpp">
+      <Filter>Fichiers d%27en-tête\Engine\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Engine\Utility\StringUtility.hpp">
+      <Filter>Fichiers d%27en-tête\Engine\Utility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Header\Engine\AI\Navigation\Impl\SquareGrid.inl">
@@ -272,6 +290,12 @@
     </ClCompile>
     <ClCompile Include="Source\Engine\Rendering\Color.cpp">
       <Filter>Fichiers sources\Engine\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Sound\SoundEngine.cpp">
+      <Filter>Fichiers sources\Engine\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Utility\StringUtility.cpp">
+      <Filter>Fichiers sources\Engine\Utility</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

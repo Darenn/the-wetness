@@ -6,14 +6,16 @@
 #ifndef _ENGINE_HPP
 #define _ENGINE_HPP
 
-#include "AI\State\StateMachine.hpp"
-#include "Rendering\RenderingEngine.hpp"
+#include "Sound/SoundEngine.hpp"
+#include "AI/State/StateMachine.hpp"
+#include "Rendering/RenderingEngine.hpp"
 
 /// \brief	TODO
 struct Engine
 {
 	static RenderingEngine * const pRendering;
 	static StateMachine    * const pStateMachine;
+	static SoundEngine     * const pSoundEngine;
 };
 
 #endif // _ENGINE_HPP

@@ -4,10 +4,12 @@
 /// \author     Vincent STEHLY--CALISTO
 
 #include "Engine/GameEngine.hpp"
+#include "Engine/Utility/StringUtility.hpp"
 
 /// \brief	Constructor
-GameEngine::GameEngine(void)
+GameEngine::GameEngine(char const* env)
 : m_pStateMachine(Engine::pStateMachine)
+, m_pSoundEngine(Engine::pSoundEngine)
 , m_pRenderingEngine(Engine::pRendering)
 {
 	m_debug   = false;
@@ -18,6 +20,9 @@ GameEngine::GameEngine(void)
 	m_windowSize.x = 500;
 	m_windowSize.y = 500;
 	m_windowTitle  = "The Wetness";
+	m_environment  = env;
+
+	m_resourceFolder = GetResourcePath(m_environment);
 }
 
 /// \brief	Tells if the engine is in debug mode or not
@@ -71,6 +76,7 @@ void GameEngine::Initialize(void)
 	m_running = false;
 
 	// Rendering configuration
+	m_pSoundEngine->Initialize(m_resourceFolder);
 	m_pRenderingEngine->Initialize(m_windowTitle, m_windowSize, m_fps, m_debug);
 }
 

@@ -7,3 +7,4 @@
 
 /* static */ RenderingEngine * const Engine::pRendering    = new RenderingEngine();
 /* static */ StateMachine    * const Engine::pStateMachine = new StateMachine();
+/* static */ SoundEngine     * const Engine::pSoundEngine  = new SoundEngine();

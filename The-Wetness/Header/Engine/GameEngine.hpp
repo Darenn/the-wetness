@@ -21,7 +21,7 @@ class GameEngine
 {
 public:
 
-	explicit GameEngine(void);
+	explicit GameEngine(char const* env);
 
 	void SetInitDebug       (bool debug);
 	void SetInitFrameRate	(float fps);
@@ -40,8 +40,11 @@ private:
 	float			m_granularity;
 	Vector2u		m_windowSize;
 	std::string		m_windowTitle;
+	std::string     m_environment;
+	std::string     m_resourceFolder;
 
 	StateMachine    * const m_pStateMachine;
+	SoundEngine     * const m_pSoundEngine;
 	RenderingEngine * const m_pRenderingEngine;
 };
 

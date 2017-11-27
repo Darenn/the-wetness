@@ -58,6 +58,7 @@ std::string GameState::GetStringGrid(Grid const& grid) const
 {
 	// PuzzleGenerator pg;
 	// pg.generateNextPuzzle();
+	Engine::pSoundEngine->Play("canary.wav", SND_ASYNC);
 }
 
 /// \brief	Called when the state is removed

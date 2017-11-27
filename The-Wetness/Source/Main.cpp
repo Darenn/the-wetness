@@ -14,7 +14,7 @@ int main(int argc, char ** argv)
 {
 	// Creating an instance of the game engine
 	// to initialize from command line params.
-	GameEngine gameEngine;
+	GameEngine gameEngine(argv[0]);
 
 	// Default initialization
 	gameEngine.SetInitFrameRate(90);
@@ -30,12 +30,13 @@ int main(int argc, char ** argv)
 		}
 	}
 
+	// The game engine is now initialized.
+	gameEngine.Initialize();
+
 	// Pushing the first state : WIP
 	Engine::pStateMachine->PushState<GameState>("GameState");
 
-	// The game engine is now initialized.
 	// Starting the game loop
-	gameEngine.Initialize();
 	gameEngine.Start();
 
 	return EXIT_SUCCESS;
