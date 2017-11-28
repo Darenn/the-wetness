@@ -88,5 +88,5 @@ std::string GameState::GetStringGrid(Grid const& grid) const
 	path.push_back(Vector2u(2, 2));
 	path.push_back(Vector2u(3, 2));
 
-	// Engine::pRendering->Draw(gridSize, 15, path);
+	Engine::pRendering->Draw(gridSize, 15, path, Color::Red);
 }

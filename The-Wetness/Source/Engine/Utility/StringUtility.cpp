@@ -14,6 +14,8 @@ std::string GetResourcePath(std::string const& env)
 	std::string projectName    { "The-Wetness" };
 	std::string resourceFolder { "Resource" };
 
+	std::string x;
+
 	// Searches the first occurrence of the project name in env path
 	size_t projectIndex = env.find(projectName);
 

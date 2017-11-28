@@ -99,7 +99,7 @@ void RenderingEngine::Draw(Vector2u const& gridSize, USHORT const size, std::str
 	Draw(RectangleShape(startX - playGroundThickness, startY - playGroundThickness,
 		puzzleHeight + playGroundThickness,
 		puzzleWidth + playGroundThickness,
-		Color::Green));
+		Color::Blue));
 
 	// Draws grid
 	startX += size;
@@ -114,9 +114,9 @@ void RenderingEngine::Draw(Vector2u const& gridSize, USHORT const size, std::str
 		case '#': Draw(RectangleShape(posX, posY, size, size, Color::Black));  break;
 		case '=': Draw(RectangleShape(posX, posY, size, size, Color::Black));  break;
 		case '|': Draw(RectangleShape(posX, posY, size, size, Color::Black));  break;
-		case 'E': Draw(RectangleShape(posX, posY, size, size, Color::Purple)); break;
-		case 'S': Draw(RectangleShape(posX, posY, size, size, Color::Red));    break;
-		case 'X': Draw(RectangleShape(posX, posY, size, size, Color::Blue));   break;
+		case 'E': Draw(RectangleShape(posX, posY, size, size, Color::Black));  break;
+		case 'S': Draw(RectangleShape(posX, posY, size, size, Color::Green));  break;
+		case 'X': Draw(RectangleShape(posX, posY, size, size, Color::Yellow)); break;
 		default: break;
 		}
 
@@ -149,7 +149,8 @@ void RenderingEngine::Draw(Vector2u const& gridSize, USHORT const size, USHORT X
 /// \param  gridSize The size of the grid
 /// \param  size The size of the blocks
 /// \param  path The path to draw
-void RenderingEngine::Draw(Vector2u const& gridSize, USHORT const size, std::vector<Vector2u> const& path)
+/// \param  color The color of the path
+void RenderingEngine::Draw(Vector2u const& gridSize, USHORT const size, std::vector<Vector2u> const& path, Color const& color)
 {
 	USHORT doubleBlockSize = size * 2;
 
@@ -158,6 +159,6 @@ void RenderingEngine::Draw(Vector2u const& gridSize, USHORT const size, std::vec
 
 	for(Vector2u const& pos : path)
 	{
-		Draw(RectangleShape(startX + pos.x * doubleBlockSize, startY + pos.y * doubleBlockSize, size, size, Color::Yellow));
+		Draw(RectangleShape(startX + pos.x * doubleBlockSize, startY + pos.y * doubleBlockSize, size, size, color));
 	}
 }
