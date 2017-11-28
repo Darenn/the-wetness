@@ -64,13 +64,13 @@ public:
 	std::vector<std::vector<Coordinates>> getWinningPaths(const std::vector<std::vector<Coordinates>>&) const;
 	bool isWinningPath(const std::vector<Coordinates>&) const;
 	std::vector<Coordinates> getDatas(Data d) const;
-
 	void setLinkToAllNeighbors(Coordinates coord, bool linked);
-
 	void setLinkToAllNeighbors(int gridIndex, bool linked);
+	string toString() {
+
+	}
 
 	friend std::ostream &operator<<(std::ostream &output, const Grid &D);
-
 	Grid& operator=(const Grid& grid);
 
 private:
