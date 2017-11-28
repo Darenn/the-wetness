@@ -114,8 +114,8 @@ void RenderingEngine::Draw(Vector2u const& gridSize, USHORT const size, std::str
 		case '#': Draw(RectangleShape(posX, posY, size, size, Color::Black));  break;
 		case '=': Draw(RectangleShape(posX, posY, size, size, Color::Black));  break;
 		case '|': Draw(RectangleShape(posX, posY, size, size, Color::Black));  break;
-		case 'E': Draw(RectangleShape(posX, posY, size, size, Color::Black));  break;
-		case 'S': Draw(RectangleShape(posX, posY, size, size, Color::Green));  break;
+		case 'S': Draw(RectangleShape(posX, posY, size, size, Color::Black));  break;
+		case 'E': Draw(RectangleShape(posX, posY, size, size, Color::Green));  break;
 		case 'X': Draw(RectangleShape(posX, posY, size, size, Color::Yellow)); break;
 		default: break;
 		}
