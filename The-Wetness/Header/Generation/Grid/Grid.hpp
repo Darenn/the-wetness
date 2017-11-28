@@ -66,8 +66,40 @@ public:
 	std::vector<Coordinates> getDatas(Data d) const;
 	void setLinkToAllNeighbors(Coordinates coord, bool linked);
 	void setLinkToAllNeighbors(int gridIndex, bool linked);
-	string toString() {
+	std::string toString() {
+		std::string formatedGrid = "";
+		for (size_t i = 0; i < getWidth(); i++)
+		{
+			for (size_t j = 0; j < getHeight(); j++)
+			{
+				Grid::Coordinates node{ j, i };
+				formatedGrid += static_cast<char>(getData(node));
+				if (isLinkedWithNeighbor(node, Grid::Direction::EAST))
+				{
+					formatedGrid += '=';
+				}
+				else
+				{
+					formatedGrid += ' ';
+				}
+			}
+			formatedGrid += '\n';
+			for (size_t j = 0; j < getHeight(); j++)
+			{
+				Grid::Coordinates node{ j, i };
+				if (isLinkedWithNeighbor(node, Grid::Direction::SOUTH))
+				{
+					formatedGrid += "| ";
+				}
+				else
+				{
+					formatedGrid += "  ";
+				}
+			}
+			formatedGrid += '\n';
+		}
 
+		return formatedGrid;
 	}
 
 	friend std::ostream &operator<<(std::ostream &output, const Grid &D);
