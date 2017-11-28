@@ -35,7 +35,7 @@ public:
 	// Grid draw methods
 	void Draw(Vector2u const& gridSize, USHORT const size, USHORT x, USHORT y);
 	void Draw(Vector2u const& gridSize, USHORT const size, std::string const& formatedGrid);
-	void Draw(Vector2u const& gridSize, USHORT const size, std::vector<Vector2u> const& path);
+	void Draw(Vector2u const& gridSize, USHORT const size, std::vector<Vector2u> const& path, Color const& color);
 	
 private:
 
