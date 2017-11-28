@@ -17,8 +17,8 @@ public:
 	Grid generateNextPuzzle();
 	const unsigned GENERATION_SIZE = 20;
 	const unsigned NUM_ITER        = 30;
-	const unsigned GRID_WIDTH      = 7;
-	const unsigned GRID_HEIGHT     = 7;
+	const unsigned GRID_WIDTH      = 3;
+	const unsigned GRID_HEIGHT     = 3;
 
 private:
 	GA_Algorithms::Population initializePopulation(int numChromosomes);
