@@ -11,21 +11,23 @@
 std::string GetResourcePath(std::string const& env)
 {
 	std::string separator      { "\\" };
-	std::string projectName    { "The-Wetness" };
 	std::string resourceFolder { "Resource" };
 
-	std::string x;
+	std::string projectRootUper  { "The-Wetness" };
+	std::string projectRootLower { "the-wetness" };
 
+	std::string projectRoot = (env.find(projectRootUper) != std::string::npos) ? projectRootUper : projectRootLower;
+	
 	// Searches the first occurrence of the project name in env path
-	size_t projectIndex = env.find(projectName);
+	size_t projectIndex = env.find(projectRoot);
 
 	// Constructs a string containing the project path
 	std::string resourceFolderPath { env.begin(), env.begin() + projectIndex };
 
 	// Concatenates with the resource folder
-	resourceFolderPath += projectName + separator + 
-						  projectName + separator + 
-		                  resourceFolder + separator;
+	resourceFolderPath += projectRoot     + separator +
+						  projectRootUper + separator +
+		                  resourceFolder  + separator;
 
 	return resourceFolderPath;
 }
