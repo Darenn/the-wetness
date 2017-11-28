@@ -24,8 +24,17 @@ public:
 
 private:
 
-	// Moves this method
-	std::string GetStringGrid(Grid const& grid) const;
+	const USHORT NODE_SIZE = 15; // in pixels
+
+	PuzzleGenerator m_puzzleGenerator;
+	Grid m_currentGrid;
+	Vector2u m_playerPosition;
+	std::vector<Vector2u> m_playerPath;
+	Timer m_inputTimer;
+
+	void render();
+	void handleInput();
+	bool hasWon();
 };
 
 #endif // _GAME_STATE_HPP

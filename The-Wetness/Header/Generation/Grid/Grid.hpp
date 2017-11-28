@@ -27,6 +27,9 @@ public:
 
 	const size_t NEIGHBORS_COUNT = 4;
 
+	Grid() {
+		Grid(0, 0);
+	}
 	Grid(int width, int height);
 	~Grid();
 
@@ -47,6 +50,13 @@ public:
 	{
 		if (!hasNeighbor(coord, neighborDirection)) return false;
 		return m_nodesLinks[getLinkIndex(coord, neighborDirection)];
+	}
+	bool isInBounds(Coordinates coord) {
+		if (coord.x < 0) return false;
+		else if (coord.x >= _width) return false;
+		else if (coord.y < 0) return false;
+		else if (coord.y >= _height) return false;
+		else return true;
 	}
 	bool isLinkedWithNeighbor(size_t gridIndex, Direction neighborDirection) const;
 	void setLinkWithNeighbor(int gridIndex, Direction neighborDirection, bool linked);

@@ -10,42 +10,6 @@
 #include <sstream>
 #include <fstream>
 
-std::string GameState::GetStringGrid(Grid const& grid) const
-{
-	std::string formatedGrid = "";
-	for (size_t i = 0; i < grid.getWidth(); i++)
-	{
-		for (size_t j = 0; j < grid.getHeight(); j++)
-		{
-			Grid::Coordinates node{ j, i };
-			formatedGrid += static_cast<char>(grid.getData(node));
-			if (grid.isLinkedWithNeighbor(node, Grid::Direction::EAST))
-			{
-				formatedGrid += '=';
-			}
-			else
-			{
-				formatedGrid += ' ';
-			}
-		}
-		formatedGrid += '\n';
-		for (size_t j = 0; j < grid.getHeight(); j++)
-		{
-			Grid::Coordinates node{ j, i };
-			if (grid.isLinkedWithNeighbor(node, Grid::Direction::SOUTH))
-			{
-				formatedGrid += "| ";
-			}
-			else
-			{
-				formatedGrid += "  ";
-			}
-		}
-		formatedGrid += '\n';
-	}
-
-	return formatedGrid;
-}
 
 /// \brief	Destructor
 /* virtual */ GameState::~GameState(void)
@@ -56,9 +20,8 @@ std::string GameState::GetStringGrid(Grid const& grid) const
 /// \brief	Called when the state is pushed
 /* virtual */ void GameState::OnEnter(void)
 {
-	// PuzzleGenerator pg;
-	// pg.generateNextPuzzle();
-	Engine::pSoundEngine->Play("canary.wav", SND_ASYNC);
+	m_currentGrid = m_puzzleGenerator.generateNextPuzzle();
+	m_playerPosition = Vector2u(m_currentGrid.getDatas(Grid::Data::START)[0].x * 2, m_currentGrid.getDatas(Grid::Data::START)[0].y * 2);
 }
 
 /// \brief	Called when the state is removed
@@ -71,22 +34,67 @@ std::string GameState::GetStringGrid(Grid const& grid) const
 /// \param  dt The elapsed time since the last frame
 /* virtual */ void GameState::Update(float dt)
 {
-	PuzzleGenerator pg;
-	Grid grid = pg.generateNextPuzzle();
+	if (hasWon()) {
+		m_currentGrid = m_puzzleGenerator.generateNextPuzzle();
+		m_playerPath.clear();
+		m_playerPosition = Vector2u(m_currentGrid.getDatas(Grid::Data::START)[0].x * 2, m_currentGrid.getDatas(Grid::Data::START)[0].y * 2);
+		Engine::pSoundEngine->Play("canary.wav", SND_ASYNC);
+	}
+	handleInput();
+	render();
+}
 
-	std::string formatedGrid(GetStringGrid(grid));
-	Vector2u gridSize(grid.getWidth() * 2, grid.getHeight() * 2);
+void GameState::render() {
+	std::string formatedGrid(m_currentGrid.toString());
+	Vector2u gridDisplayedSize(m_currentGrid.getWidth() * 2, m_currentGrid.getHeight() * 2);
+	Engine::pRendering->Draw(gridDisplayedSize, NODE_SIZE, formatedGrid); // draw grid
+	Engine::pRendering->Draw(gridDisplayedSize, NODE_SIZE, m_playerPath, Color::Red); // draw the path
+	Engine::pRendering->Draw(gridDisplayedSize, NODE_SIZE, m_playerPosition.x, m_playerPosition.y); // draw player
+}
 
-	Engine::pRendering->Draw(gridSize, 15, formatedGrid);
-	Engine::pRendering->Draw(gridSize, 15, 6, 6);
+void GameState::handleInput() {
+	if (m_inputTimer.GetElaspedTime() < 0.1) return;
+	m_inputTimer.Start();
+	Grid::Coordinates newPlayerPos{ static_cast<unsigned char>(m_playerPosition.x / 2), static_cast<unsigned char>(m_playerPosition.y / 2) };
+	if (GetAsyncKeyState(VK_UP) & 0x8000) {
+		if (m_currentGrid.isLinkedWithNeighbor(newPlayerPos, Grid::Direction::NORTH))
+			newPlayerPos.y--;
+	}
+	else if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
+		if (m_currentGrid.isLinkedWithNeighbor(newPlayerPos, Grid::Direction::SOUTH))
+			newPlayerPos.y++;
+	}
+	else if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
+		if (m_currentGrid.isLinkedWithNeighbor(newPlayerPos, Grid::Direction::WEST))
+			newPlayerPos.x--;
+	}
+	else if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
+		if (m_currentGrid.isLinkedWithNeighbor(newPlayerPos, Grid::Direction::EAST))
+			newPlayerPos.x++;
+	}
+	Vector2u pos = Vector2u(newPlayerPos.x * 2, newPlayerPos.y * 2);
+	if (m_currentGrid.isInBounds(newPlayerPos)) {
+		if (m_playerPath.size() > 1 && pos == m_playerPath[m_playerPath.size() - 2]) {
+			m_playerPath.pop_back();
+			m_playerPosition = pos;
+		}
+		else if (!(std::find(m_playerPath.begin(), m_playerPath.end(), pos) != m_playerPath.end())) {
+			m_playerPath.push_back(pos);
+			m_playerPosition = pos;
+		}	
+	}
+}
 
-	std::vector<Vector2u> path;
-	path.push_back(Vector2u(0, 0));
-	path.push_back(Vector2u(0, 1));
-	path.push_back(Vector2u(0, 2));
-	path.push_back(Vector2u(1, 2));
-	path.push_back(Vector2u(2, 2));
-	path.push_back(Vector2u(3, 2));
-
-	Engine::pRendering->Draw(gridSize, 15, path, Color::Red);
+bool GameState::hasWon() {
+	std::vector<Grid::Coordinates> mustPassPath = m_currentGrid.getDatas(Grid::Data::MUST_PASS);
+	for (size_t i = 0; i < mustPassPath.size(); i++)
+	{
+		Vector2u coord = Vector2u(mustPassPath[i].x * 2, mustPassPath[i].y * 2);
+		if (!(std::find(m_playerPath.begin(), m_playerPath.end(), coord) != m_playerPath.end()))
+			return false;
+	}
+	Vector2u exit = Vector2u(m_currentGrid.getDatas(Grid::Data::EXIT)[0].x * 2, m_currentGrid.getDatas(Grid::Data::EXIT)[0].y * 2);
+	if (!(std::find(m_playerPath.begin(), m_playerPath.end(), exit) != m_playerPath.end()))
+		return false;
+	return true;
 }
