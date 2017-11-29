@@ -10,12 +10,18 @@
 /// \return A string containing the path to the resource folder
 std::string GetResourcePath(std::string const& env)
 {
-	std::string separator      { "\\" };
-	std::string resourceFolder { "Resource" };
-	std::string projectRoot    { "the-wetness" };
+	std::string separator       { "\\" };
+	std::string resourceFolder  { "Resource" };
+	std::string projectRoot     { "the-wetness" };
+	std::string projectRootUper { "The-Wetness" };
 
 	// Searches the first occurrence of the project name in env path
 	size_t projectIndex = env.find(projectRoot);
+
+	if(projectIndex == std::string::npos)
+	{
+		projectIndex = env.find(projectRootUper);
+	}
 
 	// Constructs a string containing the project path
 	std::string resourceFolderPath { env.begin(), env.begin() + projectIndex };

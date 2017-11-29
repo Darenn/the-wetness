@@ -35,6 +35,7 @@
     <ClInclude Include="Header\Engine\Rendering\RectangleShape.hpp" />
     <ClInclude Include="Header\Engine\Rendering\RenderingEngine.hpp" />
     <ClInclude Include="Header\Engine\Sound\SoundEngine.hpp" />
+    <ClInclude Include="Header\Engine\Utility\ArrayUtility.hpp" />
     <ClInclude Include="Header\Engine\Utility\StringUtility.hpp" />
     <ClInclude Include="Header\Game\State\GameState.hpp" />
     <ClInclude Include="Header\Generation\GA\ConformityEvaluator.hpp" />
@@ -56,6 +57,7 @@
     <None Include="Header\Engine\Maths\Impl\Vector2.inl" />
     <None Include="Header\Engine\Maths\Impl\Vector3.inl" />
     <None Include="Header\Engine\Platform\Window\Impl\Window.inl" />
+    <None Include="Header\Engine\Utility\Impl\ArrayUtility.inl" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Engine\AI\State\StateMachine.cpp" />
@@ -167,7 +169,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalOptions>/std:c++latest %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/std:c++latest /openmp %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -199,7 +201,9 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalOptions>/std:c++latest %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/std:c++latest /openmp %(AdditionalOptions)</AdditionalOptions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

@@ -117,6 +117,9 @@
     <Filter Include="Fichiers sources\Engine\Utility">
       <UniqueIdentifier>{5ac8313e-5fb1-4c6a-bc35-54ac2c5c8e95}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers d%27en-tête\Engine\Utility\Impl">
+      <UniqueIdentifier>{6ef2956d-63fa-4e6a-95a6-d698426ce5b9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\Engine\Engine.hpp">
@@ -209,6 +212,9 @@
     <ClInclude Include="Header\Engine\Utility\StringUtility.hpp">
       <Filter>Fichiers d%27en-tête\Engine\Utility</Filter>
     </ClInclude>
+    <ClInclude Include="Header\Engine\Utility\ArrayUtility.hpp">
+      <Filter>Fichiers d%27en-tête\Engine\Utility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Header\Engine\AI\Navigation\Impl\SquareGrid.inl">
@@ -225,6 +231,9 @@
     </None>
     <None Include="Header\Engine\Platform\Window\Impl\Window.inl">
       <Filter>Fichiers d%27en-tête\Engine\Platform\Window\Impl</Filter>
+    </None>
+    <None Include="Header\Engine\Utility\Impl\ArrayUtility.inl">
+      <Filter>Fichiers d%27en-tête\Engine\Utility\Impl</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
