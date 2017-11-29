@@ -29,6 +29,7 @@
     <ClInclude Include="Header\Engine\GameEngine.hpp" />
     <ClInclude Include="Header\Engine\Maths\Vector2.hpp" />
     <ClInclude Include="Header\Engine\Maths\Vector3.hpp" />
+    <ClInclude Include="Header\Engine\Memory\StackAllocator.hpp" />
     <ClInclude Include="Header\Engine\Platform\Time\Timer.hpp" />
     <ClInclude Include="Header\Engine\Platform\Window\Window.hpp" />
     <ClInclude Include="Header\Engine\Rendering\Color.hpp" />
@@ -56,6 +57,9 @@
     <None Include="Header\Engine\AI\State\Impl\StateMachine.inl" />
     <None Include="Header\Engine\Maths\Impl\Vector2.inl" />
     <None Include="Header\Engine\Maths\Impl\Vector3.inl" />
+    <ClInclude Include="Header\Engine\Memory\Impl\StackAllocator.inl">
+      <FileType>Document</FileType>
+    </ClInclude>
     <None Include="Header\Engine\Platform\Window\Impl\Window.inl" />
     <None Include="Header\Engine\Utility\Impl\ArrayUtility.inl" />
   </ItemGroup>

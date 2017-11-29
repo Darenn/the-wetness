@@ -7,8 +7,6 @@
 #define _GAME_ENGINE_HPP
 
 #include "Engine.hpp"
-#include "AI/State/StateMachine.hpp"
-#include "Rendering/RenderingEngine.hpp"
 
 #define GAME_ENGINE_MIN_FPS 30
 #define GAME_ENGINE_MAX_FPS 240
@@ -46,6 +44,7 @@ private:
 	StateMachine    * const m_pStateMachine;
 	SoundEngine     * const m_pSoundEngine;
 	RenderingEngine * const m_pRenderingEngine;
+	FrameAllocator  * const m_pFrameAllocator;
 };
 
 #endif // _GAME_ENGINE_HPP

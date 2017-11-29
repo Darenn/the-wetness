@@ -120,6 +120,12 @@
     <Filter Include="Fichiers d%27en-tête\Engine\Utility\Impl">
       <UniqueIdentifier>{6ef2956d-63fa-4e6a-95a6-d698426ce5b9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers d%27en-tête\Engine\Memory">
+      <UniqueIdentifier>{1e6184b0-77d2-4b5b-a698-b9349844a17c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Engine\Memory\Impl">
+      <UniqueIdentifier>{0290e36d-d629-4cd6-9cc1-a4f7dd16d134}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\Engine\Engine.hpp">
@@ -215,6 +221,9 @@
     <ClInclude Include="Header\Engine\Utility\ArrayUtility.hpp">
       <Filter>Fichiers d%27en-tête\Engine\Utility</Filter>
     </ClInclude>
+    <ClInclude Include="Header\Engine\Memory\StackAllocator.hpp">
+      <Filter>Fichiers d%27en-tête\Engine\Memory</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Header\Engine\AI\Navigation\Impl\SquareGrid.inl">
@@ -234,6 +243,9 @@
     </None>
     <None Include="Header\Engine\Utility\Impl\ArrayUtility.inl">
       <Filter>Fichiers d%27en-tête\Engine\Utility\Impl</Filter>
+    </None>
+    <None Include="Header\Engine\Memory\Impl\StackAllocator.inl">
+      <Filter>Fichiers d%27en-tête\Engine\Memory\Impl</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

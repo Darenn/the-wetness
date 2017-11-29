@@ -5,6 +5,7 @@
 
 #include "Engine/Engine.hpp"
 
-/* static */ RenderingEngine * const Engine::pRendering    = new RenderingEngine();
-/* static */ StateMachine    * const Engine::pStateMachine = new StateMachine();
-/* static */ SoundEngine     * const Engine::pSoundEngine  = new SoundEngine();
+/* static */ RenderingEngine * const Engine::pRendering      = new RenderingEngine();
+/* static */ StateMachine    * const Engine::pStateMachine   = new StateMachine();
+/* static */ SoundEngine     * const Engine::pSoundEngine    = new SoundEngine();
+/* static */ StackAllocator  * const Engine::pFrameAllocator = new StackAllocator(1024*1024);

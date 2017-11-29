@@ -14,8 +14,6 @@
 #include "RectangleShape.hpp"
 #include <vector>
 
-class Grid;
-
 /// \class  RenderingEngine
 /// \brief  Handles rendering, FPS etc.
 class RenderingEngine

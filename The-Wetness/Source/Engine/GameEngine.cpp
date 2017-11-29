@@ -11,6 +11,7 @@ GameEngine::GameEngine(char const* env)
 : m_pStateMachine(Engine::pStateMachine)
 , m_pSoundEngine(Engine::pSoundEngine)
 , m_pRenderingEngine(Engine::pRendering)
+, m_pFrameAllocator(Engine::pFrameAllocator)
 {
 	m_debug   = false;
 	m_running = false;
@@ -104,11 +105,9 @@ void GameEngine::Start(void)
 			// Retrieve elapsed time
 			lag -= m_granularity;
 			m_pRenderingEngine->Render(lag / m_granularity);
-		}
 
-		// Rendering ...
-		// lag / m_granularity is the progression in
-		// the current frame to interpolate position
-		m_pRenderingEngine->Render(lag / m_granularity);
+			// Clear the frame allocator for the next frame
+			m_pFrameAllocator->Clear();
+		}
 	}
 }
