@@ -20,14 +20,15 @@ namespace util
 
 	/* inline */
 	template <typename T>
-	void ArrayMul(T const * const __restrict rhs, 
+	void ArrayMul(T const * const __restrict rhs,
 				  T const * const __restrict lhs,
-				  T       * const __restrict out, size_t len);
+				  T       * const __restrict out, size_t const len);
 
 	/* inline */
 	template <typename T>
-	T * ArrayDiff(T const * const __restrict rhs,
-				  T const * const __restrict lhs, size_t len);
+	void ArrayDiff(T const * const __restrict rhs,
+				   T const * const __restrict lhs,
+				   T       * const __restrict out, size_t const len);
 				
 }
 
