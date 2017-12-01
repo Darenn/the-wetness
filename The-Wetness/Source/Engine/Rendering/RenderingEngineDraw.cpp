@@ -152,13 +152,46 @@ void RenderingEngine::Draw(Vector2u const& gridSize, USHORT const size, USHORT X
 /// \param  color The color of the path
 void RenderingEngine::Draw(Vector2u const& gridSize, USHORT const size, std::vector<Vector2u> const& path, Color const& color)
 {
+	if (path.size() == 0)
+	{
+		return;
+	}
+
 	USHORT doubleBlockSize = size * 2;
 
 	USHORT startX = m_window.GetWidth() / 2  - gridSize.x * size + size;
 	USHORT startY = m_window.GetHeight() / 2 - gridSize.y * size + size;
 
-	for(Vector2u const& pos : path)
+	Vector2u previous = path.front();
+	for(Vector2u const& current : path)
 	{
-		Draw(RectangleShape(startX + pos.x * doubleBlockSize, startY + pos.y * doubleBlockSize, size, size, color));
+		Draw(RectangleShape(startX + current.x * doubleBlockSize, 
+							startY + current.y * doubleBlockSize, size, size, color));
+
+		if (previous != current)
+		{
+			if (previous.y < current.y)
+			{
+				Draw(RectangleShape(startX +  current.x      * doubleBlockSize,
+									startY + (current.y - 1) * doubleBlockSize, size, size, color));
+			}
+			else if (previous.y > current.y)
+			{
+				Draw(RectangleShape(startX +  current.x      * doubleBlockSize,
+									startY + (current.y + 1) * doubleBlockSize, size, size, color));
+			}
+			else if (previous.x < current.x)
+			{
+				Draw(RectangleShape(startX + (current.x - 1) * doubleBlockSize,
+									startY +  current.y      * doubleBlockSize, size, size, color));
+			}
+			else
+			{
+				Draw(RectangleShape(startX + (current.x + 1) * doubleBlockSize,
+									startY +  current.y      * doubleBlockSize, size, size, color));
+			}
+		}
+
+		previous = current;
 	}
 }
