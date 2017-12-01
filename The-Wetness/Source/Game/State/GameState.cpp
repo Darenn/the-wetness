@@ -94,7 +94,7 @@ bool GameState::hasWon() {
 			return false;
 	}
 	Vector2u exit = Vector2u(m_currentGrid.getDatas(Grid::Data::EXIT)[0].x * 2, m_currentGrid.getDatas(Grid::Data::EXIT)[0].y * 2);
-	if (!(std::find(m_playerPath.begin(), m_playerPath.end(), exit) != m_playerPath.end()))
+	if (!m_playerPath.empty() && m_playerPath.back() != exit)
 		return false;
 	return true;
 }
