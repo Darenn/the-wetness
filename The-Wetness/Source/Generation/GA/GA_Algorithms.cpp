@@ -17,7 +17,8 @@ GA_Algorithms::Chromosome GA_Algorithms::cross(const Chromosome& parentA, const 
 {
 	if (parentA.size() != parentB.size())
 	{
-		throw std::invalid_argument("Both parent must have the same size.");
+		return std::vector<bool>(parentA);
+		//throw std::invalid_argument("Both parent must have the same size.");
 	}
 	auto child = std::vector<bool>(parentA);
 	auto crossPoint = std::rand() / static_cast<float>(RAND_MAX) * (parentB.size() - 1);

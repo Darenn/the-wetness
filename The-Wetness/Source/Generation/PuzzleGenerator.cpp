@@ -1,5 +1,6 @@
 #include "Generation/PuzzleGenerator.hpp"
 #include <ctime>
+#include "Generation/Utility/Utils.h"
 
 using namespace std;
 
@@ -13,7 +14,6 @@ Grid PuzzleGenerator::generateNextPuzzle()
 
 	for (auto i = 0; i < NUM_ITER; ++i)
 	{
-		//std::cout << i << " iterations done." << std::endl;
 		GA_Algorithms::Population offspring{};
 		for (auto j = 0; j < population.size(); j++)
 		{
@@ -45,15 +45,6 @@ Grid PuzzleGenerator::generateNextPuzzle()
 	}
 
 	auto best = population[0];
-	/*for (size_t i = 0; i < population.size(); i++)
-	{
-		std::vector<Grid::Coordinates> start = _gridDecoder.decode(population[i].first).getDatas(Grid::Data::START);
-		std::vector<Grid::Coordinates> exit = _gridDecoder.decode(population[i].first).getDatas(Grid::Data::EXIT);
-		Grid g = _gridDecoder.decode(population[i].first);
-		std::cout << population[i].second << std::endl;
-		std::cout << g << std::endl;
-	}*/
-	//std::cout << _gridDecoder.decode(best.first) << std::endl;
 	return _gridDecoder.decode(best.first);
 }
 
@@ -62,7 +53,8 @@ GA_Algorithms::Population PuzzleGenerator::initializePopulation(int numChromosom
 	std::vector<Grid*> grids;
 	for (size_t i = 0; i < numChromosomes; i++)
 	{
-		Grid* g = new Grid(GRID_WIDTH, GRID_HEIGHT);
+		int size = Utils::RandomRange(2, 8);
+		Grid* g = new Grid(Utils::RandomRange(2, 8), Utils::RandomRange(2, 8));
 		grids.push_back(g);
 	}
 

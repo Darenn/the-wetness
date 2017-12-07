@@ -14,6 +14,8 @@ public:
 
     static double *array_diff(double arr1[], double arr2[], int len);
 
+	static int RandomRange(int min, int max);
+
 };
 
 #endif //ML_UTILS_H

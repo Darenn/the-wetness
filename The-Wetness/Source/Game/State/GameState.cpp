@@ -1,7 +1,7 @@
 /// \file       GameState.cpp
 /// \date       25/11/2017
 /// \package    Game
-/// \author     Vincent STEHLY--CALISTO
+/// \author     Darenn KELLER
 
 #include "Engine/Engine.hpp"
 #include "Game/State/GameState.hpp"

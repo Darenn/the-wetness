@@ -40,3 +40,7 @@ double *Utils::array_diff(double arr1[], double arr2[], int len) {
 
     return arr;
 }
+
+int Utils::RandomRange(int min, int max) {
+	return min + (rand() % static_cast<int>(max - min + 1));
+}
