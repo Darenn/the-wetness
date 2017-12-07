@@ -159,7 +159,7 @@ void RenderingEngine::Draw(Vector2u const& gridSize, USHORT const size, std::vec
 
 	USHORT doubleBlockSize = size * 2;
 
-	USHORT startX = m_window.GetWidth() / 2  - gridSize.x * size + size;
+	USHORT startX = m_window.GetWidth()  / 2 - gridSize.x * size + size;
 	USHORT startY = m_window.GetHeight() / 2 - gridSize.y * size + size;
 
 	Vector2u previous = path.front();
