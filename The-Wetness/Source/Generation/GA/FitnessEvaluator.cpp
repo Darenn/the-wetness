@@ -15,6 +15,7 @@ int FitnessEvaluator::evaluate(Grid& grid) const
 	int numMustPass = grid.getDataCount(Grid::Data::MUST_PASS);
 	std::vector<Grid::Coordinates> start = grid.getDatas(Grid::Data::START);
 	std::vector<Grid::Coordinates> exit = grid.getDatas(Grid::Data::EXIT);
+	int numberNodes = grid.getWidth() * grid.getHeight();
 	if (start.size() == 0 || exit.size() == 0)
 	{
 		return -1000;
@@ -24,5 +25,5 @@ int FitnessEvaluator::evaluate(Grid& grid) const
 	if (path.size() <= 0) {
 		return -2000;
 	}
-	return numMustPass * 2 + path.size() * 1 + grid.getNumberUnlinks() * 3;
+	return numMustPass * 4 + path.size() * 1 + grid.getNumberUnlinks() * 4 + numberNodes * 1;
 }

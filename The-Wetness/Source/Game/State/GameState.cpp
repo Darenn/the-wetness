@@ -34,11 +34,11 @@
 /// \param  dt The elapsed time since the last frame
 /* virtual */ void GameState::Update(float dt)
 {
-	if (hasWon()) {
+	if (hasWon() || GetAsyncKeyState(VK_F2) & 0x8000) {
+		Engine::pSoundEngine->Play("win.wav", SND_ASYNC);
 		m_currentGrid = m_puzzleGenerator.generateNextPuzzle();
 		m_playerPath.clear();
 		m_playerPosition = Vector2u(m_currentGrid.getDatas(Grid::Data::START)[0].x * 2, m_currentGrid.getDatas(Grid::Data::START)[0].y * 2);
-		Engine::pSoundEngine->Play("canary.wav", SND_ASYNC);
 	}
 	handleInput();
 	render();
@@ -50,6 +50,21 @@ void GameState::render() {
 	Engine::pRendering->Draw(gridDisplayedSize, NODE_SIZE, formatedGrid); // draw grid
 	Engine::pRendering->Draw(gridDisplayedSize, NODE_SIZE, m_playerPath, Color::Red); // draw the path
 	Engine::pRendering->Draw(gridDisplayedSize, NODE_SIZE, m_playerPosition.x, m_playerPosition.y); // draw player
+
+	if (GetAsyncKeyState(VK_F1) & 0x8000) {
+		Grid::Coordinates start = m_currentGrid.getDatas(Grid::Data::START)[0];
+		Grid::Coordinates exit = m_currentGrid.getDatas(Grid::Data::EXIT)[0];
+		std::vector<Grid::Coordinates> path = m_currentGrid.getValidPath(start, exit);
+
+		for (Grid::Coordinates& coord : path) { coord.x *= 2; coord.y *= 2; }
+		std::vector<Vector2u> pathRendering;
+		for (Grid::Coordinates& coord : path)
+		{
+			pathRendering.push_back(Vector2u(coord.x, coord.y));
+		}
+		Vector2u gridDisplayedSize(m_currentGrid.getWidth() * 2, m_currentGrid.getHeight() * 2);
+		Engine::pRendering->Draw(gridDisplayedSize, NODE_SIZE, pathRendering, Color::Purple); // draw the path
+	}
 }
 
 void GameState::handleInput() {
@@ -83,6 +98,19 @@ void GameState::handleInput() {
 			m_playerPosition = pos;
 		}	
 	}
+
+	if (GetAsyncKeyState(VK_F1) & 0x8000) {
+		Grid::Coordinates start = m_currentGrid.getDatas(Grid::Data::START)[0];
+		Grid::Coordinates exit = m_currentGrid.getDatas(Grid::Data::EXIT)[0];
+		std::vector<Grid::Coordinates> path = m_currentGrid.getValidPath(start, exit);
+		for (Grid::Coordinates& coord : path) { coord.x *= 2; coord.y *= 2; }
+		std::vector<Vector2u> pathRendering;
+		for (Grid::Coordinates& coord : path) 
+		{ pathRendering.push_back(Vector2u(coord.x, coord.y)); }
+		Vector2u gridDisplayedSize(m_currentGrid.getWidth() * 2, m_currentGrid.getHeight() * 2);
+		Engine::pRendering->Draw(gridDisplayedSize, NODE_SIZE, pathRendering, Color::Purple); // draw the path
+	}
+
 }
 
 bool GameState::hasWon() {

@@ -45,7 +45,13 @@ Grid PuzzleGenerator::generateNextPuzzle()
 	}
 
 	auto best = population[0];
-	return _gridDecoder.decode(best.first);
+	Grid bestGrid = _gridDecoder.decode(best.first);
+	std::vector<Grid::Coordinates> start = bestGrid.getDatas(Grid::Data::START);
+	std::vector<Grid::Coordinates> exit = bestGrid.getDatas(Grid::Data::EXIT);
+	std::vector<Grid::Coordinates> path = bestGrid.getValidPath(start[0], exit[0]);
+	if (path.size() <= 0)
+		return generateNextPuzzle();
+	return bestGrid;
 }
 
 GA_Algorithms::Population PuzzleGenerator::initializePopulation(int numChromosomes)

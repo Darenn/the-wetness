@@ -289,7 +289,7 @@ std::vector<Grid::Coordinates> Grid::getValidPath(Coordinates start, Coordinates
 		else noValidPath = true;
 
 		if (!noValidPath) {
-			std::vector<Grid::Coordinates> coordinatesPath(finalPath.size());
+			std::vector<Grid::Coordinates> coordinatesPath;
 			for each (TNode node in finalPath)
 			{
 				coordinatesPath.push_back(Grid::Coordinates{ static_cast<unsigned char>(node.X()), static_cast<unsigned char>(node.Y()) });
@@ -380,9 +380,9 @@ Grid& Grid::operator=(const Grid& grid)
 
 std::ostream & operator<<(std::ostream& output, const Grid& grid)
 {
-	for (size_t i = 0; i < grid._width; i++)
+	for (size_t i = 0; i < grid._height; i++)
 	{
-		for (size_t j = 0; j < grid._height; j++)
+		for (size_t j = 0; j < grid._width; j++)
 		{
 			Grid::Coordinates node{ j, i };
 			output << static_cast<char>(grid.getData(node));
@@ -392,7 +392,7 @@ std::ostream & operator<<(std::ostream& output, const Grid& grid)
 				output << "  ";
 		}
 		output << std::endl;
-		for (size_t j = 0; j < grid._height; j++)
+		for (size_t j = 0; j < grid._width; j++)
 		{
 			Grid::Coordinates node{ j, i };
 			if (grid.isLinkedWithNeighbor(node, Grid::Direction::SOUTH))

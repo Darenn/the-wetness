@@ -29,6 +29,8 @@ int main(int argc, char ** argv)
 			gameEngine.SetInitDebug(true);
 		}
 	}
+	Grid grid = Grid(3, 4);
+	std::cout << grid << std::endl;
 
 	// The game engine is now initialized.
 	gameEngine.Initialize();
@@ -38,6 +40,6 @@ int main(int argc, char ** argv)
 
 	// Starting the game loop
 	gameEngine.Start();
-
+	
 	return EXIT_SUCCESS;
 }

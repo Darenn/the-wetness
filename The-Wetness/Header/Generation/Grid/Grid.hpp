@@ -78,9 +78,9 @@ public:
 	void setLinkToAllNeighbors(int gridIndex, bool linked);
 	std::string toString() {
 		std::string formatedGrid = "";
-		for (size_t i = 0; i < getWidth(); i++)
+		for (size_t i = 0; i < getHeight(); i++)
 		{
-			for (size_t j = 0; j < getHeight(); j++)
+			for (size_t j = 0; j < getWidth(); j++)
 			{
 				Grid::Coordinates node{ j, i };
 				formatedGrid += static_cast<char>(getData(node));
@@ -94,7 +94,7 @@ public:
 				}
 			}
 			formatedGrid += '\n';
-			for (size_t j = 0; j < getHeight(); j++)
+			for (size_t j = 0; j < getWidth(); j++)
 			{
 				Grid::Coordinates node{ j, i };
 				if (isLinkedWithNeighbor(node, Grid::Direction::SOUTH))
